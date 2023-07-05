@@ -3,16 +3,16 @@
 // .root {
 // }
 .main {
-  background-color: #2a2a2a;
-  color: #ffffff;
+  background-color: $button-bg;
+  color: $text-light;
   font-size: 16px;
   line-height: 24px;
   font-weight: 600;
   padding: 10px 30px;
 
   &:not(.noHover):hover {
-    color: #ffffff !important;
-    background-color: $primary;
+    color: $text-light !important;
+    background-color: $button-primary;
     text-decoration: none;
   }
 
@@ -37,14 +37,14 @@
 .outline {
   display: inline-block;
   padding: 5px 10px;
-  border: 1px solid #2a2a2a;
-  color: #2a2a2a;
+  border: 1px solid $button-border;
+  color: $text-dark;
   font-size: 13px;
   line-height: 22px;
 
   &:not(.noHover):hover {
-    background-color: #2a2a2a;
-    color: #ffffff;
+    background-color: $button-bg;
+    color: $text-light;
   }
 }
 
