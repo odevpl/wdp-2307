@@ -16,6 +16,15 @@
     background-color: $primary;
     text-decoration: none;
   }
+
+}
+
+.price {
+  @extend .small;
+  color: #ffffff !important;
+  background-color: $primary;
+  text-decoration: none;
+
 }
 
 .small {
