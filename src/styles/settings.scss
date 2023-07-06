@@ -11,3 +11,25 @@ $primary: #d58e32;
 $text-color: #2a2a2a;
 
 $form-border-color: #292929;
+
+
+// Global style about animation for hover buttons
+$animation-time: 10s;
+$animation-time-short: $animation-time * 0.8; // Adjust the shorter duration as needed
+
+// Define CSS variables for animation times
+:root {
+  --animation-time-background: $animation-time;
+  --animation-time-color: $animation-time; // Change to -short if needed diffrent times
+}
+
+// Mixin for hover effects with customizable animation times
+%hover-effect {
+  transition-property: background-color, color;
+  transition-duration: var(--animation-time-background), var(--animation-time-color);
+}
+
+
+* {
+  @extend %hover-effect;
+}
