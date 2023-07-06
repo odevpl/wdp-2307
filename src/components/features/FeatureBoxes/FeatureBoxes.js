@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 
 import {
   faTruck,
@@ -15,30 +16,30 @@ const FeatureBoxes = () => (
   <div className={styles.root}>
     <div className='container'>
       <div className='row'>
-        <div className='col'>
-          <FeatureBox icon={faTruck} active>
+        <Link className='col' to={'/benefits'}>
+          <FeatureBox icon={faTruck}>
             <h5>Free shipping</h5>
             <p>All orders</p>
           </FeatureBox>
-        </div>
-        <div className='col'>
+        </Link>
+        <Link className='col' to={'/benefits'}>
           <FeatureBox icon={faHeadphones}>
             <h5>24/7 customer</h5>
             <p>support</p>
           </FeatureBox>
-        </div>
-        <div className='col'>
+        </Link>
+        <Link className='col'>
           <FeatureBox icon={faReplyAll}>
             <h5>Money back</h5>
             <p>guarantee</p>
           </FeatureBox>
-        </div>
-        <div className='col'>
+        </Link>
+        <Link className='col'>
           <FeatureBox icon={faBullhorn}>
             <h5>Member discount</h5>
             <p>First order</p>
           </FeatureBox>
-        </div>
+        </Link>
       </div>
     </div>
   </div>
