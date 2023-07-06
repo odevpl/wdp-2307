@@ -13,8 +13,7 @@ import Button from '../Button/Button';
 import ProductStars from '../../features/ProductStars/ProductStars';
 import QuickViewPopup from '../../views/QuickViewPopup/QuickViewPopup';
 
-const ProductBox = ({ id, name, price, promo, stars, myStars, picture }) => {
-
+const ProductBox = ({ id, name, price, oldPrice, promo, stars, myStars, picture }) => {
   const [isHovering, setIsHovering] = useState(false);
   const [isPopupOpen, setIsPopupOpen] = useState(false);
 
@@ -29,7 +28,6 @@ const ProductBox = ({ id, name, price, promo, stars, myStars, picture }) => {
   };
 
   const handleMouseOut = () => {
-    // setIsHovering(true);
     setIsHovering(false);
   };
 
@@ -77,10 +75,13 @@ const ProductBox = ({ id, name, price, promo, stars, myStars, picture }) => {
             <FontAwesomeIcon icon={faExchangeAlt}>Add to compare</FontAwesomeIcon>
           </Button>
         </div>
-        <div className={styles.price}>
-          <Button noHover variant={isHovering ? 'price' : 'small'}>
-            $ {price}
-          </Button>
+        <div className={styles.pricesContainer}>
+          {oldPrice && <p className={styles.oldPrice}> $ {oldPrice} </p>}
+          <div className={styles.price}>
+            <Button noHover variant={isHovering ? 'price' : 'small'}>
+              $ {price}
+            </Button>
+          </div>
         </div>
       </div>
     </div>
@@ -97,6 +98,7 @@ ProductBox.propTypes = {
   picture: PropTypes.string.isRequired,
   onStarHover: PropTypes.func,
   onStarClick: PropTypes.func,
+  oldPrice: PropTypes.number,
 };
 
 export default ProductBox;
