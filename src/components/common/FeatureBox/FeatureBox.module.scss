@@ -57,11 +57,9 @@
       margin: 0;
     }
 
-    p {
-    }
   }
 
-  &.active {
+  &:hover {
     .iconWrapper {
       color: #ffffff;
 
