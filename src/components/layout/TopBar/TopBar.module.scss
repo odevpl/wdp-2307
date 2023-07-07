@@ -23,7 +23,20 @@
       }
     }
   }
-
+  .topOptions {
+    ul  {
+      display: flex;
+      flex-direction: row;
+      justify-content: flex-start;
+    }
+    li{
+      display: flex;
+    }
+    a{
+      display: flex;
+      align-items: center;
+    }
+  }
   .topOptions ul li {
     margin-right: 1.5rem;
 
