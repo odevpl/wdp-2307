@@ -5,7 +5,7 @@
   background-color: #ffffff;
 
   :global(.container) > :global(.row) {
-    height: 84px;
+    min-height: 84px;
   }
 
   .menu {
