@@ -5,6 +5,7 @@
   display: inline-flex;
   height: 45px;
   color: $text-color;
+  align-items: center;
 
   .category {
     border-right: 1px solid $form-border-color;
