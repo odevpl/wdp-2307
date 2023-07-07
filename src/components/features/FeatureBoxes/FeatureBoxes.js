@@ -16,30 +16,38 @@ const FeatureBoxes = () => (
   <div className={styles.root}>
     <div className='container'>
       <div className='row'>
-        <Link className='col' to={'/benefits'}>
-          <FeatureBox icon={faTruck}>
-            <h5>Free shipping</h5>
-            <p>All orders</p>
-          </FeatureBox>
-        </Link>
-        <Link className='col' to={'/benefits'}>
-          <FeatureBox icon={faHeadphones}>
-            <h5>24/7 customer</h5>
-            <p>support</p>
-          </FeatureBox>
-        </Link>
-        <Link className='col'>
-          <FeatureBox icon={faReplyAll}>
-            <h5>Money back</h5>
-            <p>guarantee</p>
-          </FeatureBox>
-        </Link>
-        <Link className='col'>
-          <FeatureBox icon={faBullhorn}>
-            <h5>Member discount</h5>
-            <p>First order</p>
-          </FeatureBox>
-        </Link>
+        <div className='col-xs-6 col-md-6 col-lg-3'>
+          <Link to={'/benefits'}>
+            <FeatureBox icon={faTruck}>
+              <h5>Free shipping</h5>
+              <p>All orders</p>
+            </FeatureBox>
+          </Link>
+        </div>
+        <div className='col-xs-6 col-md-6 col-lg-3'>
+          <Link to={'/benefits'}>
+            <FeatureBox icon={faHeadphones}>
+              <h5>24/7 customer</h5>
+              <p>support</p>
+            </FeatureBox>
+          </Link>
+        </div>
+        <div className='col-xs-6 col-md-6 col-lg-3'>
+          <Link to={'/benefits'}>
+            <FeatureBox icon={faReplyAll}>
+              <h5>Money back</h5>
+              <p>guarantee</p>
+            </FeatureBox>
+          </Link>
+        </div>
+        <div className='col-xs-6 col-md-6 col-lg-3'>
+          <Link to={'/benefits'}>
+            <FeatureBox icon={faBullhorn}>
+              <h5>Member discount</h5>
+              <p>First order</p>
+            </FeatureBox>
+          </Link>
+        </div>
       </div>
     </div>
   </div>
