@@ -13,17 +13,15 @@
   .category {
     border-right: 1px solid $form-border-color;
     display: flex;
-    outline: 1px solid red;
     align-items: center;
     position: relative;
     @include respond-to(tablets) {
       flex-basis: 100%;
+      border-right: 0;
+      border-bottom: 1px solid $form-border-color;
     }
     @include respond-to(mobile) {
-      outline: 1px solid green;
-    }
-    @include respond-to(tablets) {
-      outline: 1px solid blue;
+      border-right: 0;
     }
 
     .icon:first-child {
@@ -37,6 +35,9 @@
       position: absolute;
       right: 10px;
       z-index: 0;
+      @include respond-to(mobile) {
+        display: none;
+      }
     }
 
     select {
@@ -46,12 +47,18 @@
       padding: 5px 30px 5px 35px;
       position: relative;
       z-index: 1;
+      @include respond-to(mobile) {
+        opacity: 0;
+        padding: 4px;
+        width: 36px;
+      }
     }
   }
 
   .searchField {
     display: flex;
     align-items: center;
+    justify-content: space-between;
     position: relative;
     height: 34px;
     @include respond-to(tablets) {
