@@ -1,18 +1,5 @@
 $base-padding: 24px;
 
-
-$header-topbar-bg: #434343;
-$header-bg: #363636;
-
-$footer-claim-bg: #2a2a2a;
-$footer-bg: #363636;
-
-$primary: #d58e32;
-
-$text-color: #2a2a2a;
-$form-border-color: #292929;
-$color-light: rgb(252, 252, 252);
-
 // Global style about animation for hover buttons
 $animation-time: 10s;
 $animation-time-short: $animation-time * 0.8; // Adjust the shorter duration as needed
@@ -32,7 +19,6 @@ $animation-time-short: $animation-time * 0.8; // Adjust the shorter duration as 
 * {
   @extend %hover-effect;
 }
-
 
 
 //Colors - DO NOT USE COLOR-... VAR IN OTHER FILES!!!!!!!!!
