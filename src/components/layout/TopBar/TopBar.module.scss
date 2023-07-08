@@ -23,7 +23,20 @@
       }
     }
   }
-
+  .topOptions {
+    ul  {
+      display: flex;
+      flex-direction: row;
+      justify-content: flex-start;
+    }
+    li{
+      display: flex;
+    }
+    a{
+      display: flex;
+      align-items: center;
+    }
+  }
   .topOptions ul li {
     margin-right: 1.5rem;
 
@@ -31,12 +44,26 @@
       margin-left: 5px;
     }
   }
-
   .topMenu ul li {
     margin-left: 1.5rem;
 
     .icon {
       margin-right: 5px;
+    }
+  }
+  .topMenu {
+    ul {
+      display: flex;
+      flex-direction: row;
+      justify-content: flex-end;
+      @media (max-width: 576px) {
+        justify-content: center;
+      }
+    }
+  }
+  .iconText {
+    @media (max-width: 576px) {
+      display: none;
     }
   }
 }
