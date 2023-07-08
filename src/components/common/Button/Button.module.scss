@@ -20,8 +20,8 @@
 
 .price {
   @extend .small;
-  color: #ffffff !important;
-  background-color: $primary;
+  color: $button-price-bg !important;
+  background-color: $button-primary;
   text-decoration: none;
 
 }
@@ -50,5 +50,5 @@
 
 .active {
   @extend .outline;
-  background-color: $primary;
+  background-color: $button-primary;
 }
