@@ -319,7 +319,6 @@ const initialState = {
   cart: {
     products: [],
   },
-
   promotions: {
     firstLine: 'GUEST ROOM',
     secondLine: 'SOFA',
@@ -329,6 +328,9 @@ const initialState = {
     sixthLine: '$200.00',
     seventhLine: 'SPECIAL COLLECTION',
     eighthLine: 'SAVE UP 45% OF FURNITURE',
+  },
+  compared: {
+    products: [],
   },
 };
 
