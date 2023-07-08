@@ -1,0 +1,119 @@
+@import "../../../styles/settings.scss";
+
+.root {
+        .row {
+            display: flex;
+            flex-direction: row;
+            .bigSquare {
+                flex: 46%;
+                margin: 10px;
+                height: 300px;
+                width: 300px;
+                position: relative;
+                color: $color-light;
+                .imageOne {
+                    height: 100%;
+                    width: 100%;
+                    object-fit: cover;
+                }
+                h4 {
+                    position: relative;
+                    top: -170px;
+                    left: 30px;
+                }
+                h2 {
+                    position: relative;
+                    top: -180px;
+                    left: 30px;
+                }
+                h3 {
+                    position: relative;
+                    top: -180px;
+                    left: 30px;
+                    border-style: solid;
+                    padding: 7px;
+                    width: 100px;
+                }
+            }
+            .bigSquare::before {
+                position: absolute;
+                content: '';
+                width: 90%;
+                height: 90%;
+                background: $header-topbar-bg;
+                opacity: 50%;
+                top: 5%;
+                left: 5%;
+            }
+            .twoPromoBoxes {
+                margin: 10px;
+                flex: 46%;
+                height: 300px;
+                width: 60%;
+                position: relative;
+                color: $header-topbar-bg;
+                flex-direction: column;
+                .promoBoxOne {
+                    height: 46%;
+                    width: 100%;
+                    margin: 10px;
+                    .imageTwo {
+                        height: 100%;
+                        width: 100%;
+                        object-fit: cover;
+                    }
+                    .text {
+                        position: relative;
+                            top: -110px;
+                            left: 120px;
+                            width: 150px;
+                        h5 {
+                            top: 5px;
+                            position: relative;
+                        }
+                        p {
+                            font-size: 12px;
+                        }
+                        h4 {
+                            top: -10px;
+                            position: relative;
+                            color: $primary;
+                        }
+                    }
+                }
+                .promoBoxTwo {
+                    height: 46%;
+                    width: 100%;
+                    margin: 10px;
+                    .imageThree {
+                        height: 100%;
+                        width: 100%;
+                        object-fit: cover;
+
+                    }
+                    .text {
+                        position: relative;
+                        top: -90px;
+                        left: 60%;
+                        text-align: left;
+                        width: 50%;
+                        h5 {
+                            top: 5px;
+                            position: relative;
+                            color: $primary;
+                            font-size: 18px;
+                        }
+                        p {
+                            font-size: 12px;
+                            left: 30px;
+                            position: relative;
+                        }
+                    }
+                }
+            }
+        }
+
+    .twoPromoBoxes {
+        flex: 50%;
+    }
+}
