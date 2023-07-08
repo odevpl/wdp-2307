@@ -8,19 +8,26 @@ class NewFurniture extends React.Component {
   state = {
     activePage: 0,
     activeCategory: 'bed',
+    fadeOut: false,
   };
 
   handlePageChange(newPage) {
-    this.setState({ activePage: newPage });
+    this.setState({ fadeOut: true }); // Apply fade-out animation
+    setTimeout(() => {
+      this.setState({ activePage: newPage, fadeOut: false }); // Switch page and remove fade-out animation
+    }, 300);
   }
 
   handleCategoryChange(newCategory) {
-    this.setState({ activeCategory: newCategory });
+    this.setState({ fadeOut: true }); // Apply fade-out animation
+    setTimeout(() => {
+      this.setState({ activeCategory: newCategory, fadeOut: false }); // Switch category and remove fade-out animation
+    }, 300);
   }
 
   render() {
     const { categories, products } = this.props;
-    const { activeCategory, activePage } = this.state;
+    const { activeCategory, activePage, fadeOut } = this.state;
 
     const categoryProducts = products.filter(item => item.category === activeCategory);
     const pagesCount = Math.ceil(categoryProducts.length / 8);
@@ -66,7 +73,7 @@ class NewFurniture extends React.Component {
               </div>
             </div>
           </div>
-          <div className='row'>
+          <div className={`row ${fadeOut ? styles.fade : ''}`}>
             {categoryProducts.slice(activePage * 8, (activePage + 1) * 8).map(item => (
               <div className='col-lg-3 col-sm-6 col-12' key={item.id}>
                 <ProductBox {...item} />
