@@ -272,6 +272,7 @@ const initialState = {
     seventhLine: 'SPECIAL COLLECTION',
     eighthLine: 'SAVE UP 45% OF FURNITURE',
   },
+  viewport: 'desktop',
 };
 
 export default initialState;
