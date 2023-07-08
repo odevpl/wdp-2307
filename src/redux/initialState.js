@@ -261,6 +261,9 @@ const initialState = {
   cart: {
     products: [],
   },
+  compared: {
+    products: [],
+  },
 };
 
 export default initialState;

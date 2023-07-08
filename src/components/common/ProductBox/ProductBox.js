@@ -11,8 +11,20 @@ import {
 import { faStar as farStar, faHeart } from '@fortawesome/free-regular-svg-icons';
 import Button from '../Button/Button';
 
-const ProductBox = ({ name, price, promo, stars, picture }) => {
+import { useSelector, useDispatch } from 'react-redux';
+
+import {
+  getAllCompared,
+  getCountCompared,
+  addComparedProduct,
+  deleteComparedProduct,
+} from '../../../redux/comparedReducer';
+
+const ProductBox = ({ id, name, price, promo, stars, picture }) => {
   const [isHovering, setIsHovering] = useState(false);
+  const comparedProducts = useSelector(state => getAllCompared(state));
+  const compareCount = useSelector(state => getCountCompared(state));
+  const dispatch = useDispatch();
 
   const handleMouseOver = () => {
     setIsHovering(true);
@@ -20,6 +32,17 @@ const ProductBox = ({ name, price, promo, stars, picture }) => {
 
   const handleMouseOut = () => {
     setIsHovering(false);
+  };
+
+  const onCompareClick = evt => {
+    evt.preventDefault();
+
+    if (comparedProducts.includes(id)) {
+      dispatch(deleteComparedProduct(id));
+      return;
+    }
+
+    if (compareCount < 4) dispatch(addComparedProduct(id));
   };
 
   return (
@@ -57,10 +80,13 @@ const ProductBox = ({ name, price, promo, stars, picture }) => {
       <div className={styles.line}></div>
       <div className={styles.actions}>
         <div className={styles.outlines}>
-          <Button variant={Math.floor(Math.random() * 2) == 1 ? 'outline' : 'active'}>
+          <Button variant={Math.floor(Math.random() * 2) === 1 ? 'outline' : 'active'}>
             <FontAwesomeIcon icon={faHeart}>Favorite</FontAwesomeIcon>
           </Button>
-          <Button variant={Math.floor(Math.random() * 2) == 1 ? 'outline' : 'active'}>
+          <Button
+            onClick={onCompareClick}
+            variant={comparedProducts.includes(id) ? 'active' : 'outline'}
+          >
             <FontAwesomeIcon icon={faExchangeAlt}>Add to compare</FontAwesomeIcon>
           </Button>
         </div>
@@ -75,12 +101,13 @@ const ProductBox = ({ name, price, promo, stars, picture }) => {
 };
 
 ProductBox.propTypes = {
+  id: PropTypes.string,
   children: PropTypes.node,
   name: PropTypes.string,
   price: PropTypes.number,
   promo: PropTypes.string,
   stars: PropTypes.number,
-  picture: PropTypes.string.isRequired,
+  picture: PropTypes.string,
 };
 
 export default ProductBox;

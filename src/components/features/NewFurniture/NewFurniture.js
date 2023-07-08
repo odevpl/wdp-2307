@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 
 import styles from './NewFurniture.module.scss';
 import ProductBox from '../../common/ProductBox/ProductBox';
+import ComparedProductsBox from '../../common/ComparedProductsBox/ComparedProductsBox';
 
 class NewFurniture extends React.Component {
   state = {
@@ -19,7 +20,7 @@ class NewFurniture extends React.Component {
   }
 
   render() {
-    const { categories, products } = this.props;
+    const { categories, products, compared } = this.props;
     const { activeCategory, activePage } = this.state;
 
     const categoryProducts = products.filter(item => item.category === activeCategory);
@@ -28,10 +29,10 @@ class NewFurniture extends React.Component {
     const dots = [];
     for (let i = 0; i < pagesCount; i++) {
       dots.push(
-        <li>
+        <li key={i}>
           <a
             onClick={() => this.handlePageChange(i)}
-            className={i === activePage && styles.active}
+            className={i === activePage ? styles.active : ''}
           >
             page {i}
           </a>
@@ -52,7 +53,7 @@ class NewFurniture extends React.Component {
                   {categories.map(item => (
                     <li key={item.id}>
                       <a
-                        className={item.id === activeCategory && styles.active}
+                        className={item.id === activeCategory ? styles.active : ''}
                         onClick={() => this.handleCategoryChange(item.id)}
                       >
                         {item.name}
@@ -73,6 +74,7 @@ class NewFurniture extends React.Component {
               </div>
             ))}
           </div>
+          {compared > 0 ? <ComparedProductsBox /> : ''}
         </div>
       </div>
     );
@@ -81,6 +83,7 @@ class NewFurniture extends React.Component {
 
 NewFurniture.propTypes = {
   children: PropTypes.node,
+  compared: PropTypes.number,
   categories: PropTypes.arrayOf(
     PropTypes.shape({
       id: PropTypes.string,
