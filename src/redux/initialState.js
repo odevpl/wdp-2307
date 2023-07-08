@@ -261,6 +261,17 @@ const initialState = {
   cart: {
     products: [],
   },
+
+  promotions: {
+    firstLine: 'GUEST ROOM',
+    secondLine: 'SOFA',
+    thirdLine: '-20%',
+    fourthLine: 'OFFICE CHAIR',
+    fifthLine: 'COLLECTION',
+    sixthLine: '$200.00',
+    seventhLine: 'SPECIAL COLLECTION',
+    eighthLine: 'SAVE UP 45% OF FURNITURE',
+  },
 };
 
 export default initialState;

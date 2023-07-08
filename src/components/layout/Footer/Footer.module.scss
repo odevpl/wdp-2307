@@ -4,6 +4,11 @@
   .footerMenu {
     background-color: $footer-bg;
     padding: 3rem 0;
+    display: flex;
+    display: row;
+
+    
+    
 
     .menuWrapper {
       h6 {
@@ -29,6 +34,7 @@
         }
       }
     }
+    
 
     .paymentMethods {
       margin: 0;
@@ -47,7 +53,7 @@
     :global(.container) > :global(.row) {
       height: 95px;
     }
-
+    
     .copyright {
       p {
         margin: 0;
@@ -80,3 +86,22 @@
     }
   }
 }
+@media (max-width: 767px) { 
+  .menuWrapper {
+    margin: 0 30px;
+  }
+
+  .creditCards {
+    width: 170px;
+    position: relative;
+    left: 30px
+  }
+  .copyright {
+    display: flex;
+  }
+  .textEmpty {
+    flex: 100%
+  }
+
+}
+
