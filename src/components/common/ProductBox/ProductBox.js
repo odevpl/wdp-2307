@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
+import { useState } from 'react';
 
 import styles from './ProductBox.module.scss';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -10,8 +11,10 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 import { faStar as farStar, faHeart } from '@fortawesome/free-regular-svg-icons';
 import Button from '../Button/Button';
+import { useDispatch } from 'react-redux';
+import { toggleFavorite } from '../../../redux/productsRedux';
 
-const ProductBox = ({ name, price, promo, stars, picture }) => {
+const ProductBox = ({ ...item }) => {
   const [isHovering, setIsHovering] = useState(false);
 
   const handleMouseOver = () => {
@@ -22,6 +25,13 @@ const ProductBox = ({ name, price, promo, stars, picture }) => {
     setIsHovering(false);
   };
 
+  const dispatch = useDispatch();
+
+  const favoriteHandler = e => {
+    e.preventDefault();
+    dispatch(toggleFavorite(item.id));
+  };
+
   return (
     <div
       className={styles.root}
@@ -29,8 +39,8 @@ const ProductBox = ({ name, price, promo, stars, picture }) => {
       onMouseOut={handleMouseOut}
     >
       <div className={styles.photo}>
-        {promo && <div className={styles.sale}>{promo}</div>}
-        <img src={picture} alt={name} />
+        {item.promo && <div className={styles.sale}>{item.promo}</div>}
+        <img src={item.picture} alt={item.name} />
         {isHovering && (
           <div className={styles.buttons}>
             <Button variant='small'>Quick View</Button>
@@ -41,11 +51,11 @@ const ProductBox = ({ name, price, promo, stars, picture }) => {
         )}
       </div>
       <div className={styles.content}>
-        <h5>{name}</h5>
+        <h5>{item.name}</h5>
         <div className={styles.stars}>
           {[1, 2, 3, 4, 5].map(i => (
             <a key={i} href='#'>
-              {i <= stars ? (
+              {i <= item.stars ? (
                 <FontAwesomeIcon icon={faStar}>{i} stars</FontAwesomeIcon>
               ) : (
                 <FontAwesomeIcon icon={farStar}>{i} stars</FontAwesomeIcon>
@@ -57,16 +67,19 @@ const ProductBox = ({ name, price, promo, stars, picture }) => {
       <div className={styles.line}></div>
       <div className={styles.actions}>
         <div className={styles.outlines}>
-          <Button variant={Math.floor(Math.random() * 2) == 1 ? 'outline' : 'active'}>
+          <Button
+            variant={item.isFavorite ? 'active' : 'outline'}
+            onClick={favoriteHandler}
+          >
             <FontAwesomeIcon icon={faHeart}>Favorite</FontAwesomeIcon>
           </Button>
-          <Button variant={Math.floor(Math.random() * 2) == 1 ? 'outline' : 'active'}>
+          <Button variant={Math.floor(Math.random() * 2) === 1 ? 'outline' : 'active'}>
             <FontAwesomeIcon icon={faExchangeAlt}>Add to compare</FontAwesomeIcon>
           </Button>
         </div>
         <div className={styles.price}>
           <Button noHover variant={isHovering ? 'price' : 'small'}>
-            $ {price}
+            $ {item.price}
           </Button>
         </div>
       </div>
@@ -80,7 +93,6 @@ ProductBox.propTypes = {
   price: PropTypes.number,
   promo: PropTypes.string,
   stars: PropTypes.number,
-  picture: PropTypes.string.isRequired,
 };
 
 export default ProductBox;
