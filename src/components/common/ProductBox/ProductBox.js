@@ -10,9 +10,16 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 import { faStar as farStar, faHeart } from '@fortawesome/free-regular-svg-icons';
 import Button from '../Button/Button';
+import ProductStars from '../../features/ProductStars/ProductStars';
 
-const ProductBox = ({ name, price, promo, stars, picture }) => {
+const ProductBox = ({ name, price, promo, stars, myStars, picture }) => {
   const [isHovering, setIsHovering] = useState(false);
+
+  const [selectedStars, setSelectedStars] = useState(myStars);
+
+  const handleStarClick = clickedStars => {
+    setSelectedStars(clickedStars);
+  };
 
   const handleMouseOver = () => {
     setIsHovering(true);
@@ -42,17 +49,7 @@ const ProductBox = ({ name, price, promo, stars, picture }) => {
       </div>
       <div className={styles.content}>
         <h5>{name}</h5>
-        <div className={styles.stars}>
-          {[1, 2, 3, 4, 5].map(i => (
-            <a key={i} href='#'>
-              {i <= stars ? (
-                <FontAwesomeIcon icon={faStar}>{i} stars</FontAwesomeIcon>
-              ) : (
-                <FontAwesomeIcon icon={farStar}>{i} stars</FontAwesomeIcon>
-              )}
-            </a>
-          ))}
-        </div>
+        <ProductStars stars={stars} myStars={selectedStars} onClick={handleStarClick} />
       </div>
       <div className={styles.line}></div>
       <div className={styles.actions}>
@@ -80,7 +77,10 @@ ProductBox.propTypes = {
   price: PropTypes.number,
   promo: PropTypes.string,
   stars: PropTypes.number,
+  myStars: PropTypes.number,
   picture: PropTypes.string.isRequired,
+  onStarHover: PropTypes.func,
+  onStarClick: PropTypes.func,
 };
 
 export default ProductBox;
