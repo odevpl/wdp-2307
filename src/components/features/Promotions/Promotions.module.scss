@@ -4,13 +4,14 @@
         .row {
             display: flex;
             flex-direction: row;
+            
             .bigSquare {
                 flex: 46%;
                 margin: 10px;
                 height: 300px;
                 width: 300px;
                 position: relative;
-                color: $color-light;
+                color: $text-light;
                 .imageOne {
                     height: 100%;
                     width: 100%;
@@ -77,7 +78,7 @@
                         h4 {
                             top: -10px;
                             position: relative;
-                            color: $primary;
+                            color: $header-primary;
                         }
                     }
                 }
@@ -100,7 +101,7 @@
                         h5 {
                             top: 5px;
                             position: relative;
-                            color: $primary;
+                            color: $header-primary;
                             font-size: 18px;
                         }
                         p {

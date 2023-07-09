@@ -42,8 +42,8 @@
       list-style: none;
       padding: 0;
       margin: 0;
-      background-color: #ffffff;
-      border: 1px solid $form-border-color;
+      background-color: $form-bg;
+      border: 1px solid $form-border;
       z-index: 1;
       font-weight: bold;
 
