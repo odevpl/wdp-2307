@@ -36,6 +36,7 @@ const ProductBox = ({ ...item }) => {
     setIsHovering(false);
   };
 
+
   const handleQuickViewClick = event => {
     event.preventDefault();
     setIsPopupOpen(true);
