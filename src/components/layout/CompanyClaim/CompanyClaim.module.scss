@@ -2,6 +2,7 @@
 
 .root {
   background-color: $header-bg;
+  display: flex;
 
   :global(.container) > :global(.row) {
     height: 145px;
@@ -20,16 +21,26 @@
       margin: 0;
       font-size: 17px;
       line-height: 42px;
-      color: rgb(216, 216, 216);
+      color: $text-grey-light;
       font-weight: 500;
+      white-space: nowrap;
 
       .icon {
         font-size: 32px;
-        color: $primary;
+        color: $header-primary;
         vertical-align: middle;
         margin-top: -3px;
         margin-right: 0.8rem;
       }
+    }
+    @media (max-width: 768px) {
+      p {
+        font-size: 14px;
+        text-align: center;
+      }
+    }
+    @media (max-width: 576px) {
+      order: 3;
     }
   }
 
@@ -75,10 +86,10 @@
     .cartBox {
       display: inline-block;
       position: relative;
-      color: #ffffff;
+      color: $text-light;
 
       .cartIcon {
-        background-color: $primary;
+        background-color: $header-primary;
         width: 55px;
         height: 50px;
         border-radius: 3px;
@@ -101,7 +112,7 @@
         align-items: center;
         justify-content: center;
         font-size: 14px;
-        color: rgb(224, 227, 237);
+        color: $header-cart-counter;
         position: absolute;
         top: 50%;
         right: 0;
@@ -110,9 +121,17 @@
 
       &:hover {
         .cartIcon {
-          background-color: lighten($primary, 10%);
+          background-color: lighten($header-primary, 10%);
         }
       }
+    }
+    @media (max-width: 576px) {
+      padding-bottom: 27px;
+    }
+  }
+  @media (max-width: 300px) {
+    img {
+      width: 150%;
     }
   }
 

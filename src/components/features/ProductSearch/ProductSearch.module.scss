@@ -2,16 +2,16 @@
 @import "/src/styles/media-queries.scss";
 
 .root {
-  border: 1px solid $form-border-color;
+  border: 1px solid $form-border;
   display: inline-flex;
-  color: $text-color;
+  color: $text-dark;
   align-items: center;
   @include respond-to(tablets) {
     flex-wrap: wrap;
   }
 
   .category {
-    border-right: 1px solid $form-border-color;
+    border-right: 1px solid $form-border;
     display: flex;
     align-items: center;
     position: relative;
@@ -25,7 +25,7 @@
     }
 
     .icon:first-child {
-      color: $primary;
+      color: $form-primary;
       position: absolute;
       left: 10px;
       z-index: 0;
@@ -40,17 +40,54 @@
       }
     }
 
-    select {
-      -webkit-appearance: none;
-      border: 0;
-      background-color: transparent;
+    &:hover ul.dropdown {
+      display: block;
+    }
+
+    > span {
       padding: 5px 30px 5px 35px;
-      position: relative;
+      cursor: pointer;
+    }
+
+    ul.dropdown {
+      display: none;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      background-color: $form-bg;
+      border: 1px solid $form-border;
       z-index: 1;
-      @include respond-to(mobile) {
-        opacity: 0;
-        padding: 4px;
-        width: 36px;
+      font-weight: bold;
+
+      > li {
+        position: relative;
+
+        > span {
+          padding: 5px 30px 5px 35px;
+          cursor: pointer;
+        }
+
+        &:hover > ul {
+          display: block;
+        }
+
+        > ul {
+          display: none;
+          list-style: none;
+          font-weight: normal;
+
+          > li {
+            padding: 5px 30px 5px 5px;
+            cursor: pointer;
+          }
+
+          &:hover {
+            display: block;
+          }
+        }
       }
     }
   }
@@ -72,7 +109,7 @@
       outline: none;
 
       &::placeholder {
-        color: $text-color;
+        color: $text-dark;
       }
     }
 
