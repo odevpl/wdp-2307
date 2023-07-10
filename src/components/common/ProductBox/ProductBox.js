@@ -11,18 +11,31 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 import { faStar as farStar, faHeart } from '@fortawesome/free-regular-svg-icons';
 import Button from '../Button/Button';
+import QuickViewPopup from '../../views/QuickViewPopup/QuickViewPopup';
+
 import { useDispatch } from 'react-redux';
 import { toggleFavorite } from '../../../redux/productsRedux';
 
 const ProductBox = ({ ...item }) => {
   const [isHovering, setIsHovering] = useState(false);
+  const [isPopupOpen, setIsPopupOpen] = useState(false);
 
   const handleMouseOver = () => {
     setIsHovering(true);
   };
 
   const handleMouseOut = () => {
+    // setIsHovering(true);
     setIsHovering(false);
+  };
+
+  const handleQuickViewClick = event => {
+    event.preventDefault();
+    setIsPopupOpen(true);
+  };
+
+  const handlePopupClose = () => {
+    setIsPopupOpen(false);
   };
 
   const dispatch = useDispatch();
@@ -38,12 +51,15 @@ const ProductBox = ({ ...item }) => {
       onMouseOver={handleMouseOver}
       onMouseOut={handleMouseOut}
     >
+      {isPopupOpen && <QuickViewPopup id={item.id} onClose={handlePopupClose} />}
       <div className={styles.photo}>
         {item.promo && <div className={styles.sale}>{item.promo}</div>}
         <img src={item.picture} alt={item.name} />
         {isHovering && (
           <div className={styles.buttons}>
-            <Button variant='small'>Quick View</Button>
+            <Button variant='small' onClick={handleQuickViewClick}>
+              Quick View
+            </Button>
             <Button variant='small'>
               <FontAwesomeIcon icon={faShoppingBasket}></FontAwesomeIcon> ADD TO CART
             </Button>
@@ -88,7 +104,7 @@ const ProductBox = ({ ...item }) => {
 };
 
 ProductBox.propTypes = {
-  children: PropTypes.node,
+  id: PropTypes.string.isRequired,
   name: PropTypes.string,
   price: PropTypes.number,
   promo: PropTypes.string,
