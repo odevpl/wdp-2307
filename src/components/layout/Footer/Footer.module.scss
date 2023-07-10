@@ -4,10 +4,15 @@
   .footerMenu {
     background-color: $footer-bg;
     padding: 3rem 0;
+    display: flex;
+    display: row;
+
+    
+    
 
     .menuWrapper {
       h6 {
-        color: #ffffff;
+        color: $text-light;
         text-transform: uppercase;
         margin: 0 0 1rem 0;
       }
@@ -20,15 +25,16 @@
           a {
             font-size: 14px;
             line-height: 30px;
-            color: rgb(169, 169, 169);
+            color: $footer-text;
 
             &:hover {
-              color: #ffffff;
+              color: $text-light;
             }
           }
         }
       }
     }
+    
 
     .paymentMethods {
       margin: 0;
@@ -47,11 +53,11 @@
     :global(.container) > :global(.row) {
       height: 95px;
     }
-
+    
     .copyright {
       p {
         margin: 0;
-        color: rgb(169, 169, 169);
+        color: $footer-text;
         font-size: 14px;
         line-height: 26px;
       }
@@ -68,11 +74,11 @@
           margin-left: 1rem;
 
           a {
-            color: rgb(169, 169, 169);
+            color: $footer-text;
             text-decoration: none;
 
             &:hover {
-              color: $primary;
+              color: $footer-primary;
             }
           }
         }
@@ -80,3 +86,22 @@
     }
   }
 }
+@media (max-width: 767px) { 
+  .menuWrapper {
+    margin: 0 30px;
+  }
+
+  .creditCards {
+    width: 170px;
+    position: relative;
+    left: 30px
+  }
+  .copyright {
+    display: flex;
+  }
+  .textEmpty {
+    flex: 100%
+  }
+
+}
+

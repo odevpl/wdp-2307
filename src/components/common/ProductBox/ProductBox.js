@@ -11,9 +11,12 @@ import {
 import { faStar as farStar, faHeart } from '@fortawesome/free-regular-svg-icons';
 import Button from '../Button/Button';
 import ProductStars from '../../features/ProductStars/ProductStars';
+import QuickViewPopup from '../../views/QuickViewPopup/QuickViewPopup';
 
-const ProductBox = ({ name, price, promo, stars, myStars, picture }) => {
+const ProductBox = ({ id, name, price, promo, stars, myStars, picture }) => {
+
   const [isHovering, setIsHovering] = useState(false);
+  const [isPopupOpen, setIsPopupOpen] = useState(false);
 
   const [selectedStars, setSelectedStars] = useState(myStars);
 
@@ -26,7 +29,17 @@ const ProductBox = ({ name, price, promo, stars, myStars, picture }) => {
   };
 
   const handleMouseOut = () => {
+    // setIsHovering(true);
     setIsHovering(false);
+  };
+
+  const handleQuickViewClick = event => {
+    event.preventDefault();
+    setIsPopupOpen(true);
+  };
+
+  const handlePopupClose = () => {
+    setIsPopupOpen(false);
   };
 
   return (
@@ -35,12 +48,15 @@ const ProductBox = ({ name, price, promo, stars, myStars, picture }) => {
       onMouseOver={handleMouseOver}
       onMouseOut={handleMouseOut}
     >
+      {isPopupOpen && <QuickViewPopup id={id} onClose={handlePopupClose} />}
       <div className={styles.photo}>
         {promo && <div className={styles.sale}>{promo}</div>}
         <img src={picture} alt={name} />
         {isHovering && (
           <div className={styles.buttons}>
-            <Button variant='small'>Quick View</Button>
+            <Button variant='small' onClick={handleQuickViewClick}>
+              Quick View
+            </Button>
             <Button variant='small'>
               <FontAwesomeIcon icon={faShoppingBasket}></FontAwesomeIcon> ADD TO CART
             </Button>
@@ -54,10 +70,10 @@ const ProductBox = ({ name, price, promo, stars, myStars, picture }) => {
       <div className={styles.line}></div>
       <div className={styles.actions}>
         <div className={styles.outlines}>
-          <Button variant={Math.floor(Math.random() * 2) == 1 ? 'outline' : 'active'}>
+          <Button variant={Math.floor(Math.random() * 2) === 1 ? 'outline' : 'active'}>
             <FontAwesomeIcon icon={faHeart}>Favorite</FontAwesomeIcon>
           </Button>
-          <Button variant={Math.floor(Math.random() * 2) == 1 ? 'outline' : 'active'}>
+          <Button variant={Math.floor(Math.random() * 2) === 1 ? 'outline' : 'active'}>
             <FontAwesomeIcon icon={faExchangeAlt}>Add to compare</FontAwesomeIcon>
           </Button>
         </div>
@@ -72,7 +88,7 @@ const ProductBox = ({ name, price, promo, stars, myStars, picture }) => {
 };
 
 ProductBox.propTypes = {
-  children: PropTypes.node,
+  id: PropTypes.string.isRequired,
   name: PropTypes.string,
   price: PropTypes.number,
   promo: PropTypes.string,

@@ -1,0 +1,35 @@
+@import "../../../styles/settings.scss";
+
+.root {
+    .brands {
+        border-top: 1px solid $brands-grey;
+        border-bottom: 1px solid $brands-grey;
+        padding: 5px 0;
+        margin-bottom: 10px;
+        .row {
+            height: 90px;
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            margin: 20px;
+
+            button {
+                color: $brands-button-arrow;
+                background-color: $brands-button;
+            }
+            
+            .logos {
+                display: flex;
+                flex-direction: row;
+                justify-content: space-between;
+                border: none;
+                .logo {
+                    height: 90px;
+                    width: 90px;
+                    margin: 0 15px;
+                    border: 1px solid $brands-grey;
+                }
+            }
+        }
+    }
+}
