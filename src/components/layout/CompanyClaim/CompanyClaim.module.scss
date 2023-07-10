@@ -6,6 +6,14 @@
 
   :global(.container) > :global(.row) {
     height: 145px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    @media (max-width: 768px) {
+      flex-direction: column;
+      height: auto;
+    }
   }
 
   .phoneNumber {
@@ -33,6 +41,44 @@
     }
     @media (max-width: 576px) {
       order: 3;
+    }
+  }
+
+  .searchBar {
+    display: flex;
+    align-items: center;
+
+    @media (max-width: 768px) {
+      margin-bottom: 1rem;
+    }
+
+    input[type="text"] {
+      padding: 8px;
+      border: none;
+      border-radius: 4px;
+      margin-right: 1rem;
+      font-size: 14px;
+      width: 200px;
+
+      @media (max-width: 768px) {
+        width: 100%;
+        margin-right: 0;
+        margin-bottom: 1rem;
+      }
+    }
+
+    button {
+      padding: 8px 16px;
+      background-color: $primary;
+      color: #fff;
+      border: none;
+      border-radius: 4px;
+      font-size: 14px;
+      cursor: pointer;
+
+      @media (max-width: 768px) {
+        width: 100%;
+      }
     }
   }
 
@@ -86,6 +132,15 @@
   @media (max-width: 300px) {
     img {
       width: 150%;
+    }
+  }
+
+  @media (max-width: 768px) {
+    padding: 10px;
+
+    .container {
+      width: 100%;
+      max-width: none;
     }
   }
 }
