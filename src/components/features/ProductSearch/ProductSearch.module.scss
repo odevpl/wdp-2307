@@ -26,12 +26,16 @@
     }
 
     select {
-      -webkit-appearance: none;
+      appearance: none;
       border: 0;
       background-color: transparent;
-      padding: 5px 30px 5px 35px;
+      padding: 10px 35px 10px 35px;
       position: relative;
       z-index: 1;
+    }
+    
+    option {
+      outline: inherit;
     }
   }
 
@@ -57,4 +61,9 @@
       outline: none;
     }
   }
+}
+
+select::after {
+  border: none;
+  outline: 0;
 }
