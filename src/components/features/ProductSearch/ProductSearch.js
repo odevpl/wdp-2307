@@ -16,17 +16,29 @@ const ProductSearch = () => {
           <li>
             <span>Category 1</span>
             <ul>
-              <li>Subcategory 1</li>
-              <li>Subcategory 2</li>
-              <li>Subcategory 3</li>
+              <li>
+                <option>Subcategory 1</option>
+              </li>
+              <li>
+                <option>Subcategory 2</option>
+              </li>
+              <li>
+                <option>Subcategory 3</option>
+              </li>
             </ul>
           </li>
           <li>
             <span>Category 2</span>
             <ul>
-              <li>Subcategory 1</li>
-              <li>Subcategory 2</li>
-              <li>Subcategory 3</li>
+              <li>
+                <option>Subcategory 1</option>
+              </li>
+              <li>
+                <option>Subcategory 2</option>
+              </li>
+              <li>
+                <option>Subcategory 3</option>
+              </li>
             </ul>
           </li>
         </ul>
