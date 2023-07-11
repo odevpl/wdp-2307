@@ -1,5 +1,5 @@
-@import "/src/styles/settings.scss";
-@import "/src/styles/media-queries.scss";
+@import "../../../styles/settings.scss";
+@import "../../../styles/media-queries.scss";
 
 .root {
   border: 1px solid $form-border;
@@ -19,7 +19,7 @@
     @include respond-to(tablets) {
       flex-basis: 100%;
       border-right: 0;
-      border-bottom: 1px solid $form-border-color;
+      border-bottom: 1px solid $form-border;
     }
     
     @include respond-to(mobile) {
