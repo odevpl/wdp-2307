@@ -1,6 +1,5 @@
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import { useState } from 'react';
 
 import styles from './ProductBox.module.scss';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -11,6 +10,7 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 import { faStar as farStar, faHeart } from '@fortawesome/free-regular-svg-icons';
 import Button from '../Button/Button';
+import ProductStars from '../../features/ProductStars/ProductStars';
 import QuickViewPopup from '../../views/QuickViewPopup/QuickViewPopup';
 
 import { useDispatch } from 'react-redux';
@@ -19,6 +19,12 @@ import { toggleFavorite } from '../../../redux/productsRedux';
 const ProductBox = ({ ...item }) => {
   const [isHovering, setIsHovering] = useState(false);
   const [isPopupOpen, setIsPopupOpen] = useState(false);
+
+  const [selectedStars, setSelectedStars] = useState(item.myStars);
+
+  const handleStarClick = clickedStars => {
+    setSelectedStars(clickedStars);
+  };
 
   const handleMouseOver = () => {
     setIsHovering(true);
@@ -68,17 +74,11 @@ const ProductBox = ({ ...item }) => {
       </div>
       <div className={styles.content}>
         <h5>{item.name}</h5>
-        <div className={styles.stars}>
-          {[1, 2, 3, 4, 5].map(i => (
-            <a key={i} href='#'>
-              {i <= item.stars ? (
-                <FontAwesomeIcon icon={faStar}>{i} stars</FontAwesomeIcon>
-              ) : (
-                <FontAwesomeIcon icon={farStar}>{i} stars</FontAwesomeIcon>
-              )}
-            </a>
-          ))}
-        </div>
+        <ProductStars
+          stars={item.stars}
+          myStars={selectedStars}
+          onClick={handleStarClick}
+        />
       </div>
       <div className={styles.line}></div>
       <div className={styles.actions}>
@@ -109,6 +109,10 @@ ProductBox.propTypes = {
   price: PropTypes.number,
   promo: PropTypes.string,
   stars: PropTypes.number,
+  myStars: PropTypes.number,
+  picture: PropTypes.string.isRequired,
+  onStarHover: PropTypes.func,
+  onStarClick: PropTypes.func,
 };
 
 export default ProductBox;
