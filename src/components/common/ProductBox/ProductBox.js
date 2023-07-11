@@ -14,10 +14,16 @@ import ProductStars from '../../features/ProductStars/ProductStars';
 import QuickViewPopup from '../../views/QuickViewPopup/QuickViewPopup';
 
 const ProductBox = ({ id, name, price, oldPrice, promo, stars, myStars, picture }) => {
+
+import { useDispatch } from 'react-redux';
+import { toggleFavorite } from '../../../redux/productsRedux';
+  
+const ProductBox = ({ id, name, price, oldPrice, promo, stars, myStars, picture }) => {
+
   const [isHovering, setIsHovering] = useState(false);
   const [isPopupOpen, setIsPopupOpen] = useState(false);
 
-  const [selectedStars, setSelectedStars] = useState(myStars);
+  const [selectedStars, setSelectedStars] = useState(item.myStars);
 
   const handleStarClick = clickedStars => {
     setSelectedStars(clickedStars);
@@ -40,16 +46,23 @@ const ProductBox = ({ id, name, price, oldPrice, promo, stars, myStars, picture 
     setIsPopupOpen(false);
   };
 
+  const dispatch = useDispatch();
+
+  const favoriteHandler = e => {
+    e.preventDefault();
+    dispatch(toggleFavorite(item.id));
+  };
+
   return (
     <div
       className={styles.root}
       onMouseOver={handleMouseOver}
       onMouseOut={handleMouseOut}
     >
-      {isPopupOpen && <QuickViewPopup id={id} onClose={handlePopupClose} />}
+      {isPopupOpen && <QuickViewPopup id={item.id} onClose={handlePopupClose} />}
       <div className={styles.photo}>
-        {promo && <div className={styles.sale}>{promo}</div>}
-        <img src={picture} alt={name} />
+        {item.promo && <div className={styles.sale}>{item.promo}</div>}
+        <img src={item.picture} alt={item.name} />
         {isHovering && (
           <div className={styles.buttons}>
             <Button variant='small' onClick={handleQuickViewClick}>
@@ -62,13 +75,20 @@ const ProductBox = ({ id, name, price, oldPrice, promo, stars, myStars, picture 
         )}
       </div>
       <div className={styles.content}>
-        <h5>{name}</h5>
-        <ProductStars stars={stars} myStars={selectedStars} onClick={handleStarClick} />
+        <h5>{item.name}</h5>
+        <ProductStars
+          stars={item.stars}
+          myStars={selectedStars}
+          onClick={handleStarClick}
+        />
       </div>
       <div className={styles.line}></div>
       <div className={styles.actions}>
         <div className={styles.outlines}>
-          <Button variant={Math.floor(Math.random() * 2) === 1 ? 'outline' : 'active'}>
+          <Button
+            variant={item.isFavorite ? 'active' : 'outline'}
+            onClick={favoriteHandler}
+          >
             <FontAwesomeIcon icon={faHeart}>Favorite</FontAwesomeIcon>
           </Button>
           <Button variant={Math.floor(Math.random() * 2) === 1 ? 'outline' : 'active'}>
