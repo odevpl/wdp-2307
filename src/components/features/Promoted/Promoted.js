@@ -1,7 +1,7 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
 
-import ProductBox from '../../common/ProductBox/ProductBox';
+import ProductBoxPromoted from '../../common/ProductBoxPromoted/ProductBoxPromoted';
 import { getPromoted } from '../../../redux/promotedRedux';
 import { getProductsById } from '../../../redux/productsRedux';
 import styles from './Promoted.module.scss';
@@ -11,18 +11,6 @@ const Promoted = () => {
   const promotedProducts = useSelector(state =>
     getProductsById(state, promotedData.productsId)
   );
-
-  const getReturnValues = countDown => {
-    // calculate time left
-    const days = Math.floor(countDown / (1000 * 60 * 60 * 24));
-    const hours = Math.floor((countDown % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-    const minutes = Math.floor((countDown % (1000 * 60 * 60)) / (1000 * 60));
-    const seconds = Math.floor((countDown % (1000 * 60)) / 1000);
-
-    return [days, hours, minutes, seconds];
-  };
-
-  const [days, hours, minutes, seconds] = getReturnValues(promotedData.time);
 
   const dots = [];
   for (let i = 0; i < promotedProducts.length; i++) {
@@ -45,35 +33,19 @@ const Promoted = () => {
               </div>
             </div>
             <div>
-              <ProductBox {...promotedProducts[0]} />
-            </div>
-            <div className={styles.countdown}>
-              <ul>
-                <li>
-                  <span>{days}</span>
-                  <br />
-                  days
-                </li>
-                <li>
-                  <span>{hours}</span>
-                  <br />
-                  hrs
-                </li>
-                <li>
-                  <span>{minutes}</span>
-                  <br />
-                  mins
-                </li>
-                <li>
-                  <span>{seconds}</span>
-                  <br />
-                  secs
-                </li>
-              </ul>
+              <ProductBoxPromoted
+                key={promotedProducts[0].id}
+                {...promotedProducts[0]}
+              />
             </div>
           </div>
           <div className='col-8'>
             <div className={styles.img}>
+              <img
+                className={styles.imageOne}
+                alt='Furniture Sale'
+                src={'/images/sofas/sofa-2.jpg'}
+              ></img>
               <div className={styles.banner}>
                 <h2>{promotedData.bannerTitle}</h2>
                 <h3>{promotedData.bannerSubtitle}</h3>

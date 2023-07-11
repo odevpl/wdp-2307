@@ -82,17 +82,19 @@ class NewFurniture extends React.Component {
               }
             }}
             onSwipeLeft={() => {
-              if (activePage < pagesCount) {
+              if (activePage < pagesCount - 1) {
                 this.handlePageChange(activePage + 1);
               }
             }}
           >
             <div className={`row ${fadeOut ? styles.fade : ''}`}>
-              {categoryProducts.slice(activePage * 8, (activePage + 1) * 8).map(item => (
-                <div className='col-lg-3 col-sm-6 col-12' key={item.id}>
-                  <ProductBox {...item} />
-                </div>
-              ))}
+              {categoryProducts
+                .slice(activePage * 8, (activePage + 1) * 8)
+                .map(item => (
+                  <div className='col-lg-3 col-sm-6 col-12' key={item.id}>
+                    <ProductBox {...item} />
+                  </div>
+                ))}
             </div>
           </Swipeable>
         </div>
