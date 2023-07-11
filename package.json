@@ -66,6 +66,7 @@
     "sass": "^1.54.3"
   },
   "devDependencies": {
+    "@babel/eslint-parser": "^7.22.7",
     "husky": "^8.0.3",
     "lint-staged": "^9.4.0",
     "onchange": "^6.1.0",

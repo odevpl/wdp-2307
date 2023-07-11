@@ -93,10 +93,13 @@ const ProductBox = ({ ...item }) => {
             <FontAwesomeIcon icon={faExchangeAlt}>Add to compare</FontAwesomeIcon>
           </Button>
         </div>
-        <div className={styles.price}>
-          <Button noHover variant={isHovering ? 'price' : 'small'}>
-            $ {item.price}
-          </Button>
+        <div className={styles.pricesContainer}>
+          {item.oldPrice && <p className={styles.oldPrice}> $ {item.oldPrice} </p>}
+          <div className={styles.price}>
+            <Button noHover variant={isHovering ? 'price' : 'small'}>
+              $ {item.price}
+            </Button>
+          </div>
         </div>
       </div>
     </div>
