@@ -99,8 +99,8 @@
           }
           option:nth-child(1):hover {
             outline: 0;
-            color: $menu-bar-primary;
             outline: none;
+            color: $menu-bar-primary; 
           }
         }
       } 
