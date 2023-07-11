@@ -1,0 +1,10 @@
+.pricesContainer {
+    display: flex;
+    align-items: center;
+    .oldPrice {
+      text-decoration: line-through;
+      margin: 0 10px;
+      color: #6c757d !important;
+      font-size: 13px;
+    }
+  }

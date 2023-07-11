@@ -35,12 +35,12 @@ const ProductStars = ({ stars, myStars, onClick }) => {
             isHoveredStar || isMyStarFilled
               ? filledStar
               : isMyStarOutline
-              ? outlineStar
-              : isStarFilled
-              ? filledStar
-              : isStarOutline
-              ? outlineStar
-              : outlineStar
+                ? outlineStar
+                : isStarFilled
+                  ? filledStar
+                  : isStarOutline
+                    ? outlineStar
+                    : outlineStar
           }
           style={{
             color:
