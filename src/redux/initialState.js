@@ -16,6 +16,7 @@ const initialState = {
       stars: 2,
       myStars: 0,
       promo: 'sale',
+      time: 921708127,
       newFurniture: true,
       picture: 'images/beds/bed-1.jpg',
       isFavorite: true,
@@ -319,6 +320,13 @@ const initialState = {
   cart: {
     products: [],
   },
+  
+  promoted: {
+    productsId: 'aenean-ru-bristique-1',
+    bannerTitle: 'Indoor Furniture',
+    bannerSubtitle: 'Save up to 50% of all furniture',
+  },
+      
   promotions: {
     firstLine: 'GUEST ROOM',
     secondLine: 'SOFA',
