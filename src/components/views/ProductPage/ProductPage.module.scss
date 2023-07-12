@@ -8,8 +8,8 @@
 
 // Up Section
 .upSection {
-  background-color: #363636;
-  color: #fff;
+  background-color: $color-dark;
+  color: $color-light;
   height: 200px;
   display: flex;
   justify-content: center;
@@ -49,7 +49,7 @@
 
 .procentText {
   letter-spacing: 16px;
-  color: #d58e32;
+  color: $color-primary;
   padding-right: 30px;
 }
 
@@ -66,7 +66,7 @@
 
 
 .positionHome {
-  background-color: #c3c3c3;
+  background-color: $color-grey-3;
   display: flex;
   justify-content: flex-start;
   align-items: center;
@@ -88,7 +88,7 @@
   // PRZEGLĄD REVIEW WDP-44
 
   .tabs {
-    border: 1px solid black;
+    border: 1px solid $color-dark;
     .tabList {
       display: flex;
     }
@@ -102,14 +102,14 @@
       padding: 10px;
       cursor: pointer;
       transition: background-color 0.2s ease;
-      border-right: 1px solid black;
-      border-bottom: 1px solid black;
+      border-right: 1px solid $color-dark;
+      border-bottom: 1px solid $color-dark;
       height: 50px;
   
     }
   
     .active {
-      color: #ff9100;
+      color: $color-primary;
       border-bottom: none;
     }
   
@@ -141,7 +141,7 @@
   
   .inputs {
     display: flex;
-    justify-content: 	space-between;
+    justify-content: space-between;
     width: 100%;
     padding-right: 60px;
     padding-top: 10px;
@@ -158,8 +158,8 @@
   }
   
   .inputButton {
-    background-color: black;
-    color: white;
+    background-color: $color-dark;
+    color: $color-light;
     font-size: 11px;
     width: 10%;
   }
