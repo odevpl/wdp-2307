@@ -4,6 +4,8 @@
   padding: $base-padding 0;
 }
 
+// BANER WDP-39
+
 // Up Section
 .upSection {
   background-color: #363636;
@@ -82,3 +84,83 @@
   color: #d58e32;
   font-weight: 400;
 }
+
+  // PRZEGLĄD REVIEW WDP-44
+
+  .tabs {
+    border: 1px solid black;
+    .tabList {
+      display: flex;
+    }
+  
+    .positionContent {
+      padding: 20px 0px 50px 30px;
+      width: 100%;
+    }
+  
+    .tab {
+      padding: 10px;
+      cursor: pointer;
+      transition: background-color 0.2s ease;
+      border-right: 1px solid black;
+      border-bottom: 1px solid black;
+      height: 50px;
+  
+    }
+  
+    .active {
+      color: #ff9100;
+      border-bottom: none;
+    }
+  
+    .tabContent {
+      margin-top: 10px;
+    }
+  }
+  
+  .pReview {
+    font-weight: 600;
+  }
+  
+  .rating {
+    display: flex;
+    flex-direction: row;
+  }
+  
+  .pBad {
+    padding-right: 20px;
+  }
+  
+  .pGwiazdki {
+    padding-right: 20px;
+  }
+  
+  textarea {
+    width: 95%;
+  }
+  
+  .inputs {
+    display: flex;
+    justify-content: 	space-between;
+    width: 100%;
+    padding-right: 60px;
+    padding-top: 10px;
+  }
+  
+  .inputName {
+    width: 43%;
+    padding-left: 10px;
+  }
+  
+  .inputEmail {
+    width: 43%;
+    padding-left: 10px;
+  }
+  
+  .inputButton {
+    background-color: black;
+    color: white;
+    font-size: 11px;
+    width: 10%;
+  }
+  
