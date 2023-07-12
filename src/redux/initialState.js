@@ -12,6 +12,7 @@ const initialState = {
       name: 'Aenean Ru Bristique 1',
       category: 'bed',
       price: 30,
+      oldPrice: 45,
       stars: 2,
       myStars: 0,
       promo: 'sale',
@@ -61,6 +62,7 @@ const initialState = {
       name: 'Aenean Ru Bristique 5',
       category: 'bed',
       price: 30,
+      oldPrice: 45,
       stars: 2,
       myStars: 3,
       promo: 'sale',
@@ -97,6 +99,7 @@ const initialState = {
       name: 'Aenean Ru Bristique 8',
       category: 'chair',
       price: 30,
+      oldPrice: 45,
       stars: 2,
       myStars: 0,
       promo: 'sale',
@@ -121,6 +124,7 @@ const initialState = {
       name: 'Aenean Ru Bristique 10',
       category: 'chair',
       price: 30,
+      oldPrice: 65,
       stars: 2,
       myStars: 0,
       promo: 'sale',
@@ -145,6 +149,7 @@ const initialState = {
       name: 'Aenean Ru Bristique 12',
       category: 'sofa',
       price: 30,
+      oldPrice: 45,
       stars: 2,
       myStars: 0,
       promo: 'sale',
@@ -181,6 +186,7 @@ const initialState = {
       name: 'Aenean Ru Bristique 15',
       category: 'sofa',
       price: 30,
+      oldPrice: 45,
       stars: 2,
       myStars: 0,
       promo: 'sale',
@@ -241,6 +247,7 @@ const initialState = {
       name: 'Aenean Ru Bristique 20',
       category: 'table',
       price: 30,
+      oldPrice: 40,
       stars: 2,
       myStars: 0,
       promo: 'sale',
@@ -301,6 +308,7 @@ const initialState = {
       name: 'Aenean Ru Bristique 25',
       category: 'dining',
       price: 30,
+      oldPrice: 40,
       stars: 2,
       myStars: 0,
       promo: 'sale',
@@ -312,13 +320,13 @@ const initialState = {
   cart: {
     products: [],
   },
-
+  
   promoted: {
     productsId: 'aenean-ru-bristique-1',
     bannerTitle: 'Indoor Furniture',
     bannerSubtitle: 'Save up to 50% of all furniture',
   },
-
+      
   promotions: {
     firstLine: 'GUEST ROOM',
     secondLine: 'SOFA',
@@ -328,6 +336,9 @@ const initialState = {
     sixthLine: '$200.00',
     seventhLine: 'SPECIAL COLLECTION',
     eighthLine: 'SAVE UP 45% OF FURNITURE',
+  },
+  compared: {
+    products: [],
   },
 };
 

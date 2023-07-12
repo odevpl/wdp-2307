@@ -13,18 +13,30 @@ import Button from '../Button/Button';
 import ProductStars from '../../features/ProductStars/ProductStars';
 import QuickViewPopup from '../../views/QuickViewPopup/QuickViewPopup';
 
-import { useDispatch } from 'react-redux';
 import { toggleFavorite } from '../../../redux/productsRedux';
+import { Link } from 'react-router-dom/cjs/react-router-dom.min';
 
-const ProductBox = ({ ...item }) => {
-  const [isHovering, setIsHovering] = useState(false);
+import { useSelector, useDispatch } from 'react-redux';
+
+import {
+  getAllCompared,
+  getCountCompared,
+  addComparedProduct,
+  deleteComparedProduct,
+} from '../../../redux/comparedReducer';
+
+const ProductBox = ({ id, name, price, promo, stars, picture, myStars, isFavorite, oldPrice }) => {
   const [isPopupOpen, setIsPopupOpen] = useState(false);
 
-  const [selectedStars, setSelectedStars] = useState(item.myStars);
+  const [selectedStars, setSelectedStars] = useState(myStars);
 
   const handleStarClick = clickedStars => {
     setSelectedStars(clickedStars);
   };
+  const [isHovering, setIsHovering] = useState(false);
+  const comparedProducts = useSelector(state => getAllCompared(state));
+  const compareCount = useSelector(state => getCountCompared(state));
+  const dispatch = useDispatch();
 
   const handleMouseOver = () => {
     setIsHovering(true);
@@ -44,11 +56,20 @@ const ProductBox = ({ ...item }) => {
     setIsPopupOpen(false);
   };
 
-  const dispatch = useDispatch();
-
   const favoriteHandler = e => {
     e.preventDefault();
-    dispatch(toggleFavorite(item.id));
+    dispatch(toggleFavorite(id));
+  };
+
+  const onCompareClick = evt => {
+    evt.preventDefault();
+
+    if (comparedProducts.includes(id)) {
+      dispatch(deleteComparedProduct(id));
+      return;
+    }
+
+    if (compareCount < 4) dispatch(addComparedProduct(id));
   };
 
   return (
@@ -57,10 +78,12 @@ const ProductBox = ({ ...item }) => {
       onMouseOver={handleMouseOver}
       onMouseOut={handleMouseOut}
     >
-      {isPopupOpen && <QuickViewPopup id={item.id} onClose={handlePopupClose} />}
+      {isPopupOpen && <QuickViewPopup id={id} onClose={handlePopupClose} />}
       <div className={styles.photo}>
-        {item.promo && <div className={styles.sale}>{item.promo}</div>}
-        <img src={item.picture} alt={item.name} />
+        {promo && <div className={styles.sale}>{promo}</div>}
+        <Link to={`/product/${id}`}>
+          <img src={picture} alt={name} />
+        </Link>
         {isHovering && (
           <div className={styles.buttons}>
             <Button variant='small' onClick={handleQuickViewClick}>
@@ -73,9 +96,11 @@ const ProductBox = ({ ...item }) => {
         )}
       </div>
       <div className={styles.content}>
-        <h5>{item.name}</h5>
+        <Link to={`/product/${id}`}>
+          <h5>{name}</h5>
+        </Link>
         <ProductStars
-          stars={item.stars}
+          stars={stars}
           myStars={selectedStars}
           onClick={handleStarClick}
         />
@@ -83,20 +108,28 @@ const ProductBox = ({ ...item }) => {
       <div className={styles.line}></div>
       <div className={styles.actions}>
         <div className={styles.outlines}>
+
           <Button
-            variant={item.isFavorite ? 'active' : 'outline'}
+            variant={isFavorite ? 'active' : 'outline'}
             onClick={favoriteHandler}
           >
             <FontAwesomeIcon icon={faHeart}>Favorite</FontAwesomeIcon>
           </Button>
-          <Button variant={Math.floor(Math.random() * 2) === 1 ? 'outline' : 'active'}>
+
+          <Button
+            onClick={onCompareClick}
+            variant={comparedProducts.includes(id) ? 'active' : 'outline'}
+          >
             <FontAwesomeIcon icon={faExchangeAlt}>Add to compare</FontAwesomeIcon>
           </Button>
         </div>
-        <div className={styles.price}>
-          <Button noHover variant={isHovering ? 'price' : 'small'}>
-            $ {item.price}
-          </Button>
+        <div className={styles.pricesContainer}>
+          {oldPrice && <p className={styles.oldPrice}> $ {oldPrice} </p>}
+          <div className={styles.price}>
+            <Button noHover variant={isHovering ? 'price' : 'small'}>
+              $ {price}
+            </Button>
+          </div>
         </div>
       </div>
     </div>
@@ -104,7 +137,8 @@ const ProductBox = ({ ...item }) => {
 };
 
 ProductBox.propTypes = {
-  id: PropTypes.string.isRequired,
+  id: PropTypes.string,
+  children: PropTypes.node,
   name: PropTypes.string,
   price: PropTypes.number,
   promo: PropTypes.string,
