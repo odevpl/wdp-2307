@@ -15,6 +15,7 @@ import QuickViewPopup from '../../views/QuickViewPopup/QuickViewPopup';
 
 import { useDispatch } from 'react-redux';
 import { toggleFavorite } from '../../../redux/productsRedux';
+import { Link } from 'react-router-dom/cjs/react-router-dom.min';
 
 const ProductBox = ({ ...item }) => {
   const [isHovering, setIsHovering] = useState(false);
@@ -60,7 +61,9 @@ const ProductBox = ({ ...item }) => {
       {isPopupOpen && <QuickViewPopup id={item.id} onClose={handlePopupClose} />}
       <div className={styles.photo}>
         {item.promo && <div className={styles.sale}>{item.promo}</div>}
-        <img src={item.picture} alt={item.name} />
+        <Link to={`/product/${item.id}`}>
+          <img src={item.picture} alt={item.name} />
+        </Link>
         {isHovering && (
           <div className={styles.buttons}>
             <Button variant='small' onClick={handleQuickViewClick}>
@@ -73,7 +76,9 @@ const ProductBox = ({ ...item }) => {
         )}
       </div>
       <div className={styles.content}>
-        <h5>{item.name}</h5>
+        <Link to={`/product/${item.id}`}>
+          <h5>{item.name}</h5>
+        </Link>
         <ProductStars
           stars={item.stars}
           myStars={selectedStars}
