@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { NavLink } from 'react-router-dom/cjs/react-router-dom.min';
 
 import ProductSearch from '../../features/ProductSearch/ProductSearch';
 
@@ -14,29 +15,20 @@ const MenuBar = ({ children }) => (
         </div>
         <div className={'col-auto ' + styles.menu}>
           <ul>
-            <li>
-              <a href='#' className={styles.active}>
-                Home
-              </a>
-            </li>
-            <li>
-              <a href='#'>Furniture</a>
-            </li>
-            <li>
-              <a href='#'>Chair</a>
-            </li>
-            <li>
-              <a href='#'>Table</a>
-            </li>
-            <li>
-              <a href='#'>Sofa</a>
-            </li>
-            <li>
-              <a href='#'>Bedroom</a>
-            </li>
-            <li>
-              <a href='#'>Blog</a>
-            </li>
+            <li><NavLink className={({ isActive }) => isActive ? styles.linkActive : undefined}
+              to="/">Home</NavLink></li>
+            <li><NavLink className={({ isActive }) => isActive ? styles.linkActive : undefined}
+              to="/shop/furniture">Furniture</NavLink></li>
+            <li><NavLink className={({ isActive }) => isActive ? styles.linkActive : undefined}
+              to="/shop/chair">Chair</NavLink></li>
+            <li><NavLink className={({ isActive }) => isActive ? styles.linkActive : undefined}
+              to="/shop/table">Table</NavLink></li>
+            <li><NavLink className={({ isActive }) => isActive ? styles.linkActive : undefined}
+              to="/shop/sofa">Sofa</NavLink></li>
+            <li><NavLink className={({ isActive }) => isActive ? styles.linkActive : undefined}
+              to="/shop/bedroom">Bedroom</NavLink></li>
+            <li><NavLink className={({ isActive }) => isActive ? styles.linkActive : undefined}
+              to="/blog">Blog</NavLink></li>
           </ul>
         </div>
       </div>

@@ -11,6 +11,9 @@ import Homepage from './components/views/Homepage/Homepage';
 import ProductList from './components/views/ProductList/ProductList';
 import ProductPage from './components/views/ProductPage/ProductPage';
 import RegisterPage from './components/views/RegisterPage/RegisterPage';
+import Blog from './components/views/Blog/Blog';
+// import BenefitsPage from './components/views/BenefitsPage/BenefitsPage';
+import Cart from './components/views/Cart/Cart';
 
 const App = () => (
   <Provider store={store}>
@@ -21,6 +24,9 @@ const App = () => (
           <Route exact path={'/register'} component={RegisterPage} />
           <Route exact path={'/shop/:categoryId'} component={ProductList} />
           <Route exact path={'/product/:productId'} component={ProductPage} />
+          <Route exact path={'/blog'} component={Blog} />
+          {/* <Route exact path={'/benefits'} component={BenefitsPage} /> */}
+          <Route exact path={'/cart'} component={Cart} />
         </Switch>
       </MainLayout>
     </BrowserRouter>

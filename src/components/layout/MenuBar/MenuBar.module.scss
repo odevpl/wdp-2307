@@ -1,26 +1,40 @@
 @import "../../../styles/settings.scss";
+@import "../../../styles/media-queries.scss";
 
 .root {
   box-shadow: 2px 3.464px 6px hsla(0, 0%, 1%, 0.2);
   background-color: $menu-bar-bg;
 
   :global(.container) > :global(.row) {
-    height: 84px;
+    min-height: 84px;
   }
 
   .menu {
     display: flex;
     align-self: stretch;
+    overflow-x: auto;
 
     ul {
       margin: 0;
       padding: 0;
       display: flex;
+      flex-wrap: nowrap;
+      overflow-x: auto;
 
       li {
         list-style: none;
         display: flex;
         align-items: stretch;
+        flex-grow: 1;
+        max-width: 100%;
+
+        &:not(:last-child) {
+          margin-right: 1rem;
+        }
+
+        @media (max-width: 768px) {
+          flex-grow: 0;
+        }
       }
     }
 
@@ -41,10 +55,22 @@
         background-color: $menu-bar-primary;
         color: $text-light;
         border-color: $menu-bar-primary;
+        border-top: none;
       }
 
       &.active {
         border-color: $text-dark;
+      }
+    }
+  }
+
+  @media (max-width: 780px) {
+    .menu {
+      justify-content: flex-start;
+
+      li {
+        flex-grow: 0;
+        max-width: none;
       }
     }
   }

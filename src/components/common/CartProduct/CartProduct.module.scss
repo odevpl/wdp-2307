@@ -1,0 +1,13 @@
+@import "../../../styles/settings.scss";
+
+.root {
+	
+	.price {
+		color: $cart-primary;
+	}
+	.photo {
+		height: 50px;
+		width: 50px;
+		background-color: $text-grey-light;
+	}
+}
