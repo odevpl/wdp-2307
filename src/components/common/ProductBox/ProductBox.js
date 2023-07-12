@@ -3,12 +3,8 @@ import PropTypes from 'prop-types';
 
 import styles from './ProductBox.module.scss';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import {
-  faStar,
-  faExchangeAlt,
-  faShoppingBasket,
-} from '@fortawesome/free-solid-svg-icons';
-import { faStar as farStar, faHeart } from '@fortawesome/free-regular-svg-icons';
+import { faExchangeAlt, faShoppingBasket } from '@fortawesome/free-solid-svg-icons';
+import { faStar as faHeart } from '@fortawesome/free-regular-svg-icons';
 import Button from '../Button/Button';
 import ProductStars from '../../features/ProductStars/ProductStars';
 import QuickViewPopup from '../../views/QuickViewPopup/QuickViewPopup';
@@ -25,7 +21,17 @@ import {
   deleteComparedProduct,
 } from '../../../redux/comparedReducer';
 
-const ProductBox = ({ id, name, price, promo, stars, picture, myStars, isFavorite, oldPrice }) => {
+const ProductBox = ({
+  id,
+  name,
+  price,
+  promo,
+  stars,
+  picture,
+  myStars,
+  isFavorite,
+  oldPrice,
+}) => {
   const [isPopupOpen, setIsPopupOpen] = useState(false);
 
   const [selectedStars, setSelectedStars] = useState(myStars);
@@ -99,20 +105,12 @@ const ProductBox = ({ id, name, price, promo, stars, picture, myStars, isFavorit
         <Link to={`/product/${id}`}>
           <h5>{name}</h5>
         </Link>
-        <ProductStars
-          stars={stars}
-          myStars={selectedStars}
-          onClick={handleStarClick}
-        />
+        <ProductStars stars={stars} myStars={selectedStars} onClick={handleStarClick} />
       </div>
       <div className={styles.line}></div>
       <div className={styles.actions}>
         <div className={styles.outlines}>
-
-          <Button
-            variant={isFavorite ? 'active' : 'outline'}
-            onClick={favoriteHandler}
-          >
+          <Button variant={isFavorite ? 'active' : 'outline'} onClick={favoriteHandler}>
             <FontAwesomeIcon icon={faHeart}>Favorite</FontAwesomeIcon>
           </Button>
 
@@ -147,6 +145,8 @@ ProductBox.propTypes = {
   picture: PropTypes.string.isRequired,
   onStarHover: PropTypes.func,
   onStarClick: PropTypes.func,
+  oldPrice: PropTypes.number,
+  isFavorite: PropTypes.bool,
 };
 
 export default ProductBox;

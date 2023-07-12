@@ -320,13 +320,13 @@ const initialState = {
   cart: {
     products: [],
   },
-  
+
   promoted: {
     productsId: 'aenean-ru-bristique-1',
     bannerTitle: 'Indoor Furniture',
     bannerSubtitle: 'Save up to 50% of all furniture',
   },
-      
+
   promotions: {
     firstLine: 'GUEST ROOM',
     secondLine: 'SOFA',

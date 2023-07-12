@@ -12,7 +12,7 @@ const reducers = {
   cart: cartReducer,
   categories: categoriesReducer,
   products: productsReducer,
-  promoted: promotedReducer
+  promoted: promotedReducer,
   compared: comparedReducer,
 };
 

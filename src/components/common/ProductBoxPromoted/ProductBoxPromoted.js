@@ -4,12 +4,11 @@ import PropTypes from 'prop-types';
 import styles from './ProductBoxPromoted.module.scss';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
-  faStar,
   faExchangeAlt,
   faShoppingBasket,
   faEye,
 } from '@fortawesome/free-solid-svg-icons';
-import { faStar as farStar, faHeart } from '@fortawesome/free-regular-svg-icons';
+import { faStar as faHeart } from '@fortawesome/free-regular-svg-icons';
 import Button from '../Button/Button';
 // import ProductStars from '../../features/ProductStars/ProductStars';
 // import QuickViewPopup from '../../views/QuickViewPopup/QuickViewPopup';
