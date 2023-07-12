@@ -1,22 +1,18 @@
 @import "../../../styles/settings.scss";
 
-* {
-  outline: 1px dotted red;
-}
-
 .root {
   .feedback {
     ul {
       list-style-type: none;
     }
 
-
     .header {
       display: flex;
       flex-direction: row;
       min-width: 100%;
+      color: $header-primary;
+      font-family: "Poppins", sans-serif;
       justify-content: space-between;
-      border-bottom: 0.3rem solid gray;
 
       .switch {
         display: flex;
@@ -24,8 +20,8 @@
 
         .dot {
           display: inline-block;
-          width: 20px;
-          height: 20px;
+          width: 13px;
+          height: 13px;
           border-radius: 50%;
           background-color: gray;
           margin-right: 10px;
@@ -36,25 +32,38 @@
           background-color: orange;
         }
       }
-
     }
-
+.client{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  margin-block-end: 20px;
+ gap: 20px;
+}
     .contents {
       margin: 0;
       padding: 0;
       display: flex;
+      justify-content: center;
 
       .commentContainer {
         display: flex;
         align-items: center;
+        flex-direction: column-reverse;
+        height: 200px;
       }
 
       .avatar {
+        display: flex;
         width: 40px;
         height: 40px;
-        border-radius: 50%;
         overflow: hidden;
-        margin-right: 10px;
+        justify-content: space-evenly;
+        align-items: center;
+        flex-direction: row-reverse;
+        flex-wrap: wrap;
+        align-content: stretch;
+
 
         img {
           width: 100%;
@@ -65,9 +74,30 @@
 
       .commentContent {
         font-size: 14px;
+        display: flex;
+        font-family: "Poppins", sans-serif;
+        align-items: center;
+        height: 100px;
       }
-
-
     }
   }
+}
+
+h3 {
+  color: $new-furniture-primary;
+  text-transform: uppercase;
+  font-size: 20px;
+  line-height: 38px;
+  margin: 0;
+  letter-spacing: 1px;
+}
+
+h2 {
+  font-family: "Poppins", sans-serif;
+  left: 50px;
+  font-size: 60px;
+  padding-top: 15px;
+  height: 20px;
+  width: 33px;
+  color: #2a2a2a;
 }
