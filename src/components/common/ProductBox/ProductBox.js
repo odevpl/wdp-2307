@@ -1,23 +1,23 @@
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import { useState } from 'react';
 
 import styles from './ProductBox.module.scss';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
+  faStar,
   faExchangeAlt,
   faShoppingBasket,
 } from '@fortawesome/free-solid-svg-icons';
-import { faHeart } from '@fortawesome/free-regular-svg-icons';
+import { faStar as farStar, faHeart } from '@fortawesome/free-regular-svg-icons';
 import Button from '../Button/Button';
 import ProductStars from '../../features/ProductStars/ProductStars';
 import QuickViewPopup from '../../views/QuickViewPopup/QuickViewPopup';
 
 import { useDispatch } from 'react-redux';
 import { toggleFavorite } from '../../../redux/productsRedux';
+import { Link } from 'react-router-dom/cjs/react-router-dom.min';
 
 const ProductBox = ({ ...item }) => {
-
   const [isHovering, setIsHovering] = useState(false);
   const [isPopupOpen, setIsPopupOpen] = useState(false);
 
@@ -61,7 +61,9 @@ const ProductBox = ({ ...item }) => {
       {isPopupOpen && <QuickViewPopup id={item.id} onClose={handlePopupClose} />}
       <div className={styles.photo}>
         {item.promo && <div className={styles.sale}>{item.promo}</div>}
-        <img src={item.picture} alt={item.name} />
+        <Link to={`/product/${item.id}`}>
+          <img src={item.picture} alt={item.name} />
+        </Link>
         {isHovering && (
           <div className={styles.buttons}>
             <Button variant='small' onClick={handleQuickViewClick}>
@@ -74,8 +76,14 @@ const ProductBox = ({ ...item }) => {
         )}
       </div>
       <div className={styles.content}>
-        <h5>{item.name}</h5>
-        <ProductStars stars={item.stars} myStars={selectedStars} onClick={handleStarClick} />
+        <Link to={`/product/${item.id}`}>
+          <h5>{item.name}</h5>
+        </Link>
+        <ProductStars
+          stars={item.stars}
+          myStars={selectedStars}
+          onClick={handleStarClick}
+        />
       </div>
       <div className={styles.line}></div>
       <div className={styles.actions}>
@@ -101,7 +109,15 @@ const ProductBox = ({ ...item }) => {
 };
 
 ProductBox.propTypes = {
-  item: PropTypes.object,
+  id: PropTypes.string.isRequired,
+  name: PropTypes.string,
+  price: PropTypes.number,
+  promo: PropTypes.string,
+  stars: PropTypes.number,
+  myStars: PropTypes.number,
+  picture: PropTypes.string.isRequired,
+  onStarHover: PropTypes.func,
+  onStarClick: PropTypes.func,
 };
 
 export default ProductBox;
