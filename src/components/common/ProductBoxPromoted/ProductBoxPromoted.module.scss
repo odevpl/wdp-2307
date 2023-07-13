@@ -3,7 +3,7 @@
 .root {
   background-color: $product-box-bg;
   border: 1px solid $product-box-border-light;
-  margin-bottom: 2rem;
+
 
   .photo {
     position: relative;
@@ -14,7 +14,6 @@
       position: center;
       repeat: no-repeat;
     }
-    overflow: hidden;
     align-items: flex-end;
 
     img {
@@ -23,28 +22,52 @@
       width: 100%;
       height: 300px;
     }
+	}
+	.hover {
+		display: none;
+	}
+	.photo:hover .hover{
+		display: block;
+	}
+	.countdown {
+		position: absolute;
+		top: 80%;
+		left: 50%;
+		transform: translate(-50%, -50%);
+		color: $text-light;
+		text-align: center;
+		font-size: 12px;
+		font-weight: bold;
+		text-transform: uppercase;
+		ul {
+			padding-inline-start: 0;
+			display: flex;
+			list-style: none;
+		}
+		li:first-of-type{
+			margin-left: 0;
+		}
+		li {
+			margin-left: 5px;
+			padding-top: 5px;
+			width: 65px;
+			height: 65px;
+			background-color: $promoted-countdown-bg;
+			
+			border-radius: 50%;
+			span{
+				font-size: 20px;
+			}
+		}
+	}
+ 
+	.addButton {
+		position: absolute;
+		top: 40%;
+		left: 50%;
+		transform: translateX(-50%);
 
-    .sale {
-      position: absolute;
-      top: -30px;
-      left: 50%;
-      transform: translateX(-50%);
-      background-color: $product-box-accent-bg;
-      border-radius: 50%;
-      color: $text-light;
-      padding: 30px 15px 5px 15px;
-    }
-
-    .buttons {
-      position: absolute;
-      bottom: 10px;
-      left: 0;
-      right: 0;
-      display: flex;
-      justify-content: space-between;
-      padding: 0 10px;
-    }
-  }
+	}
 
   .content {
     text-align: center;
@@ -86,15 +109,12 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-  }
-  .pricesContainer {
-    display: flex;
-    align-items: center;
-    .oldPrice {
-      text-decoration: line-through;
-      margin: 0 10px;
-      color: #6c757d !important;
-      font-size: 13px;
-    }
-  }
+ 	}
+	
+
 }
+.root:hover .price {
+		color: $button-price-bg !important;
+		background-color: $button-primary;
+		text-decoration: none;
+	}

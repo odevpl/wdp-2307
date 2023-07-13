@@ -9,13 +9,24 @@
   line-height: 24px;
   font-weight: 600;
   padding: 10px 30px;
-
   &:not(.noHover):hover {
     color: $text-light !important;
     background-color: $button-primary;
     text-decoration: none;
   }
 
+}
+.delete {
+  text-align: center;
+  display: inline-block;
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  border: 1px solid;
+  color: $text-grey-light;
+  &:hover {
+    color: $button-primary;
+  }
 }
 
 .price {

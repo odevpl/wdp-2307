@@ -7,9 +7,11 @@ import FeatureBoxes from '../../features/FeatureBoxes/FeatureBoxes';
 import NewFurniture from '../../features/NewFurniture/NewFurnitureContainer';
 import Promotions from '../../features/Promotions/Promotions';
 import Brands from '../../features/Brands/Brands';
+import Promoted from '../../features/Promoted/Promoted';
 
 const Homepage = () => (
   <div className={styles.root}>
+    <Promoted />
     <FeatureBoxes />
     <Promotions />
     <NewFurniture />

@@ -69,7 +69,10 @@
 
     button {
       padding: 8px 16px;
+
+      
       background-color: blue;
+
       color: #fff;
       border: none;
       border-radius: 4px;
@@ -104,18 +107,19 @@
       }
 
       .cartCounter {
-        width: 28px;
+        width: 50px;
         height: 27px;
+        padding-left: 12px;
         border-radius: 14px;
         background-color: $header-bg;
         display: flex;
         align-items: center;
-        justify-content: center;
+        justify-content: flex-start;
         font-size: 14px;
         color: $header-cart-counter;
         position: absolute;
         top: 50%;
-        right: 0;
+        right: -14px;
         transform: translate(50%, -50%);
       }
 
