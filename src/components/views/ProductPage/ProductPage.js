@@ -9,11 +9,11 @@ const ProductPage = () => {
   const [activeTab, setActiveTab] = useState('Tab 1');
   const [, setHoveredTab] = useState(null);
 
-  const handleTabClick = (tabLabel) => {
+  const handleTabClick = tabLabel => {
     setActiveTab(tabLabel);
   };
 
-  const handleTabMouseEnter = (tabLabel) => {
+  const handleTabMouseEnter = tabLabel => {
     setHoveredTab(tabLabel);
   };
 
@@ -21,8 +21,8 @@ const ProductPage = () => {
     setHoveredTab(null);
   };
 
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
 
   return (
     <>
@@ -120,17 +120,19 @@ const ProductPage = () => {
                 <span className={styles.spanReview}>Your Review</span>
                 <textarea className={styles.inputTextArea}></textarea>
                 <div className={styles.inputs}>
-                  <input className={styles.inputName}
-                    type="text"
+                  <input
+                    className={styles.inputName}
+                    type='text'
                     value={name}
                     placeholder='Name*'
-                    onChange={(e) => setName(e.target.value)}
+                    onChange={e => setName(e.target.value)}
                   />
-                  <input className={styles.inputEmail}
-                    type="text"
+                  <input
+                    className={styles.inputEmail}
+                    type='text'
                     value={email}
                     placeholder='Email*'
-                    onChange={(e) => setEmail(e.target.value)}
+                    onChange={e => setEmail(e.target.value)}
                   />
                   <button className={styles.inputButton}>CONTINUE</button>
                 </div>
