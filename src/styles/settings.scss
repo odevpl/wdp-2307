@@ -33,13 +33,18 @@ $color-light-blue-1: #f4f5f7;
 $color-light-blue-2: #e0e3ed;
 $color-light: #fff;
 $color-dark: #2a2a2a;
+$color-deepblack: #000;
 
 
-//Header 
+//Header
 $header-primary: $color-primary;
 $header-topbar-bg: $color-grey-5;
 $header-bg: $color-grey-6;
 $header-cart-counter: $color-light-blue-2;
+
+//Cart
+$cart-header-bg: $color-grey-1;
+$cart-primary: $color-primary;
 
 //Form
 $form-primary: $color-primary;
@@ -49,6 +54,12 @@ $form-border: $color-dark;
 //Menu Bar
 $menu-bar-primary: $color-primary;
 $menu-bar-bg: $color-light;
+
+//Promoted 
+$promoted-primary: $color-primary;
+$promoted-title-bg: $color-dark;
+$promoted-dot: $color-grey-1;
+$promoted-countdown-bg:$color-dark;
 
 //Feature Box
 $feature-box-primary: $color-primary;
@@ -60,7 +71,7 @@ $new-furniture-primary: $color-primary;
 $new-furniture-bg: $color-light;
 $new-furniture-border: $color-grey-1;
 
-//Product Box 
+//Product Box
 $product-box-primary: $color-primary;
 $product-box-bg: $color-light;
 $product-box-accent-bg: $color-dark;
@@ -80,7 +91,7 @@ $button-bg: $color-dark;
 $button-border: $color-dark;
 $button-price-bg: $color-light;
 
-//Text 
+//Text
 $text-dark: $color-dark;
 $text-light: $color-light;
 $text-grey-light: $color-grey-2;
