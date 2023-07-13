@@ -50,9 +50,10 @@
 
 // CHECKBOXES AREA
 .rules {
-  color:#d58e32;
-
+  color:$color-primary;
+  text-decoration: none;
   &:hover {
+    color: $color-dark;
     text-decoration: none;
   }
 }
@@ -70,9 +71,18 @@ input[type='checkbox'] {
   color: $color-primary;
   text-decoration: none;
   padding: 20px 0 20px 0;
+
+  &:hover {
+    color: $color-dark;
+  }
 }
 
 .button_register {
   height: 50px;
   text-decoration: none;
+  background-color: $color-primary;
+
+  &:hover {
+    background-color: $color-dark !important;
+  }
 }

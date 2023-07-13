@@ -86,11 +86,12 @@ const RegisterPage = () => {
               </div>
             </div>
             <div className='text-center d-flex justify-content-between'>
-              <Button className={styles.button_back}>
+              <Button href='/' className={styles.button_back}>
                 <FontAwesomeIcon icon={faAngleLeft} />
                 <span> Wróć</span>
               </Button>
-              <Button variant='main' className={styles.button_register}>
+
+              <Button href='/' variant='main' className={styles.button_register}>
                 Zarejestruj się
               </Button>
             </div>
