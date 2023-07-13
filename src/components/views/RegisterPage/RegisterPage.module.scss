@@ -1,0 +1,88 @@
+@import "../../../styles/settings.scss";
+
+// .root {
+// }
+// TOP ACCOUNT LINE
+.account {
+  font-weight: bold;
+}
+
+.custom_radio {
+  width: 20px;
+  height: 20px;
+  border: 2px solid $color-deepblack;
+
+  &:focus {
+    box-shadow: none;
+  }
+
+  &:checked[type=radio] {
+    background-color: $color-light;
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'%3e%3ccircle r='2.5' fill='black'/%3e%3c/svg%3e");
+    border-color: $color-deepblack !important;
+  }
+}
+
+.showPassword {
+  padding-left: 10px;
+}
+
+.showPasswordInput {
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'%3e%3ccircle r='3' fill='rgba(213,142,50,1)'/%3e%3c/svg%3e") !important;
+
+  &:focus {
+    box-shadow: none;
+    border: 2px solid $color-deepblack;
+  }
+
+  &:checked {
+    border: 1px solid $color-deepblack;
+    background-color: $color-dark;
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'%3e%3ccircle r='3' fill='rgba(213,142,50,1)'/%3e%3c/svg%3e") !important;
+  }
+}
+
+// TEXT AREA ABOVE FORM
+.form_header {
+  padding-top: 30px;
+  font-weight: bold;
+}
+
+// CHECKBOXES AREA
+.rules {
+  color:$color-primary;
+  text-decoration: none;
+  &:hover {
+    color: $color-dark;
+    text-decoration: none;
+  }
+}
+
+input[type='checkbox'] {
+  border: 2px solid $color-deepblack;
+}
+
+.singleCheckBoxes {
+  padding-bottom: 5px;
+}
+
+// BUTTONS
+.button_back {
+  color: $color-primary;
+  text-decoration: none;
+  padding: 20px 0 20px 0;
+
+  &:hover {
+    color: $color-dark;
+  }
+}
+
+.button_register {
+  height: 50px;
+  text-decoration: none;
+  background-color: $color-primary;
+
+  &:hover {
+    background-color: $color-dark !important;
+  }
+}
