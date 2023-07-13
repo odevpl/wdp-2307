@@ -1,11 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import { getViewport } from '../../../redux/viewportRedux';
 
 import styles from './NewFurniture.module.scss';
 import ProductBox from '../../common/ProductBox/ProductBox';
-
 import Swipeable from '../Swipable/Swipable';
-
 import ComparedProductsBox from '../../common/ComparedProductsBox/ComparedProductsBox';
 
 class NewFurniture extends React.Component {
@@ -30,11 +30,11 @@ class NewFurniture extends React.Component {
   }
 
   render() {
-    const { categories, products, compared } = this.props;
+    const { categories, products, compared, viewport } = this.props;
     const { activeCategory, activePage, fadeOut } = this.state;
-
     const categoryProducts = products.filter(item => item.category === activeCategory);
-    const pagesCount = Math.ceil(categoryProducts.length / 8);
+    const productsPerPage = viewport === 'desktop' ? 8 : viewport === 'tablet' ? 2 : 1;
+    const pagesCount = Math.ceil(categoryProducts.length / productsPerPage);
 
     const dots = [];
     for (let i = 0; i < pagesCount; i++) {
@@ -91,7 +91,7 @@ class NewFurniture extends React.Component {
           >
             <div className={`row ${fadeOut ? styles.fade : ''}`}>
               {categoryProducts
-                .slice(activePage * 8, (activePage + 1) * 8)
+                .slice(activePage * productsPerPage, (activePage + 1) * productsPerPage)
                 .map(item => (
                   <div className='col-lg-3 col-sm-6 col-12' key={item.id}>
                     <ProductBox {...item} />
@@ -134,6 +134,7 @@ NewFurniture.propTypes = {
       newFurniture: PropTypes.bool,
     })
   ),
+  viewport: PropTypes.string, // Added prop type for viewport
 };
 
 NewFurniture.defaultProps = {
@@ -141,4 +142,8 @@ NewFurniture.defaultProps = {
   products: [],
 };
 
-export default NewFurniture;
+const mapStateToProps = state => ({
+  viewport: getViewport(state), // Get viewport from Redux store
+});
+
+export default connect(mapStateToProps)(NewFurniture);

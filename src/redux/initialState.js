@@ -326,6 +326,7 @@ const initialState = {
     bannerTitle: 'Indoor Furniture',
     bannerSubtitle: 'Save up to 50% of all furniture',
   },
+  viewport: 'desktop',
 
   promotions: {
     firstLine: 'GUEST ROOM',
