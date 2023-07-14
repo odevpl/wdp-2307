@@ -13,6 +13,7 @@ import ProductPage from './components/views/ProductPage/ProductPage';
 import Blog from './components/views/Blog/Blog';
 // import BenefitsPage from './components/views/BenefitsPage/BenefitsPage';
 import Cart from './components/views/Cart/Cart';
+import RegisterPage from './components/views/RegisterPage/RegisterPage';
 
 const App = () => (
   <Provider store={store}>
@@ -20,6 +21,7 @@ const App = () => (
       <MainLayout>
         <Switch>
           <Route exact path={'/'} component={Homepage} />
+          <Route exact path={'/register'} component={RegisterPage} />
           <Route exact path={'/shop/:categoryId'} component={ProductList} />
           <Route exact path={'/product/:productId'} component={ProductPage} />
           <Route exact path={'/blog'} component={Blog} />
