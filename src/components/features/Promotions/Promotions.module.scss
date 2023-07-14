@@ -117,4 +117,25 @@
     .twoPromoBoxes {
         flex: 50%;
     }
+    @media (max-width: 1000px) {
+        .row {
+          display: flex;
+          flex-direction: column;
+          min-width: 1000px;
+        }
+        .bigSquare {
+          min-width: 700px;
+        }
+      }
+
+      @media (max-width: 768px) {
+        .row {
+            display: flex;
+            flex-direction: column;
+            min-width: 768px;
+          }
+          .bigSquare {
+            min-width: 500px;
+          }
+      }
 }
