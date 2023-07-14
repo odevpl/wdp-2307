@@ -10,37 +10,42 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 import { faStar as faHeart } from '@fortawesome/free-regular-svg-icons';
 import Button from '../Button/Button';
-// import ProductStars from '../../features/ProductStars/ProductStars';
-// import QuickViewPopup from '../../views/QuickViewPopup/QuickViewPopup';
+import ProductStars from '../../features/ProductStars/ProductStars';
+import QuickViewPopup from '../../views/QuickViewPopup/QuickViewPopup';
 
 import { useDispatch } from 'react-redux';
 import { toggleFavorite } from '../../../redux/productsRedux';
+import { addProduct } from '../../../redux/cartRedux';
 
 const ProductBoxPromoted = ({ ...item }) => {
   const [isHovering, setIsHovering] = useState(false);
 
-  // const [isPopupOpen, setIsPopupOpen] = useState(false);
+  const [isPopupOpen, setIsPopupOpen] = useState(false);
 
-  // const [selectedStars, setSelectedStars] = useState(item.myStars);
+  const [selectedStars, setSelectedStars] = useState(item.myStars);
 
-  // const handleStarClick = clickedStars => {
-  //   setSelectedStars(clickedStars);
-  // };
+  const handleStarClick = clickedStars => {
+    setSelectedStars(clickedStars);
+  };
 
-  // const handleQuickViewClick = event => {
-  //   event.preventDefault();
-  //   setIsPopupOpen(true);
-  // };
+  const handleQuickViewClick = event => {
+    event.preventDefault();
+    setIsPopupOpen(true);
+  };
 
-  // const handlePopupClose = () => {
-  //   setIsPopupOpen(false);
-  // };
+  const handlePopupClose = () => {
+    setIsPopupOpen(false);
+  };
 
   const dispatch = useDispatch();
 
   const favoriteHandler = e => {
     e.preventDefault();
     dispatch(toggleFavorite(item.id));
+  };
+  const addToCartHandler = e => {
+    e.preventDefault();
+    dispatch(addProduct({ ...item }));
   };
 
   const getReturnValues = countDown => {
@@ -61,7 +66,7 @@ const ProductBoxPromoted = ({ ...item }) => {
       onMouseEnter={() => setIsHovering(true)}
       onMouseLeave={() => setIsHovering(false)}
     >
-      {/* {isPopupOpen && <QuickViewPopup id={item.id} onClose={handlePopupClose} />} */}
+      {isPopupOpen && <QuickViewPopup id={item.id} onClose={handlePopupClose} />}
       <div className={styles.photo}>
         <img src={item.picture} alt={item.name} />
         <div className={styles.hover}>
@@ -89,18 +94,22 @@ const ProductBoxPromoted = ({ ...item }) => {
               </li>
             </ul>
           </div>
-          <Button className={styles.addButton} variant='small'>
+          <Button
+            className={styles.addButton}
+            variant='small'
+            onClick={addToCartHandler}
+          >
             <FontAwesomeIcon icon={faShoppingBasket}></FontAwesomeIcon> ADD TO CART
           </Button>
         </div>
       </div>
       <div className={styles.content}>
         <h5>{item.name}</h5>
-        {/* <ProductStars
+        <ProductStars
           stars={item.stars}
           myStars={selectedStars}
           onClick={handleStarClick}
-        /> */}
+        />
       </div>
       <div className={styles.line}></div>
       <div className={styles.actions}>
@@ -114,7 +123,7 @@ const ProductBoxPromoted = ({ ...item }) => {
           <Button variant={Math.floor(Math.random() * 2) === 1 ? 'outline' : 'active'}>
             <FontAwesomeIcon icon={faExchangeAlt}>Add to compare</FontAwesomeIcon>
           </Button>
-          <Button variant='outline'>
+          <Button variant='outline' onClick={handleQuickViewClick}>
             <FontAwesomeIcon icon={faEye}>Favorite</FontAwesomeIcon>
           </Button>
         </div>

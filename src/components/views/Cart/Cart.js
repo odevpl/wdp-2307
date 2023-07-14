@@ -5,22 +5,41 @@ import CartProduct from '../../common/CartProduct/CardProduct';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHome } from '@fortawesome/free-solid-svg-icons';
 import Button from '../../common/Button/Button';
+import { useSelector } from 'react-redux';
+import { getAll } from '../../../redux/cartRedux';
+import { Link } from 'react-router-dom/cjs/react-router-dom';
+import { useDispatch } from 'react-redux';
+import { deleteProduct } from '../../../redux/cartRedux';
 
 const Cart = () => {
+  const dispatch = useDispatch();
+
+  const cartProducts = useSelector(state => getAll(state)) || [];
+
+  const deleteCartProductHandler = id => {
+    dispatch(deleteProduct(id));
+  };
+  const proceedToCheckout = e => {
+    e.preventDefault();
+    for (let item of cartProducts) {
+      dispatch(deleteProduct(item.id));
+    }
+  };
+
   return (
     <div className={styles.root}>
       <div className={styles.header}>
         <div className='container py-4'>
-          <div className='row justify-content-between"'>
-            <div className='col'>
+          <div className='row justify-content-between'>
+            <div className='col-11'>
               <h2 className={styles.title}>Cart</h2>
             </div>
-            <nav aria-label='breadcrumb'>
+            <nav className='col-1' aria-label='breadcrumb'>
               <ol className='breadcrumb'>
                 <li className='breadcrumb-item'>
-                  <a href='/'>
+                  <Link to='/'>
                     <FontAwesomeIcon icon={faHome} />
-                  </a>
+                  </Link>
                 </li>
                 <li className='breadcrumb-item active' aria-current='page'>
                   Cart
@@ -43,31 +62,36 @@ const Cart = () => {
             </tr>
           </thead>
           <tbody>
-            <CartProduct />
-            <CartProduct />
-          </tbody>
-          <tfoot>
-            <th colSpan={6} className='align-middle'>
-              <div className='row justify-content-between'>
-                <form className='col-auto row g-3 '>
-                  <div>
-                    <input
-                      type='text'
-                      className='form-control'
-                      id='coupon'
-                      placeholder='Coupon Code'
-                    ></input>
+            {cartProducts.map(product => (
+              <CartProduct
+                key={product.id}
+                actionDelete={deleteCartProductHandler}
+                {...product}
+              />
+            ))}
+            <tr>
+              <td colSpan={6} className='align-middle'>
+                <div className='row justify-content-between'>
+                  <form className='row col-6'>
+                    <div className='col'>
+                      <input
+                        type='text'
+                        className='form-control'
+                        id='coupon'
+                        placeholder='Coupon Code'
+                      ></input>
+                    </div>
+                    <div className={`col ${styles.button}`}>
+                      <Button variant='main'>Apply coupon</Button>
+                    </div>
+                  </form>
+                  <div className={`col-auto ${styles.button}`}>
+                    <Button variant='main'>Update Cart</Button>
                   </div>
-                  <div className={styles.button}>
-                    <Button variant='main'>Apply coupon</Button>
-                  </div>
-                </form>
-                <div className={`col-auto ${styles.button}`}>
-                  <Button variant='main'>Update Cart</Button>
                 </div>
-              </div>
-            </th>
-          </tfoot>
+              </td>
+            </tr>
+          </tbody>
         </table>
       </div>
       <div className='container table-responsive'>
@@ -93,7 +117,9 @@ const Cart = () => {
                 <tr>
                   <td className={`text-center align-middle"`} colSpan={2}>
                     <div className='my-2 text-uppercase'>
-                      <Button variant='main'>Proceed to checkout</Button>
+                      <Button variant='main' onClick={proceedToCheckout}>
+                        Proceed to checkout
+                      </Button>
                     </div>
                   </td>
                 </tr>
