@@ -1,7 +1,13 @@
 @import "~bootstrap/scss/bootstrap";
 .root {
+  text-decoration: none;
+  .imagesContainer {
+    position: relative;
+  }
   .image {
     position: relative;
+    height: 370px;
+    object-fit: cover;
     width: 100%;
     .zoomButton {
       position: absolute;
@@ -13,12 +19,15 @@
     }
   }
   .imageSmallGallery {
-    position: relative;
+    position: absolute;
+    bottom: 0;
+    left: 0; 
+    right: 0;
     display: flex;
     justify-content: center;
-    margin: 20px 0;
+    margin: 10px 0;
     .imageSmall {
-      object-fit: fill;
+      object-fit: cover;
       width: 90px;
       height: 140px;
       margin: 5px;
@@ -26,22 +35,22 @@
     .arrowButtonLeft {
       position: absolute;
       top: 50%;
-      left: 0;
+      left: 5%;
       transform: translateY(-50%);
+      text-decoration: none;
       &:hover {
         background-color: #d58e32;
-        text-decoration: none;
       }
     }
 
     .arrowButtonRight {
       position: absolute;
       top: 50%;
-      right: 0;
+      right: 5%;
       transform: translateY(-50%);
+      text-decoration: none;
       &:hover {
         background-color: #d58e32;
-        text-decoration: none;
       }
     }
   }
@@ -65,6 +74,7 @@
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
+    
 
     p {
       margin-left: 5px;
@@ -121,17 +131,19 @@
   .quantityButton {
     min-width: 75px;
     text-align: center;
+    text-decoration: none;
   }
   .addToCartButton {
     margin-right: 5px;
     color: white;
     background-color: #d58e32;
+    text-decoration: none;
   }
   .arrowButton {
     margin: 4px;
+    text-decoration: none;
     &:hover {
       background-color: #d58e32;
-      text-decoration: none;
     }
   }
 }

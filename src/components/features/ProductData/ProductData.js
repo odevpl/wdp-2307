@@ -22,7 +22,7 @@ import {
   faEnvelope,
 } from '@fortawesome/free-solid-svg-icons';
 import { faExchangeAlt } from '@fortawesome/free-solid-svg-icons';
-import { faStar as farStar, faHeart } from '@fortawesome/free-regular-svg-icons';
+import { faHeart } from '@fortawesome/free-regular-svg-icons';
 import { useDispatch } from 'react-redux';
 import { toggleFavorite } from '../../../redux/productsRedux';
 const ProductData = () => {
@@ -33,14 +33,6 @@ const ProductData = () => {
   const product = useSelector(state => getProductById(state, initialStateId));
   const [isHovering, setIsHovering] = useState(false);
 
-  const handleMouseOver = () => {
-    setIsHovering(true);
-  };
-
-  const handleMouseOut = () => {
-    // setIsHovering(true);
-    setIsHovering(false);
-  };
   const favoriteHandler = e => {
     e.preventDefault();
     dispatch(toggleFavorite(product.id));
@@ -48,7 +40,7 @@ const ProductData = () => {
   return (
     <div className={styles.root}>
       <div className='row'>
-        <div className='col-md-5'>
+        <div className={`col-md-5 ${styles.imagesContainer}`}>
           <div className={styles.image}>
             <img
               src={`/${product.picture}`}
@@ -104,11 +96,7 @@ const ProductData = () => {
           </div>
           <div className={`col-6 p-0 my-2 ${styles.reviews}`}>
             <div>
-              <ProductStars
-                stars={product.stars}
-                // myStars={selectedStars}
-                // onClick={handleStarClick}
-              />
+              <ProductStars stars={product.stars} />
             </div>
             <div>
               <p>(0 Reviews)</p>
@@ -184,7 +172,7 @@ const ProductData = () => {
               incididunt ut labore et dolore magna aliqua
             </p>
           </div>
-          <div className='row'>
+          <div className='row mt-3'>
             <p className='col-2'>
               <strong>Availability:</strong>
             </p>
