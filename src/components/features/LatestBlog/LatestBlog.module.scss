@@ -1,0 +1,125 @@
+@import "../../../styles/settings.scss";
+
+.root {
+    .latestBlog {
+        margin-bottom: 50px;
+
+        .header {
+            position: relative;
+            h4 {
+                font-size: 22px;
+                color: $latest-blog-main;
+            }
+        }
+        .header::before {
+            content: '';
+            position: absolute;
+            height: 4px;
+            top: 40px;
+            background-color: $latest-blog-main;
+            width: 5%;
+        }
+        .header::after {
+            content: '';
+            position: absolute;
+            height: 4px;
+            top: 40px;
+            background-color: $latest-blog-gray-light;
+            width: 80%;
+            left: 5%;
+        }
+        .dots {
+            position: relative;
+            top: 2px;
+            left: 88%;
+        }
+        .dots::before {
+            position: absolute;
+            content: '';
+            background-color: $latest-blog-main;
+            border-radius: 50%;
+            height: 13px;
+            width: 13px;
+        }
+        .dots::after {
+            position: absolute;
+            content: '';
+            border-radius: 50%;
+            background-color: $latest-blog-gray-light;
+            height: 13px;
+            width: 13px;
+            left: 3%;
+        }
+
+    }
+    .blogs {
+        display: flex;
+        flex-direction: row;
+        .blog {
+            flex: 1;
+            padding: 10px;
+            .visual {
+                position: relative;
+                .image {
+                    height: 300px;
+                    background-color: $latest-blog-gray-dark; 
+                }
+                .subBox {
+                    position: absolute;
+                    background-color: $latest-blog-light;
+                    height: 50px;
+                    width: 80%;
+                    bottom: -1px;
+                    left: 10%;
+                    display: flex;
+                    flex-direction: row; 
+                    .info {
+                        padding: 15px;
+                        color: $latest-blog-dark;
+                        font-size: 12px;
+                        display: flex;
+                        flex-direction: row;
+                        .icon {
+                            margin: 0 5px;
+                        }
+                    }
+                }
+            }
+            .box {
+                .written {
+                    display: flex;
+                    flex-direction: column;
+
+                    padding: 20px;
+                    .title { 
+                        color: $latest-blog-main;
+                        font-size: 16px;
+                        padding: 10px 0;
+                    }
+                    .text {
+                        color: $latest-blog-gray-dark; 
+                        font-size: 12px;
+                        padding: 10px 0;
+                        line-height: 1.7;
+                        padding-bottom: 10px;
+                        padding-right: 10px; 
+                    }
+                }
+                .buttonBox {
+                    display: flex;
+                    justify-content: center;
+
+                    .button {
+                        height: 40px;
+                        width: 150px;  
+                        background-color: $latest-blog-main;
+                        text-align: center;
+                        color: $latest-blog-light;
+                        padding: 10px;
+                        font-size: 14px;
+                    }
+                }
+            }
+        }
+    }
+}

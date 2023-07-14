@@ -33,9 +33,10 @@ $color-light-blue-1: #f4f5f7;
 $color-light-blue-2: #e0e3ed;
 $color-light: #fff;
 $color-dark: #2a2a2a;
+$color-deepblack: #000;
 
 
-//Header 
+//Header
 $header-primary: $color-primary;
 $header-topbar-bg: $color-grey-5;
 $header-bg: $color-grey-6;
@@ -70,7 +71,7 @@ $new-furniture-primary: $color-primary;
 $new-furniture-bg: $color-light;
 $new-furniture-border: $color-grey-1;
 
-//Product Box 
+//Product Box
 $product-box-primary: $color-primary;
 $product-box-bg: $color-light;
 $product-box-accent-bg: $color-dark;
@@ -90,7 +91,7 @@ $button-bg: $color-dark;
 $button-border: $color-dark;
 $button-price-bg: $color-light;
 
-//Text 
+//Text
 $text-dark: $color-dark;
 $text-light: $color-light;
 $text-grey-light: $color-grey-2;
@@ -99,3 +100,11 @@ $text-grey-light: $color-grey-2;
 $brands-grey: $color-grey-2;
 $brands-button: $color-dark;
 $brands-button-arrow: $color-light;
+
+// LatestBlog
+
+$latest-blog-light: $color-light;
+$latest-blog-dark: $color-dark;
+$latest-blog-gray-light: $color-grey-1;
+$latest-blog-gray-dark: $color-grey-4;
+$latest-blog-main: $color-primary;

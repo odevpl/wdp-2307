@@ -9,6 +9,7 @@ import Promotions from '../../features/Promotions/Promotions';
 import Brands from '../../features/Brands/Brands';
 import Promoted from '../../features/Promoted/Promoted';
 import ChatBot from '../../features/ChatBot/ChatBot';
+import LatestBlog from '../../features/LatestBlog/LatestBlog';
 
 const Homepage = () => (
   <div className={styles.root}>
@@ -16,6 +17,7 @@ const Homepage = () => (
     <FeatureBoxes />
     <Promotions />
     <NewFurniture />
+    <LatestBlog />
     <Brands />
     <ChatBot />
   </div>
