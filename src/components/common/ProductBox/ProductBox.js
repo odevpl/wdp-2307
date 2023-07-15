@@ -20,6 +20,7 @@ import {
   addComparedProduct,
   deleteComparedProduct,
 } from '../../../redux/comparedReducer';
+import { addProduct } from '../../../redux/cartRedux';
 
 const ProductBox = ({
   id,
@@ -78,6 +79,12 @@ const ProductBox = ({
     if (compareCount < 4) dispatch(addComparedProduct(id));
   };
 
+  const addToCartHandler = e => {
+    e.preventDefault();
+
+    dispatch(addProduct({ id, name, price, picture }));
+  };
+
   return (
     <div
       className={styles.root}
@@ -95,7 +102,7 @@ const ProductBox = ({
             <Button variant='small' onClick={handleQuickViewClick}>
               Quick View
             </Button>
-            <Button variant='small'>
+            <Button variant='small' onClick={addToCartHandler}>
               <FontAwesomeIcon icon={faShoppingBasket}></FontAwesomeIcon> ADD TO CART
             </Button>
           </div>

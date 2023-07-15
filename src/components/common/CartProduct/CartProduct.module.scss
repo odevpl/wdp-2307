@@ -6,8 +6,14 @@
 		color: $cart-primary;
 	}
 	.photo {
-		height: 50px;
-		width: 50px;
+		overflow: hidden;
+		height: 70px;
+		width: 70px;
+		
 		background-color: $text-grey-light;
+		img {
+			width:auto;
+			height: 100%;
+		}
 	}
 }
