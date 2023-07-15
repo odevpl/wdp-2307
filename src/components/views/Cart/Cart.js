@@ -64,7 +64,7 @@ const Cart = () => {
           <tbody>
             {cartProducts.map(product => (
               <CartProduct
-                key={product.id}
+                key={Math.random()}
                 actionDelete={deleteCartProductHandler}
                 {...product}
               />
