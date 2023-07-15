@@ -4,10 +4,12 @@
   padding: $base-padding 0;
 }
 
+// BANER WDP-39
+
 // Up Section
 .upSection {
-  background-color: #363636;
-  color: #fff;
+  background-color: $color-dark;
+  color: $color-light;
   height: 200px;
   display: flex;
   justify-content: center;
@@ -47,7 +49,7 @@
 
 .procentText {
   letter-spacing: 16px;
-  color: #d58e32;
+  color: $color-primary;
   padding-right: 30px;
 }
 
@@ -64,7 +66,7 @@
 
 
 .positionHome {
-  background-color: #c3c3c3;
+  background-color: $color-grey-3;
   display: flex;
   justify-content: flex-start;
   align-items: center;

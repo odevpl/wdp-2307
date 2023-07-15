@@ -4,12 +4,14 @@ import styles from './ProductPage.module.scss';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronRight } from '@fortawesome/free-solid-svg-icons';
 import ProductData from '../../features/ProductData/ProductData';
+import ProductReview from '../../common/ProductReview/ProductReview';
+
 const ProductPage = () => {
   return (
     <div className='container'>
       <div className={styles.root}>
         <div className={styles.product}>
-          <ProductData />
+          {/* <ProductData /> */}
         </div>
         <div className={styles.ProjectNew}>
           <div className={styles.upSection}>
@@ -43,6 +45,7 @@ const ProductPage = () => {
           </div>
         </div>
       </div>
+      <ProductReview />
     </div>
   );
 };
