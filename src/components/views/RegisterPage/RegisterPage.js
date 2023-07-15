@@ -42,8 +42,10 @@ const RegisterPage = () => {
       setNewsletterChecked(checked);
     }
   };
-  const handleSubmit = e => {
-    e.preventDefault();
+
+  const handleSubmit = data => {
+    // eslint-disable-next-line
+    console.log(data);
   };
 
   return (
@@ -88,8 +90,7 @@ const RegisterPage = () => {
                 onChange={e => setFirstName(e.target.value)}
               />
               {errors.firstName && (
-                <small className='text-danger'>
-                  {' '}
+                <small className='d-block form-text text-danger mt-2'>
                   First Name must be between 3-30 characters
                 </small>
               )}
@@ -99,48 +100,75 @@ const RegisterPage = () => {
                 type='text'
                 className='form-control'
                 placeholder='Nazwisko *'
-                name='lastName'
+                {...register('lastName', {
+                  required: true,
+                  minLength: 4,
+                  maxLength: 30,
+                })}
                 value={lastName}
-                minLength={3}
-                maxLength={30}
-                required
+                onChange={e => setLastName(e.target.value)}
               />
-              {errors.lastName && <div className={styles.error}>{errors.lastName}</div>}
+              {errors.lastName && (
+                <small className='d-block form-text text-danger mt-2'>
+                  {' '}
+                  Last Name must be between 3-30 characters
+                </small>
+              )}
             </div>
             <div className='form-group mb-3'>
               <input
                 type='email'
                 className='form-control'
                 placeholder='E-mail *'
-                name='email'
                 value={email}
-                pattern='.+@.*\.com'
-                required
+                {...register('email', {
+                  required: true,
+                })}
+                onChange={e => setEmail(e.target.value)}
               />
-              {errors.email && <div className={styles.error}>{errors.email}</div>}
+              {errors.email && (
+                <small className='d-block form-text text-danger mt-2'>
+                  {' '}
+                  Email must be between 3-30 characters
+                </small>
+              )}
             </div>
             <div className='form-group mb-3'>
               <input
                 type={showPassword ? 'text' : 'password'}
                 className='form-control'
                 placeholder='Hasło *'
-                name='password'
                 value={password}
-                minLength={3}
+                {...register('password', {
+                  required: true,
+                  minLength: 3,
+                })}
+                onChange={e => setPassword(e.target.value)}
               />
-              {errors.password && <div className={styles.error}>{errors.password}</div>}
+              {errors.password && (
+                <small className='d-block form-text text-danger mt-2'>
+                  {' '}
+                  Password too short (min: 3 characters)
+                </small>
+              )}
             </div>
             <div className='form-group mb-3'>
               <input
                 type={showPassword ? 'text' : 'password'}
                 className='form-control'
                 placeholder='Powtórz hasło *'
-                name='confirmPassword'
                 value={confirmPassword}
-                minLength={3}
+                {...register('confirmPassword', {
+                  required: true,
+                  minLength: 3,
+                })}
+                onChange={e => setConfirmPassword(e.target.value)}
               />
               {errors.confirmPassword && (
-                <div className={styles.error}>{errors.confirmPassword}</div>
+                <small className='d-block form-text text-danger mt-2'>
+                  {' '}
+                  Passwords must be the same
+                </small>
               )}
             </div>
             <div className='form-group form-check form-switch d-flex justify-content-end mb-3'>
