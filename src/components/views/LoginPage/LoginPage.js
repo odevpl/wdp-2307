@@ -2,9 +2,14 @@ import React from 'react';
 import styles from './LoginPage.module.scss';
 
 const LoginPage = () => {
+  const onLoginClick = evt => {
+    evt.preventDefault();
+    window.location.assign('/');
+  };
+
   return (
     <section className={styles.loginPage}>
-      <form className={styles.loginPage__form}>
+      <form onSubmit={onLoginClick} className={styles.loginPage__form}>
         <label htmlFor='email'>Email</label>
         <input type='email' />
 
