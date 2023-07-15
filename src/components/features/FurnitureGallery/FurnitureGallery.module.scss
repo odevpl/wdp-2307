@@ -1,0 +1,28 @@
+@import "../../../styles/settings.scss";
+
+.root {
+    .header {
+            position: relative;
+            h4 {
+                font-size: 22px;
+                color: red;
+            }
+        }
+        .header::before {
+            content: '';
+            position: absolute;
+            height: 4px;
+            top: 40px;
+            background-color:yellow;
+            width: 5%;
+        }
+        .header::after {
+            content: '';
+            position: absolute;
+            height: 4px;
+            top: 40px;
+            background-color: grey;
+            width: 80%;
+            left: 5%;
+        }
+}
