@@ -1,0 +1,149 @@
+@import "~bootstrap/scss/bootstrap";
+.root {
+  text-decoration: none;
+  .imagesContainer {
+    position: relative;
+  }
+  .image {
+    position: relative;
+    height: 370px;
+    object-fit: cover;
+    width: 100%;
+    .zoomButton {
+      position: absolute;
+
+      bottom: 0;
+      right: 0;
+      margin: 5px;
+      z-index: 1;
+    }
+  }
+  .imageSmallGallery {
+    position: absolute;
+    bottom: 0;
+    left: 0; 
+    right: 0;
+    display: flex;
+    justify-content: center;
+    margin: 10px 0;
+    .imageSmall {
+      object-fit: cover;
+      width: 90px;
+      height: 140px;
+      margin: 5px;
+    }
+    .arrowButtonLeft {
+      position: absolute;
+      top: 50%;
+      left: 5%;
+      transform: translateY(-50%);
+      text-decoration: none;
+      &:hover {
+        background-color: #d58e32;
+      }
+    }
+
+    .arrowButtonRight {
+      position: absolute;
+      top: 50%;
+      right: 5%;
+      transform: translateY(-50%);
+      text-decoration: none;
+      &:hover {
+        background-color: #d58e32;
+      }
+    }
+  }
+  .pricesContainer {
+    display: flex;
+    align-items: center;
+    .oldPrice {
+      text-decoration: line-through;
+      margin: 0 10px;
+      color: #6c757d !important;
+      font-size: 13px;
+    }
+  }
+  button {
+    margin-right: 5px;
+    
+    padding: 5px;
+    background-color: white;
+    border: solid 1px black;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    
+
+    p {
+      margin-left: 5px;
+      margin-bottom: 0;
+    }
+  }
+  .reviews {
+    display: flex;
+    justify-content: space-between;
+    font-size: 14px;
+  }
+  .socialButtons {
+    display: flex;
+    .socialIcon {
+      margin-right: 5px;
+    }
+
+    .Facebook {
+      color: white;
+      background-color: #2462b4;
+    }
+
+    .Google {
+      color: #db4437;
+      p {
+        color: gray;
+      }
+    }
+
+    .Pinterest {
+      color: #bd081c;
+      p {
+        color: gray;
+      }
+    }
+
+    .Twitter {
+      color: #1da1f2;
+      p {
+        color: gray;
+      }
+    }
+
+    .LinkedIn {
+      color: #0e76a8;
+      p {
+        color: gray;
+      }
+    }
+  }
+  .actionButton {
+    margin-right: 5px;
+  }
+  .quantityButton {
+    min-width: 75px;
+    text-align: center;
+    text-decoration: none;
+  }
+  .addToCartButton {
+    margin-right: 5px;
+    color: white;
+    background-color: #d58e32;
+    text-decoration: none;
+  }
+  .arrowButton {
+    margin: 4px;
+    text-decoration: none;
+    &:hover {
+      background-color: #d58e32;
+    }
+  }
+}
