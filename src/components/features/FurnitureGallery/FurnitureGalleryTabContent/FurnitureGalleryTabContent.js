@@ -18,6 +18,7 @@ import {
   addComparedProduct,
   deleteComparedProduct,
 } from '../../../../redux/comparedReducer';
+import { addProduct } from '../../../../redux/cartRedux';
 const TabContent = ({ id }) => {
   const item = useSelector(state => getProductById(state, id));
   const dispatch = useDispatch();
@@ -33,7 +34,18 @@ const TabContent = ({ id }) => {
     e.preventDefault();
     dispatch(toggleFavorite(item.id));
   };
+  const addToCartHandler = e => {
+    e.preventDefault();
 
+    dispatch(
+      addProduct({
+        id: item.id,
+        name: item.name,
+        price: item.price,
+        picture: item.picture,
+      })
+    );
+  };
   const handleSlideClick = index => {
     setActiveSlide(index);
   };
@@ -55,8 +67,8 @@ const TabContent = ({ id }) => {
           <img src={`/${item.picture}`} alt='chair' className={styles.image} />
           <div className={styles.stars}>
             <div className={styles.priceContainer}>
-              <h3 className={styles.price}>$120.00</h3>
-              <h4 className={styles.oldPrice}>$160.00</h4>
+              <h3 className={styles.price}>${item.price}</h3>
+              {item.oldPrice && <h4 className={styles.oldPrice}>${item.oldPrice}</h4>}
             </div>
             <h5 className={styles.itemName}>{item.name}</h5>
             <ProductStars
@@ -95,6 +107,7 @@ const TabContent = ({ id }) => {
               className={styles.actionButton}
               variant='outline'
               tooltip-text='Add to cart'
+              onClick={addToCartHandler}
             >
               <FontAwesomeIcon icon={faShoppingBasket} />
             </Button>
