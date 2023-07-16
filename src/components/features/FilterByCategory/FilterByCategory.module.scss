@@ -13,7 +13,7 @@
         position: absolute;
         top: 30px;
         left: 0px;
-        background-color: $filter-by-category-dark;
+        background-color: $filter-dark;
         width: 100%;
         height: 1px; 
     }
@@ -26,8 +26,8 @@
             margin: 15px 5px 15px 5px;
             font-size: 14px;
             .number {
-                background-color: $filter-by-category-dark;
-                color: $filter-by-category-light;
+                background-color: $filter-dark;
+                color: $filter-light;
                 height: 23px;
                 width: 23px;
                 text-align: center;
@@ -42,11 +42,11 @@
             font-size: 14px;
             .category {
                 padding-left: 15px;
-                color: $filter-by-category-main;;
+                color: $filter-main;
             }
             .number {
-                background-color: $filter-by-category-main;
-                color: $filter-by-category-light;
+                background-color: $filter-main;
+                color: $filter-light;
                 height: 23px;
                 width: 23px;
                 text-align: center;

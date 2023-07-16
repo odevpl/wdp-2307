@@ -1,0 +1,80 @@
+@import "../../../styles/settings.scss";
+
+.root {
+    margin-bottom: 50px;;
+    .title {
+        font-size: 16px;
+        position: relative;
+        font-weight: bolder;
+        padding-bottom: 20px; 
+    }
+    .title::after {
+        content: '';
+        position: absolute;
+        top: 30px;
+        left: 0px;
+        background-color: $filter-dark;
+        width: 100%;
+        height: 1px; 
+    }
+    .categories { 
+        margin: 5px 0;
+        background: none;
+        color: inherit;
+        border: none;
+        padding: 0;
+        font: inherit;
+        cursor: pointer;
+        width: 100%;
+        .categoryBox {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            margin: 5px;
+            font-size: 14px;
+            .categorBoxTwo {
+                display: flex;
+                flex-direction: row;
+                input {
+                    margin-right: 10px;
+                }
+            }
+            .number {
+                background-color: $filter-dark;
+                color: $filter-light;
+                height: 23px;
+                width: 23px;
+                text-align: center;
+                border-radius: 50%;
+            }
+            &.active {
+                color: $filter-main;
+                .categorBoxTwo {
+                    display: flex;
+                    flex-direction: row;
+                    input {
+                        margin-right: 10px;
+                        &:checked {
+                            border-color: $filter-main;
+                            background-color: $filter-main;
+                        }
+                    }
+                    input:checked {
+                        border-color: red;
+                        background-color: red;
+                        color: red;
+                    }
+                }
+                .number {
+                    background-color: $filter-main;
+                    color: $filter-light;
+                    height: 23px;
+                    width: 23px;
+                    text-align: center;
+                    border-radius: 50%;
+                }
+            }
+        }
+        
+    }
+}
