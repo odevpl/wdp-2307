@@ -7,22 +7,18 @@ import PropTypes from 'prop-types';
 
 const ProductStars = ({ stars, myStars, onClick }) => {
   const [hoveredStar, setHoveredStar] = useState(0);
-
   const handleStarClick = clickedStars => {
     onClick(clickedStars);
   };
-
   const handleStarHover = hoveredStar => {
     setHoveredStar(hoveredStar);
   };
-
   const renderStar = index => {
     const isMyStarFilled = myStars > 0 && index <= myStars;
     const isStarFilled = stars > 0 && index <= stars;
     const isMyStarOutline = myStars > 0 && index > myStars;
     const isStarOutline = stars > 0 && index > stars;
     const isHoveredStar = index <= hoveredStar;
-
     return (
       <a
         key={index}
