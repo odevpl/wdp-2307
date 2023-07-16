@@ -1,0 +1,112 @@
+@import '../../../styles/settings.scss';
+
+.chatBot {
+  position: fixed;
+  bottom: 20px;
+  left: 10px;
+}
+
+.chat {
+  display: none;
+}
+
+.active {
+  display: block;
+}
+
+.hide {
+  display: none;
+}
+
+.chatBotBtn {
+  margin-top: -2px;
+  padding: 10px 20px;
+  color: $color-light;
+  font-size: 16px;
+  border: none;
+  border-radius: 5px;
+
+  background-color: $color-primary;
+  outline: none;
+}
+
+.chat__header {
+  display: flex;
+  justify-content: flex-end;
+  padding: 5px;
+  padding-bottom: 10px;
+  background-color: $color-primary;
+}
+
+.chat__refreshBtn,
+.chat__closeBtn {
+  color: $color-light;
+  width: 20px;
+  height: 20px;
+
+  background-color: transparent;
+  border: none;
+}
+
+.chat__messages {
+  height: 500px;
+  padding: 20px;
+  border-right: 2px solid $color-primary;
+  border-left: 2px solid $color-primary;
+  background-color: $color-light;
+}
+
+.chat__message {
+  display: flex;
+  align-items: baseline;
+}
+
+.chat__messageText {
+  margin-left: 10px;
+  padding: 5px 10px;
+
+  border: 1px solid $color-grey-4;
+  border-radius: 10px;
+  box-shadow: 8px 8px 11px -8px rgba(66, 68, 90, 1);
+}
+
+.chat__form {
+  display: flex;
+  background-color: $color-grey-3;
+
+  & input {
+    color: $color-light;
+    padding: 10px;
+    border: none;
+    outline: none;
+    background-color: transparent;
+  }
+
+  & button {
+    border: none;
+    background-color: $color-grey-3;
+    padding: 0 20px;
+    color: $color-light;
+  }
+}
+
+.chat__iconBox {
+  height: 70px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  background-color: $color-primary;
+}
+
+.chat__iconBottom {
+  background-color: $color-primary;
+  height: 40px;
+  clip-path: polygon(6% 0, 0% 100%, 0 0);
+}
+
+.chat__icon {
+  font-size: 30px;
+  color: $color-light;
+}
