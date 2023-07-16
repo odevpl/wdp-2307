@@ -8,7 +8,11 @@ import NewFurniture from '../../features/NewFurniture/NewFurnitureContainer';
 import Promotions from '../../features/Promotions/Promotions';
 import Brands from '../../features/Brands/Brands';
 import Promoted from '../../features/Promoted/Promoted';
+
 import FurnitureGallery from '../../features/FurnitureGallery/FurnitureGallery';
+
+import ChatBot from '../../features/ChatBot/ChatBot';
+
 import LatestBlog from '../../features/LatestBlog/LatestBlog';
 
 const Homepage = () => (
@@ -20,6 +24,7 @@ const Homepage = () => (
     <FurnitureGallery />
     <LatestBlog />
     <Brands />
+    <ChatBot />
   </div>
 );
 

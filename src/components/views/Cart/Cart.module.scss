@@ -1,7 +1,7 @@
 @import "../../../styles/settings.scss";
 
 .root{
-
+	
 	thead {
 		background: $cart-header-bg;
 	}
@@ -11,10 +11,10 @@
 			margin-right: 15px;
 			width: auto;
 		}
-		
 	}
 	table {
 		margin-top: 50px;
+		
 	}
 	table:last-of-type {
 		margin-bottom: 50px;
@@ -29,8 +29,6 @@
 		text-decoration: none;
 	}
 	.header {
-		position: relative;
-		z-index: -0;
 		background-color: $cart-header-bg;
 		ol{
 			background-color: transparent;

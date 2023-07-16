@@ -15,7 +15,7 @@ const Promoted = () => {
   const dots = [];
   for (let i = 0; i < promotedProducts.length; i++) {
     dots.push(
-      <li>
+      <li key={i}>
         <a>page {i}</a>
       </li>
     );
