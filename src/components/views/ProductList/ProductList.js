@@ -2,6 +2,7 @@ import React from 'react';
 // import PropTypes from 'prop-types';
 import styles from './ProductList.module.scss';
 import Brands from '../../features/Brands/Brands';
+import Filters from '../Filers/Filters';
 
 const ProductList = () => (
   <div className={styles.root}>
@@ -14,7 +15,9 @@ const ProductList = () => (
     <div className='container'>
       <div className='row'>
         <div className='col-9'>ProductList</div>
-        <div className='col-3'>Filters</div>
+        <div className='col-3'>
+          <Filters />
+        </div>
       </div>
     </div>
 
