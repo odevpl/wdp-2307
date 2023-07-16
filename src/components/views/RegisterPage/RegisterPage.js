@@ -30,20 +30,23 @@ const RegisterPage = () => {
   };
 
   const handleCheckboxChange = e => {
-    const { name, checked } = e.target;
-    if (name === 'markAllCheck') {
+    const { id, checked } = e.target;
+    if (id === 'markAllCheck') {
       setMarkAllChecked(checked);
       setAcceptRulesChecked(checked);
       setNewsletterChecked(checked);
       // Add more checkboxes here if needed
-    } else if (name === 'acceptRulesCheck') {
+    } else if (id === 'acceptRulesCheck') {
       setAcceptRulesChecked(checked);
-    } else if (name === 'newsletterCheck') {
+    } else if (id === 'newsletterCheck') {
       setNewsletterChecked(checked);
     }
   };
 
   const handleSubmit = data => {
+    if (!acceptRulesChecked) {
+      return;
+    }
     // eslint-disable-next-line
     console.log(data);
   };
@@ -83,7 +86,7 @@ const RegisterPage = () => {
                 placeholder='Imię *'
                 {...register('firstName', {
                   required: true,
-                  minLength: 4,
+                  minLength: 3,
                   maxLength: 30,
                 })}
                 value={firstName}
@@ -102,7 +105,7 @@ const RegisterPage = () => {
                 placeholder='Nazwisko *'
                 {...register('lastName', {
                   required: true,
-                  minLength: 4,
+                  minLength: 3,
                   maxLength: 30,
                 })}
                 value={lastName}
@@ -188,8 +191,8 @@ const RegisterPage = () => {
                 <input
                   type='checkbox'
                   className='form-check-input'
-                  id='markAllCheck'
                   name='markAllCheck'
+                  id='markAllCheck'
                   checked={markAllChecked}
                   onChange={handleCheckboxChange}
                 />
@@ -199,11 +202,10 @@ const RegisterPage = () => {
                 <input
                   type='checkbox'
                   className='form-check-input'
-                  id='acceptRulesCheck'
                   name='acceptRulesCheck'
+                  id='acceptRulesCheck'
                   checked={acceptRulesChecked}
                   onChange={handleCheckboxChange}
-                  required
                 />
                 <label className='form-check-label'>
                   Akceptuje warunki
@@ -212,13 +214,18 @@ const RegisterPage = () => {
                     regulaminu *
                   </a>
                 </label>
+                {!acceptRulesChecked && (
+                  <small className='d-block form-text text-danger mt-2'>
+                    You must accept the rules.
+                  </small>
+                )}
               </div>
               <div className={`${styles.singleCheckBoxes} form-check`}>
                 <input
                   type='checkbox'
                   className='form-check-input'
-                  id='newsletterCheck'
                   name='newsletterCheck'
+                  id='newsletterCheck'
                   checked={newsletterChecked}
                   onChange={handleCheckboxChange}
                 />

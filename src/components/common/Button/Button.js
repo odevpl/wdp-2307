@@ -9,6 +9,7 @@ const Button = ({
   noHover,
   onClick,
   className: propClassName,
+  type,
   ...props
 }) => {
   const classes = [];
@@ -24,6 +25,10 @@ const Button = ({
     classes.push(styles.noHover);
     Comp = 'div';
   }
+  if (type === 'submit') {
+    Comp = 'button';
+    props.type = 'submit';
+  }
 
   return (
     <Comp href='#' onClick={onClick} {...props} className={classes.join(' ')}>
@@ -38,6 +43,7 @@ Button.propTypes = {
   className: PropTypes.string,
   variant: PropTypes.string,
   onClick: PropTypes.func,
+  type: PropTypes.string,
 };
 
 export default Button;
