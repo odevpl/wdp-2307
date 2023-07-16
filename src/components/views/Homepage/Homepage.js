@@ -9,13 +9,22 @@ import Promotions from '../../features/Promotions/Promotions';
 import Brands from '../../features/Brands/Brands';
 import Comments from '../../features/Comments/Comments';
 
+import FurnitureGallery from '../../features/FurnitureGallery/FurnitureGallery';
+
+import ChatBot from '../../features/ChatBot/ChatBot';
+
+import LatestBlog from '../../features/LatestBlog/LatestBlog';
+
 const Homepage = () => (
   <div className={styles.root}>
     <FeatureBoxes />
     <Promotions />
     <NewFurniture />
+    <FurnitureGallery />
+    <LatestBlog />
     <Brands />
     <Comments />
+    <ChatBot />
   </div>
 );
 

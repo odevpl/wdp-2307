@@ -1,0 +1,13 @@
+@import "../../../styles/settings.scss";
+
+.root {
+	text-align: center;
+	input {
+		border: solid 1px $cart-header-bg;
+		width: 35px;
+	}
+	a {
+		width: 30px;
+		border: solid 1px $cart-header-bg;
+	}
+}

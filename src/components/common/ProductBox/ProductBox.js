@@ -3,18 +3,47 @@ import PropTypes from 'prop-types';
 
 import styles from './ProductBox.module.scss';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import {
-  faStar,
-  faExchangeAlt,
-  faShoppingBasket,
-} from '@fortawesome/free-solid-svg-icons';
-import { faStar as farStar, faHeart } from '@fortawesome/free-regular-svg-icons';
+import { faExchangeAlt, faShoppingBasket } from '@fortawesome/free-solid-svg-icons';
+import { faStar as  faHeart } from '@fortawesome/free-regular-svg-icons';
 import Button from '../Button/Button';
+import ProductStars from '../../features/ProductStars/ProductStars';
 import QuickViewPopup from '../../views/QuickViewPopup/QuickViewPopup';
 
-const ProductBox = ({ id, name, price, promo, stars, picture }) => {
-  const [isHovering, setIsHovering] = useState(false);
+import { toggleFavorite } from '../../../redux/productsRedux';
+import { Link } from 'react-router-dom/cjs/react-router-dom.min';
+
+import { useSelector, useDispatch } from 'react-redux';
+
+import {
+  getAllCompared,
+  getCountCompared,
+  addComparedProduct,
+  deleteComparedProduct,
+} from '../../../redux/comparedReducer';
+import { addProduct } from '../../../redux/cartRedux';
+
+const ProductBox = ({
+  id,
+  name,
+  price,
+  promo,
+  stars,
+  picture,
+  myStars,
+  isFavorite,
+  oldPrice,
+}) => {
   const [isPopupOpen, setIsPopupOpen] = useState(false);
+
+  const [selectedStars, setSelectedStars] = useState(myStars);
+
+  const handleStarClick = clickedStars => {
+    setSelectedStars(clickedStars);
+  };
+  const [isHovering, setIsHovering] = useState(false);
+  const comparedProducts = useSelector(state => getAllCompared(state));
+  const compareCount = useSelector(state => getCountCompared(state));
+  const dispatch = useDispatch();
 
   const handleMouseOver = () => {
     setIsHovering(true);
@@ -34,6 +63,28 @@ const ProductBox = ({ id, name, price, promo, stars, picture }) => {
     setIsPopupOpen(false);
   };
 
+  const favoriteHandler = e => {
+    e.preventDefault();
+    dispatch(toggleFavorite(id));
+  };
+
+  const onCompareClick = evt => {
+    evt.preventDefault();
+
+    if (comparedProducts.includes(id)) {
+      dispatch(deleteComparedProduct(id));
+      return;
+    }
+
+    if (compareCount < 4) dispatch(addComparedProduct(id));
+  };
+
+  const addToCartHandler = e => {
+    e.preventDefault();
+
+    dispatch(addProduct({ id, name, price, picture }));
+  };
+
   return (
     <div
       className={styles.root}
@@ -43,46 +94,47 @@ const ProductBox = ({ id, name, price, promo, stars, picture }) => {
       {isPopupOpen && <QuickViewPopup id={id} onClose={handlePopupClose} />}
       <div className={styles.photo}>
         {promo && <div className={styles.sale}>{promo}</div>}
-        <img src={picture} alt={name} />
+        <Link to={`/product/${id}`}>
+          <img src={picture} alt={name} />
+        </Link>
         {isHovering && (
           <div className={styles.buttons}>
             <Button variant='small' onClick={handleQuickViewClick}>
               Quick View
             </Button>
-            <Button variant='small'>
+            <Button variant='small' onClick={addToCartHandler}>
               <FontAwesomeIcon icon={faShoppingBasket}></FontAwesomeIcon> ADD TO CART
             </Button>
           </div>
         )}
       </div>
       <div className={styles.content}>
-        <h5>{name}</h5>
-        <div className={styles.stars}>
-          {[1, 2, 3, 4, 5].map(i => (
-            <a key={i} href='#'>
-              {i <= stars ? (
-                <FontAwesomeIcon icon={faStar}>{i} stars</FontAwesomeIcon>
-              ) : (
-                <FontAwesomeIcon icon={farStar}>{i} stars</FontAwesomeIcon>
-              )}
-            </a>
-          ))}
-        </div>
+        <Link to={`/product/${id}`}>
+          <h5>{name}</h5>
+        </Link>
+        <ProductStars stars={stars} myStars={selectedStars} onClick={handleStarClick} />
       </div>
       <div className={styles.line}></div>
       <div className={styles.actions}>
         <div className={styles.outlines}>
-          <Button variant={Math.floor(Math.random() * 2) === 1 ? 'outline' : 'active'}>
+          <Button variant={isFavorite ? 'active' : 'outline'} onClick={favoriteHandler}>
             <FontAwesomeIcon icon={faHeart}>Favorite</FontAwesomeIcon>
           </Button>
-          <Button variant={Math.floor(Math.random() * 2) === 1 ? 'outline' : 'active'}>
+
+          <Button
+            onClick={onCompareClick}
+            variant={comparedProducts.includes(id) ? 'active' : 'outline'}
+          >
             <FontAwesomeIcon icon={faExchangeAlt}>Add to compare</FontAwesomeIcon>
           </Button>
         </div>
-        <div className={styles.price}>
-          <Button noHover variant={isHovering ? 'price' : 'small'}>
-            $ {price}
-          </Button>
+        <div className={styles.pricesContainer}>
+          {oldPrice && <p className={styles.oldPrice}> $ {oldPrice} </p>}
+          <div className={styles.price}>
+            <Button noHover variant={isHovering ? 'price' : 'small'}>
+              $ {price}
+            </Button>
+          </div>
         </div>
       </div>
     </div>
@@ -90,12 +142,18 @@ const ProductBox = ({ id, name, price, promo, stars, picture }) => {
 };
 
 ProductBox.propTypes = {
-  id: PropTypes.string.isRequired,
+  id: PropTypes.string,
+  children: PropTypes.node,
   name: PropTypes.string,
   price: PropTypes.number,
   promo: PropTypes.string,
   stars: PropTypes.number,
+  myStars: PropTypes.number,
   picture: PropTypes.string.isRequired,
+  onStarHover: PropTypes.func,
+  onStarClick: PropTypes.func,
+  oldPrice: PropTypes.number,
+  isFavorite: PropTypes.bool,
 };
 
 export default ProductBox;

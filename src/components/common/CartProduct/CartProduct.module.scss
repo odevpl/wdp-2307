@@ -1,0 +1,19 @@
+@import "../../../styles/settings.scss";
+
+.root {
+	
+	.price {
+		color: $cart-primary;
+	}
+	.photo {
+		overflow: hidden;
+		height: 70px;
+		width: 70px;
+		
+		background-color: $text-grey-light;
+		img {
+			width:auto;
+			height: 100%;
+		}
+	}
+}
