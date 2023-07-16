@@ -3,9 +3,8 @@ import React from 'react';
 import { useSelector } from 'react-redux';
 import { getProductById } from '../../../redux/productsRedux';
 import { useState } from 'react';
-import ProductStars from '../ProductStars/ProductStars';
-// import ProductReview from '../../common/ProductReview/ProductReview';
-const FurnitureGallery = (stars, myStars) => {
+import TabContent from './FurnitureGalleryTabContent/FurnitureGalleryTabContent';
+const FurnitureGallery = () => {
   const rightSideProduct = useSelector(state =>
     getProductById(state, 'aenean-ru-bristique-2')
   );
@@ -18,11 +17,6 @@ const FurnitureGallery = (stars, myStars) => {
 
   const handleTabMouseEnter = tabLabel => {
     setHoveredTab(tabLabel);
-  };
-  const [selectedStars, setSelectedStars] = useState(myStars);
-
-  const handleStarClick = clickedStars => {
-    setSelectedStars(clickedStars);
   };
 
   const handleTabMouseLeave = () => {
@@ -84,39 +78,22 @@ const FurnitureGallery = (stars, myStars) => {
                   <div className={styles.tabContent}>
                     {activeTab === 'Tab 1' && (
                       <div className={styles.positionContent}>
-                        <h2>Content for FEATURED</h2>
-                        <p>This is the content of FEATURED.</p>
+                        <TabContent id='aenean-ru-bristique-2' />
                       </div>
                     )}
                     {activeTab === 'Tab 2' && (
                       <div className={styles.positionContent}>
-                        <p>There are no reviews for this product.</p>
-                        <p className={styles.pReview}>Add a review</p>
-                        <p>Your Rating</p>
-                        <div className={styles.rating}>
-                          <p className={styles.pBad}>Bad</p>
-                          <p className={styles.pGwiazdki}>
-                            <ProductStars
-                              stars={stars}
-                              myStars={selectedStars}
-                              onClick={handleStarClick}
-                            />
-                          </p>
-                          <p className={styles.pGood}>Good</p>
-                        </div>
-                        <div></div>
+                        <TabContent id='aenean-ru-bristique-6' />
                       </div>
                     )}
                     {activeTab === 'Tab 3' && (
                       <div className={styles.positionContent}>
-                        <h2>Content for SALE OFF</h2>
-                        <p>This is the content of SALE OFF</p>
+                        <TabContent id='aenean-ru-bristique-20' />
                       </div>
                     )}
                     {activeTab === 'Tab 4' && (
                       <div className={styles.positionContent}>
-                        <h2>Content for TOP RATED</h2>
-                        <p>This is the content of TOP RATED</p>
+                        <TabContent id='aenean-ru-bristique-21' />
                       </div>
                     )}
                   </div>
