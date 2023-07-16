@@ -27,7 +27,7 @@
   "lint-staged": {
     "src/**/*.js": [
       "npm run test-related --",
-      "eslint --fix",
+      "eslint --fix --no-ignore",
       "prettier --write",
       "git add"
     ]
