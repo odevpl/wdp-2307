@@ -35,7 +35,6 @@ $color-light: #fff;
 $color-dark: #2a2a2a;
 $color-deepblack: #000;
 
-
 //Header
 $header-primary: $color-primary;
 $header-topbar-bg: $color-grey-5;
@@ -55,11 +54,11 @@ $form-border: $color-dark;
 $menu-bar-primary: $color-primary;
 $menu-bar-bg: $color-light;
 
-//Promoted 
+//Promoted
 $promoted-primary: $color-primary;
 $promoted-title-bg: $color-dark;
 $promoted-dot: $color-grey-1;
-$promoted-countdown-bg:$color-dark;
+$promoted-countdown-bg: $color-dark;
 
 //Feature Box
 $feature-box-primary: $color-primary;
@@ -91,6 +90,15 @@ $button-bg: $color-dark;
 $button-border: $color-dark;
 $button-price-bg: $color-light;
 
+// FURNITURE GALLERY
+
+$furniture-gallery-light: $color-light;
+$furniture-gallery-dark: $color-dark;
+$furniture-gallery-gray-light: $color-grey-1;
+$furniture-gallery-gray-medium-dark: $color-grey-2;
+$furniture-gallery-gray-dark: $color-grey-4;
+$furniture-gallery-main: $color-primary;
+
 //Text
 $text-dark: $color-dark;
 $text-light: $color-light;
@@ -109,8 +117,10 @@ $latest-blog-gray-light: $color-grey-1;
 $latest-blog-gray-dark: $color-grey-4;
 $latest-blog-main: $color-primary;
 
+
 //FilterByCategory
 
 $filter-by-category-dark: $color-dark;
 $filter-by-category-main: $color-primary;
 $filter-by-category-light: $color-light
+
