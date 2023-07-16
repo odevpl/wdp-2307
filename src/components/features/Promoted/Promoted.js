@@ -1,16 +1,22 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
 
 import ProductBoxPromoted from '../../common/ProductBoxPromoted/ProductBoxPromoted';
 import { getPromoted } from '../../../redux/promotedRedux';
-import { getProductsById } from '../../../redux/productsRedux';
+import { getByIdArray } from '../../../redux/productsRedux';
 import styles from './Promoted.module.scss';
 
 const Promoted = () => {
   const promotedData = useSelector(state => getPromoted(state));
   const promotedProducts = useSelector(state =>
-    getProductsById(state, promotedData.productsId)
+    getByIdArray(state, promotedData.productsId)
   );
+
+  const [activeItem, setActiveItem] = useState(0);
+
+  const handleActiveItemChange = newActiveItem => {
+    setActiveItem(newActiveItem);
+  };
 
   const dots = [];
   for (let i = 0; i < promotedProducts.length; i++) {
