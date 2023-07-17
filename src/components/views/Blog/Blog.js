@@ -5,8 +5,8 @@ import styles from './Blog.module.scss';
 
 const Blog = () => {
   return (
-    <div className='container'>
-      <div className={styles.root}>
+    <div className={styles.root}>
+      <div className='container'>
         <div className={styles.container}>
           <div className={styles.posts}>
             <div className={styles.post}>
@@ -99,5 +99,4 @@ const Blog = () => {
     </div>
   );
 };
-
 export default Blog;
