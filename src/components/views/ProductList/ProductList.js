@@ -2,7 +2,7 @@ import React from 'react';
 // import PropTypes from 'prop-types';
 import styles from './ProductList.module.scss';
 import Brands from '../../features/Brands/Brands';
-import Filters from '../Filers/Filters';
+import Filters from '../Filters/Filters';
 
 const ProductList = () => (
   <div className={styles.root}>

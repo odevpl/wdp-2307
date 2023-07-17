@@ -1,0 +1,62 @@
+@import "../../../styles/settings.scss";
+
+.container {
+  margin-top: 2rem;
+}
+
+.track {
+  background: $color-light ;
+  height: 6px;
+  border: 1px solid grey;
+  border-radius: 3px;
+}
+
+.activeTrack {
+  background-color: black;
+  height: 6px;
+  border-radius: 3px;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.inactiveTrack {
+  background-color: $color-light;
+  height: 6px;
+  border-radius: 3px;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.thumb {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background-color: $color-light;
+  border: 3px solid $color-primary;
+  box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.3);
+}
+
+.rangeButtonContainer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 30px;
+}
+
+.rangeValues {
+  font-size: 16px;
+  font-weight: bold;
+  border: 2px solid $color-grey-3;
+  align-items: center;
+  justify-content: center;
+  display: flex;
+  width: 40%;
+  padding: 5px 0 5px 0;
+}
+
+.filterButton {
+  margin-left: 10px;
+  background-color: $color-primary;
+}
