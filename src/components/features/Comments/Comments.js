@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faQuoteRight } from '@fortawesome/free-solid-svg-icons';
 import styles from './Comments.module.scss';
+import Swipeable from '../Swipable/Swipable';
 
 const Comments = () => {
   const [comments] = useState([
@@ -35,6 +36,18 @@ const Comments = () => {
     setActiveCommentData(newActiveCommentData);
   };
 
+  const handleSwipeLeft = () => {
+    const currentIndex = comments.findIndex(comment => comment.id === activeComment);
+    const nextIndex = (currentIndex + 1) % comments.length;
+    handlePageChange(comments[nextIndex].id);
+  };
+
+  const handleSwipeRight = () => {
+    const currentIndex = comments.findIndex(comment => comment.id === activeComment);
+    const prevIndex = (currentIndex - 1 + comments.length) % comments.length;
+    handlePageChange(comments[prevIndex].id);
+  };
+
   return (
     <div className={styles.root}>
       <div className='container'>
@@ -57,29 +70,31 @@ const Comments = () => {
             </div>
           </div>
           <div className={styles.contents}>
-            <ul>
-              {activeCommentData && (
-                <li className={styles.active}>
-                  <div className={styles.commentContainer}>
-                    <div className={styles.client}>
-                      <h4>{activeCommentData.author}</h4>
-                      <div className={styles.avatar}>
-                        <img
-                          src={`/images/comments/${activeCommentData.avatar}`}
-                          alt={activeCommentData.author}
-                        />
+            <Swipeable onSwipeLeft={handleSwipeLeft} onSwipeRight={handleSwipeRight}>
+              <ul>
+                {activeCommentData && (
+                  <li className={styles.active}>
+                    <div className={styles.commentContainer}>
+                      <div className={styles.client}>
+                        <h4>{activeCommentData.author}</h4>
+                        <div className={styles.avatar}>
+                          <img
+                            src={`/images/comments/${activeCommentData.avatar}`}
+                            alt={activeCommentData.author}
+                          />
+                        </div>
+                      </div>
+                      <div className={styles.commentContent}>
+                        {activeCommentData.content}
+                      </div>
+                      <div className={styles.quoteIcon}>
+                        <FontAwesomeIcon icon={faQuoteRight} />
                       </div>
                     </div>
-                    <div className={styles.commentContent}>
-                      {activeCommentData.content}
-                    </div>
-                    <div className={styles.quoteIcon}>
-                      <FontAwesomeIcon icon={faQuoteRight} />
-                    </div>
-                  </div>
-                </li>
-              )}
-            </ul>
+                  </li>
+                )}
+              </ul>
+            </Swipeable>
           </div>
         </div>
       </div>
