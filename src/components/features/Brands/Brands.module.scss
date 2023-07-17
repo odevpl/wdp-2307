@@ -1,6 +1,7 @@
 @import "../../../styles/settings.scss";
 
 .root {
+    margin: 40px 0;
     .brands {
         border-top: 1px solid $brands-grey;
         border-bottom: 1px solid $brands-grey;
@@ -11,7 +12,7 @@
             display: flex;
             flex-direction: row;
             justify-content: space-between;
-            margin: 20px;
+            margin: 25px;
 
             button {
                 color: $brands-button-arrow;
@@ -24,10 +25,22 @@
                 justify-content: space-between;
                 border: none;
                 .logo {
-                    height: 90px;
-                    width: 90px;
+                    height: 100px;
+                    width: 100px;
                     margin: 0 15px;
                     border: 1px solid $brands-grey;
+                }
+                .logoBlox {
+                    display: flex;
+                    flex-direction: row;
+                    .logo {
+                        height: 90px;
+                        width: 90px;
+                        margin: 0 10px;
+                        border: 1px solid $brands-grey;
+                        display: flex;
+                        flex-direction: row;
+                    }
                 }
             }
         }

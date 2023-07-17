@@ -1,0 +1,119 @@
+@import "../../../styles/settings.scss";
+
+.root {
+  margin: 30px 0;
+  .header {
+    position: relative;
+    margin-bottom: 50px;
+    h4 {
+      font-size: 22px;
+      color: $furniture-gallery-main;
+    }
+  }
+  .header::before {
+    content: "";
+    position: absolute;
+    height: 4px;
+    top: 40px;
+    background-color: $furniture-gallery-main;
+    width: 10%;
+    z-index: 3;
+  }
+  .header::after {
+    content: "";
+    position: absolute;
+    height: 4px;
+    top: 40px;
+    background-color: $furniture-gallery-gray-light;
+    width: 95%;
+    left: 5%;
+  }
+  .image {
+    position: relative;
+    min-height: 450px;
+    height: 100%;
+    object-fit: cover;
+    width: 100%;
+
+    .fromText {
+      font-size: 20px;
+      color: $furniture-gallery-dark;
+      position: absolute;
+      top: 10%;
+      left: 10%;
+      margin: 0;
+      font-weight: 500;
+    }
+
+    .price {
+      font-size: 48px;
+      color: rgba(133, 172, 67, 255);
+      font-weight: 700;
+    }
+
+    .description {
+      font-size: 40px;
+      font-weight: 500;
+      color: $furniture-gallery-main;
+      position: absolute;
+      top: 25%;
+      left: 10%;
+    }
+
+    button.shopButton {
+      font-size: 12px;
+      color: white;
+      background-color: rgba(133, 172, 67, 255);
+      border: none;
+      border-radius: 3px;
+      padding: 20px 30px;
+      position: absolute;
+      font-weight: 500;
+      top: 45%;
+      left: 10%;
+    }
+  }
+  .tabs {
+    border: 1px solid $furniture-gallery-gray-medium-dark;
+    border-top:none ;
+    .tabList {
+      display: flex;
+      justify-content: space-between; 
+    }
+
+    .positionContent {
+      width: 100%;
+    }
+
+    .tab {
+      padding: 10px;
+      cursor: pointer;
+      transition: background-color 0.2s ease;
+      border-right: 1px solid $furniture-gallery-gray-medium-dark;
+      border-bottom: 1px solid $furniture-gallery-gray-medium-dark;
+      border-top: 1px solid $furniture-gallery-gray-medium-dark;
+      height: 50px;
+      flex-grow: 1; 
+      flex-basis: 0; 
+      font-weight: 500;
+      text-align: center;
+    }
+
+    .active {
+      color: $furniture-gallery-main;
+      border-bottom: none;
+      
+      border-top: solid 5px $furniture-gallery-main;
+      padding-top: 6px;
+      background-color: $furniture-gallery-gray-light;
+    }
+
+    .tabContent {
+      background-color: $furniture-gallery-gray-light;
+    }
+
+    .lastTab {
+      border-right: none;
+    }
+  }
+}
