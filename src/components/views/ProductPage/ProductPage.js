@@ -47,7 +47,7 @@ const ProductPage = () => {
         </div>
       </div>
       <ProductReview />
-      <NewFurniture />
+      <NewFurniture role='internal' />
     </div>
   );
 };

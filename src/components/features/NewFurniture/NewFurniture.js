@@ -31,8 +31,12 @@ class NewFurniture extends React.Component {
 
   render() {
     const { categories, products, compared, viewport } = this.props;
+
+    const productsCounter = this.props.role === 'internal' ? 4 : 8;
+
     const { activeCategory, activePage, fadeOut } = this.state;
     const categoryProducts = products.filter(item => item.category === activeCategory);
+
     const productsPerPage = viewport === 'desktop' ? 8 : viewport === 'tablet' ? 2 : 1;
     const pagesCount = Math.ceil(categoryProducts.length / productsPerPage);
 
@@ -97,6 +101,14 @@ class NewFurniture extends React.Component {
                     <ProductBox {...item} />
                   </div>
                 ))}
+
+              {categoryProducts
+                .slice(activePage * productsCounter, (activePage + 1) * productsCounter)
+                .map(item => (
+                  <div className='col-lg-3 col-sm-6 col-12' key={item.id}>
+                    <ProductBox role='internal' {...item} />
+                  </div>
+                ))}
             </div>
           </Swipeable>
 
@@ -117,6 +129,7 @@ class NewFurniture extends React.Component {
 NewFurniture.propTypes = {
   children: PropTypes.node,
   compared: PropTypes.number,
+  role: PropTypes.string,
   categories: PropTypes.arrayOf(
     PropTypes.shape({
       id: PropTypes.string,

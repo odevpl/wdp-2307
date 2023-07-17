@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import styles from './ProductBox.module.scss';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faExchangeAlt, faShoppingBasket } from '@fortawesome/free-solid-svg-icons';
-import { faStar as  faHeart } from '@fortawesome/free-regular-svg-icons';
+import { faStar as faHeart } from '@fortawesome/free-regular-svg-icons';
 import Button from '../Button/Button';
 import ProductStars from '../../features/ProductStars/ProductStars';
 import QuickViewPopup from '../../views/QuickViewPopup/QuickViewPopup';
@@ -32,7 +32,9 @@ const ProductBox = ({
   myStars,
   isFavorite,
   oldPrice,
+  role,
 }) => {
+  const [isHovering, setIsHovering] = useState(false);
   const [isPopupOpen, setIsPopupOpen] = useState(false);
 
   const [selectedStars, setSelectedStars] = useState(myStars);
@@ -40,7 +42,6 @@ const ProductBox = ({
   const handleStarClick = clickedStars => {
     setSelectedStars(clickedStars);
   };
-  const [isHovering, setIsHovering] = useState(false);
   const comparedProducts = useSelector(state => getAllCompared(state));
   const compareCount = useSelector(state => getCountCompared(state));
   const dispatch = useDispatch();
@@ -95,7 +96,7 @@ const ProductBox = ({
       <div className={styles.photo}>
         {promo && <div className={styles.sale}>{promo}</div>}
         <Link to={`/product/${id}`}>
-          <img src={picture} alt={name} />
+          <img src={role === 'internal' ? `../${picture}` : picture} alt={name} />
         </Link>
         {isHovering && (
           <div className={styles.buttons}>
@@ -144,6 +145,7 @@ const ProductBox = ({
 ProductBox.propTypes = {
   id: PropTypes.string,
   children: PropTypes.node,
+  role: PropTypes.string,
   name: PropTypes.string,
   price: PropTypes.number,
   promo: PropTypes.string,
