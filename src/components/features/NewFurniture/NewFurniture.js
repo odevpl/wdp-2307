@@ -94,19 +94,14 @@ class NewFurniture extends React.Component {
                 .slice(activePage * productsPerPage, (activePage + 1) * productsPerPage)
                 .map(item => (
                   <div className='col-lg-3 col-sm-6 col-12' key={item.id}>
-                    <ProductBox {...item} />
+                    <ProductBox
+                      role={this.props.role ? this.props.role : ''}
+                      {...item}
+                    />
                   </div>
                 ))}
             </div>
           </Swipeable>
-
-          <div className='row'>
-            {categoryProducts.slice(activePage * 8, (activePage + 1) * 8).map(item => (
-              <div key={item.id} className='col-3'>
-                <ProductBox {...item} />
-              </div>
-            ))}
-          </div>
           {compared > 0 ? <ComparedProductsBox /> : ''}
         </div>
       </div>
@@ -115,6 +110,7 @@ class NewFurniture extends React.Component {
 }
 
 NewFurniture.propTypes = {
+  role: PropTypes.string,
   children: PropTypes.node,
   compared: PropTypes.number,
   categories: PropTypes.arrayOf(

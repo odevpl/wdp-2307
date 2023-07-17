@@ -12,6 +12,8 @@ export const getProductById = ({ products }, id) =>
   products.find(item => item.id === id);
 export const getProductsById = ({ products }, productId) =>
   products.filter(item => item.id === productId);
+export const getProductsByCategory = ({ products }, category) =>
+  products.filter(item => item.category === category);
 /* action creators */
 
 export const toggleFavorite = payload => ({ type: 'TOGGLE_ITEM_FAVORITE', payload });
