@@ -3,16 +3,17 @@ import React from 'react';
 import styles from './ProductPage.module.scss';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronRight } from '@fortawesome/free-solid-svg-icons';
-import ProductData from '../../features/ProductData/ProductData';
+
+// import ProductData from '../../features/ProductData/ProductData';
 import ProductReview from '../../common/ProductReview/ProductReview';
+
+import NewFurniture from '../../features/NewFurniture/NewFurniture';
 
 const ProductPage = () => {
   return (
     <div className='container'>
       <div className={styles.root}>
-        <div className={styles.product}>
-          {/* <ProductData /> */}
-        </div>
+        <div className={styles.product}>{/* <ProductData /> */}</div>
         <div className={styles.ProjectNew}>
           <div className={styles.upSection}>
             <div className='row'>
@@ -46,6 +47,7 @@ const ProductPage = () => {
         </div>
       </div>
       <ProductReview />
+      <NewFurniture />
     </div>
   );
 };
