@@ -1,48 +1,89 @@
 @import "../../../styles/settings.scss";
 
+$mobile-width: 480px;
+$tablet-width: 768px;
+
+@mixin respond-to($media) {
+  @if $media == mobile {
+    @media only screen and (max-width: $mobile-width) {
+      @content;
+    }
+  }
+  @else if $media == tablets {
+    @media only screen and (min-width: $mobile-width + 1) and (max-width: $tablet-width) {
+      @content;
+    }
+  }
+}
+
 .root {
-    margin: 40px 0;
-    .brands {
-        border-top: 1px solid $brands-grey;
-        border-bottom: 1px solid $brands-grey;
-        padding: 5px 0;
-        margin-bottom: 10px;
-        .row {
+  margin: 35px 0;
+  .container{
+    display: flex;
+  }
+
+  .brands {
+    border-top: 1px solid $brands-grey;
+    border-bottom: 1px solid $brands-grey;
+    padding: 5px 0;
+    margin-bottom: 10px;
+
+    .row {
+      height: 90px;
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      margin: 25px;
+
+      button {
+        color: $brands-button-arrow;
+        background-color: $brands-button;
+      }
+
+      .logos {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        border: none;
+
+        .logo {
+          height: 100px;
+          width: 100px;
+          margin: 0 15px;
+          border: 1px solid $brands-grey;
+        }
+
+        .logoBox {
+          display: flex;
+          flex-direction: row;
+
+          .logo {
             height: 90px;
+            width: 90px;
+            margin: 0 10px;
+            border: 1px solid $brands-grey;
             display: flex;
             flex-direction: row;
-            justify-content: space-between;
-            margin: 25px;
 
-            button {
-                color: $brands-button-arrow;
-                background-color: $brands-button;
+            // Responsywne dostosowanie rozmiarów logotypów
+            @include respond-to(mobile) {
+              height: 90px;
+              width: 90px;
+              &:nth-child(n+3) {
+                display: none;
+              }
             }
-            
-            .logos {
-                display: flex;
-                flex-direction: row;
-                justify-content: space-between;
-                border: none;
-                .logo {
-                    height: 100px;
-                    width: 100px;
-                    margin: 0 15px;
-                    border: 1px solid $brands-grey;
-                }
-                .logoBlox {
-                    display: flex;
-                    flex-direction: row;
-                    .logo {
-                        height: 90px;
-                        width: 90px;
-                        margin: 0 10px;
-                        border: 1px solid $brands-grey;
-                        display: flex;
-                        flex-direction: row;
-                    }
-                }
+
+            @include respond-to(tablets) {
+              height: 90px;
+              width: 90px;
+              &:nth-child(n+5) {
+                display: none;
+              }
             }
+          }
         }
+      }
     }
+  }
 }
