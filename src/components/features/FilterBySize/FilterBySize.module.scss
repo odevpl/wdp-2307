@@ -44,26 +44,43 @@
                 color: $filter-light;
                 height: 23px;
                 width: 23px;
+                border-radius: 0.15em;
                 text-align: center;
                 border-radius: 50%;
             }
             &.active {
                 color: $filter-main;
+                margin-left: 15px;
                 .categorBoxTwo {
                     display: flex;
                     flex-direction: row;
                     input {
                         margin-right: 10px;
-                        &:checked {
+                        &[type='checkbox'] {
                             border-color: $filter-main;
                             background-color: $filter-main;
                         }
                     }
-                    input:checked {
-                        border-color: red;
-                        background-color: red;
-                        color: red;
+                    input:checked{
+                        appearance: none;
+                        width: 1.15em;
+                        height: 1.15em;
+                        border-radius: 0.15em;
+                        position: relative;
                     }
+                    input:checked::before {
+                        content: "";
+                        width: 0.65em;
+                        height: 0.65em;
+                        transition: 120ms transform ease-in-out;
+                        box-shadow: inset 1em 1em var(--form-control-color);
+                        background-color: $filter-light;
+                        transform-origin: bottom left;
+                        clip-path: polygon(14% 44%, 0 65%, 50% 100%, 100% 16%, 80% 0%, 43% 62%);
+                        left: 1px;
+                        top: 1px;
+                        position: absolute;
+                      }
                 }
                 .number {
                     background-color: $filter-main;

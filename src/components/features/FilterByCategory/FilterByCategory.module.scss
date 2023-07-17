@@ -20,6 +20,14 @@
     .categories { 
         margin-bottom: 15px;;
         .categoryBox {
+            margin: 5px 0;
+            background: none;
+            color: inherit;
+            border: none;
+            padding: 0;
+            font: inherit;
+            cursor: pointer;
+            width: 100%;
             display: flex;
             flex-direction: row;
             justify-content: space-between;
@@ -33,24 +41,19 @@
                 text-align: center;
                 border-radius: 50%;
             }
-        }
-        .categoryBoxGold {
-            display: flex;
-            flex-direction: row;
-            justify-content: space-between;
-            margin: 15px 5px 15px 5px;
-            font-size: 14px;
-            .category {
-                padding-left: 15px;
-                color: $filter-main;
-            }
-            .number {
-                background-color: $filter-main;
-                color: $filter-light;
-                height: 23px;
-                width: 23px;
-                text-align: center;
-                border-radius: 50%;
+            &.active {
+                .category {
+                    padding-left: 15px;
+                    color: $filter-main;
+                }
+                .number {
+                    background-color: $filter-main;
+                    color: $filter-light;
+                    height: 23px;
+                    width: 23px;
+                    text-align: center;
+                    border-radius: 50%;
+                }
             }
         }
     }
