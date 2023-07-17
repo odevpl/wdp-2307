@@ -21,6 +21,8 @@ const ComparedProductsBox = () => {
           id={product.id}
           picture={product.picture}
           name={product.name}
+          price={product.price}
+          isFavorite={product.isFavorite}
         />
       ))}
       <Button variant='small'>Compare</Button>

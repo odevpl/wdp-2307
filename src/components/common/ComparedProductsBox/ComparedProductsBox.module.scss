@@ -1,3 +1,4 @@
+@import "../../../styles/settings.scss";
 .stickyBar {
   position: fixed;
   bottom: 0;
@@ -11,10 +12,14 @@
   padding-left: 20px;
   padding-bottom: 10px;
 
-  height: 150px;
+  // height: 150px;
 
   & .header {
     flex-basis: 100%;
+    margin: 0;
+    padding: 5px;
+    width: 20%;
+    background-color: $compared-product-gray-4;
   }
 }
 

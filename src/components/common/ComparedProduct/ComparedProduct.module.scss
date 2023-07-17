@@ -1,12 +1,16 @@
+@import "../../../styles/settings.scss";
 .comparedProduct {
   position: relative;
+  background-color:$compared-product-gray;
 }
 
 .comparedImage {
   height: 100px;
   margin-right: 10px;
 }
-
+.comparedName, .comparedPrice ,.comparedFavorite{
+  margin: 3px 5px;
+}
 
 .closeBtn {
   display: none;
