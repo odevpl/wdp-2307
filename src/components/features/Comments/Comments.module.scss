@@ -81,23 +81,24 @@
       }
     }
   }
+  h3 {
+    color: $new-furniture-primary;
+    text-transform: uppercase;
+    font-size: 20px;
+    line-height: 38px;
+    margin: 0;
+    letter-spacing: 1px;
+  }
+  
+  h2 {
+    font-family: "Poppins", sans-serif;
+    left: 50px;
+    font-size: 60px;
+    padding-top: 15px;
+    height: 20px;
+    width: 33px;
+    color: #2a2a2a;
+  }
 }
 
-h3 {
-  color: $new-furniture-primary;
-  text-transform: uppercase;
-  font-size: 20px;
-  line-height: 38px;
-  margin: 0;
-  letter-spacing: 1px;
-}
 
-h2 {
-  font-family: "Poppins", sans-serif;
-  left: 50px;
-  font-size: 60px;
-  padding-top: 15px;
-  height: 20px;
-  width: 33px;
-  color: #2a2a2a;
-}

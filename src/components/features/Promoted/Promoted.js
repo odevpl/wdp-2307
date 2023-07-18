@@ -24,34 +24,31 @@ const Promoted = () => {
     timeOut =
       autoPlay &&
       setTimeout(() => {
-        setItemFadeOut(true);
-        setTimeout(() => {
-          setItemFadeOut(false);
-          autoPlaySlideItem();
-        }, 400);
+        autoPlaySlideItem();
       }, 3000);
-  }, activeItem);
+    return () => clearTimeout(timeOut);
+  });
 
   const autoPlaySlideItem = () => {
-    // setItemFadeOut(true);
-    // setTimeout(() => {
-    setActiveItem(activeItem === promotedProducts.length - 1 ? 0 : activeItem + 1);
-    // setItemFadeOut(false);
-    // }, 300);
+    setItemFadeOut(true);
+    clearTimeout(timeOut);
+    setTimeout(() => {
+      setItemFadeOut(false);
+      setActiveItem(activeItem === promotedProducts.length - 1 ? 0 : activeItem + 1);
+    }, 300);
   };
 
   const handleActiveItemChange = newActiveItem => {
-    // setItemFadeOut(true);
     setAutoplay(false);
+    setItemFadeOut(true);
     clearTimeout(timeOut);
-    // setTimeout(() => {
-    // setItemFadeOut(false);
     setTimeout(() => {
+      setItemFadeOut(false);
       setActiveItem(newActiveItem);
-      setAutoplay(true);
-    }, 7000);
-
-    // }, 400);
+      setTimeout(() => {
+        setAutoplay(true);
+      }, 7000);
+    }, 300);
   };
 
   const bannerLeft = () => {
