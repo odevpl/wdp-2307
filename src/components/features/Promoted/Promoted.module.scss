@@ -1,18 +1,20 @@
 @import "../../../styles/settings.scss";
 
 .root {
-	
+
 	.title {
-	background-color: $promoted-title-bg;
-	margin-bottom: 0;
-	padding: .75rem 1.5rem;
-	color: $text-light;
-	text-transform: uppercase;
+		background-color: $promoted-title-bg;
+		margin-bottom: 0;
+		padding: .75rem 1.5rem;
+		color: $text-light;
+		text-transform: uppercase;
+
 		p {
 			font-size: 18px;
 			margin-bottom: 0;
 			font-weight: 700;
 		}
+
 		.dots {
 			position: absolute;
 			right: 0;
@@ -23,7 +25,7 @@
 				padding: 0 0 0 1rem;
 				list-style: none;
 				transform: translateX(-15px);
-				
+
 
 				li {
 					display: inline-block;
@@ -46,15 +48,16 @@
 			}
 		}
 	}
-	
+
 	.img {
 		position: relative;
 		background-color: $color-grey-1;
 		width: 100%;
-		height:95%;
+		height: 95%;
 		text-align: center;
 		overflow: hidden;
-		img{
+
+		img {
 			position: absolute;
 			top: 50%;
 			left: 50%;
@@ -63,40 +66,57 @@
 			height: 550px;
 			object-fit: cover;
 			object-position: 50% 50%;
-			
 		}
+
 		.banner {
 			position: absolute;
 			padding: 35px 0;
 			width: 100%;
-			top:50%;
-			left:0;
+			top: 50%;
+			left: 0;
 			transform: translateY(-50%);
 			background-color: rgba(42, 42, 42, 0.5);
 			color: $text-light;
 			text-transform: uppercase;
+
 			h2 {
 				font-size: 45px;
 			}
+
 			h3 {
 				font-size: 20px;
 			}
 		}
 	}
-	.nav {
+	@media (max-width: 1000px) {
+		.img {
+			width: 100%;
+			height: 350px;
+			margin-top: 30px;
+		}
+	}
+
+		.nav {
 			height: 5%;
 			width: 100%;
 			text-align: center;
 			background-color: $promoted-title-bg;
 			color: $text-light;
+
 			a {
 				line-height: 175%;
 				width: 50%;
 				display: inline-block;
 			}
+
 			a:hover {
 				background-color: $promoted-primary;
 				color: $text-light;
 			}
 		}
-}
+		@media (max-width: 1000px) {
+			.nav {
+				height: 30px;
+			}
+		}
+	}
