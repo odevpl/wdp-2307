@@ -20,18 +20,30 @@ import {
   addComparedProduct,
   deleteComparedProduct,
 } from '../../../redux/comparedReducer';
+
 import { toggleFavorite } from '../../../redux/productsRedux';
 
-const ProductBox = ({ ...item }) => {
+const ProductBox = ({
+  id,
+  name,
+  price,
+  promo,
+  stars,
+  picture,
+  myStars,
+  isFavorite,
+  oldPrice,
+  role,
+}) => {
   const [isPopupOpen, setIsPopupOpen] = useState(false);
 
-  const [selectedStars, setSelectedStars] = useState(item.myStars);
-  const [favorites, setFavorites] = useState([item.isFavorite]);
+  const [selectedStars, setSelectedStars] = useState(myStars);
+  const [favorites, setFavorites] = useState([isFavorite]);
 
   const favoriteHandler = e => {
     e.preventDefault();
-    dispatch(toggleFavorite(item.id));
-    setFavorites([...favorites, item.isFavorite]);
+    dispatch(toggleFavorite(id));
+    setFavorites([...favorites, isFavorite]);
   };
 
   const [isHovering, setIsHovering] = useState(false);
@@ -60,12 +72,12 @@ const ProductBox = ({ ...item }) => {
   const onCompareClick = evt => {
     evt.preventDefault();
 
-    if (comparedProducts.includes(item.id)) {
-      dispatch(deleteComparedProduct(item.id));
+    if (comparedProducts.includes(id)) {
+      dispatch(deleteComparedProduct(id));
       return;
     }
 
-    if (compareCount < 4) dispatch(addComparedProduct(item.id));
+    if (compareCount < 4) dispatch(addComparedProduct(id));
   };
 
   return (
@@ -74,11 +86,11 @@ const ProductBox = ({ ...item }) => {
       onMouseOver={handleMouseOver}
       onMouseOut={handleMouseOut}
     >
-      {isPopupOpen && <QuickViewPopup id={item.id} onClose={handlePopupClose} />}
+      {isPopupOpen && <QuickViewPopup id={id} onClose={handlePopupClose} />}
       <div className={styles.photo}>
-        {item.promo && <div className={styles.sale}>{item.promo}</div>}
-        <Link to={`/product/${item.id}`}>
-          <img src={item.picture} alt={item.name} />
+        {promo && <div className={styles.sale}>{promo}</div>}
+        <Link to={`/product/${id}`}>
+          <img src={role ? `../${picture}` : picture} alt={name} />
         </Link>
         {isHovering && (
           <div className={styles.buttons}>
@@ -92,11 +104,11 @@ const ProductBox = ({ ...item }) => {
         )}
       </div>
       <div className={styles.content}>
-        <Link to={`/product/${item.id}`}>
-          <h5>{item.name}</h5>
+        <Link to={`/product/${id}`}>
+          <h5>{name}</h5>
         </Link>
         <ProductStars
-          stars={item.stars}
+          stars={stars}
           myStars={selectedStars}
           onClick={setSelectedStars}
         />
@@ -104,25 +116,22 @@ const ProductBox = ({ ...item }) => {
       <div className={styles.line}></div>
       <div className={styles.actions}>
         <div className={styles.outlines}>
-          <Button
-            variant={item.isFavorite ? 'active' : 'outline'}
-            onClick={favoriteHandler}
-          >
+          <Button variant={isFavorite ? 'active' : 'outline'} onClick={favoriteHandler}>
             <FontAwesomeIcon icon={faHeart}>Favorite</FontAwesomeIcon>
           </Button>
 
           <Button
             onClick={onCompareClick}
-            variant={comparedProducts.includes(item.id) ? 'active' : 'outline'}
+            variant={comparedProducts.includes(id) ? 'active' : 'outline'}
           >
             <FontAwesomeIcon icon={faExchangeAlt}>Add to compare</FontAwesomeIcon>
           </Button>
         </div>
         <div className={styles.pricesContainer}>
-          {item.oldPrice && <p className={styles.oldPrice}> $ {item.oldPrice} </p>}
+          {oldPrice && <p className={styles.oldPrice}> $ {oldPrice} </p>}
           <div className={styles.price}>
             <Button noHover variant={isHovering ? 'price' : 'small'}>
-              $ {item.price}
+              $ {price}
             </Button>
           </div>
         </div>
@@ -132,6 +141,7 @@ const ProductBox = ({ ...item }) => {
 };
 
 ProductBox.propTypes = {
+  role: PropTypes.string,
   id: PropTypes.string,
   children: PropTypes.node,
   name: PropTypes.string,
