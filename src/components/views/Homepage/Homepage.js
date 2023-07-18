@@ -14,6 +14,7 @@ import FurnitureGallery from '../../features/FurnitureGallery/FurnitureGallery';
 import ChatBot from '../../features/ChatBot/ChatBot';
 
 import LatestBlog from '../../features/LatestBlog/LatestBlog';
+import Comments from '../../features/Comments/Comments';
 
 const Homepage = () => (
   <div className={styles.root}>
@@ -24,6 +25,7 @@ const Homepage = () => (
     <FurnitureGallery />
     <LatestBlog />
     <Brands />
+    <Comments />
     <ChatBot />
   </div>
 );

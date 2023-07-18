@@ -9,7 +9,7 @@ import Button from '../Button/Button';
 import ProductStars from '../../features/ProductStars/ProductStars';
 import QuickViewPopup from '../../views/QuickViewPopup/QuickViewPopup';
 
-import { toggleFavorite } from '../../../redux/productsRedux';
+//import { toggleFavorite } from '../../../redux/productsRedux';
 import { Link } from 'react-router-dom/cjs/react-router-dom.min';
 
 import { useSelector, useDispatch } from 'react-redux';
@@ -20,7 +20,7 @@ import {
   addComparedProduct,
   deleteComparedProduct,
 } from '../../../redux/comparedReducer';
-import { addProduct } from '../../../redux/cartRedux';
+import { toggleFavorite } from '../../../redux/productsRedux';
 
 const ProductBox = ({
   id,
@@ -35,13 +35,18 @@ const ProductBox = ({
   role,
 }) => {
   const [isHovering, setIsHovering] = useState(false);
+
   const [isPopupOpen, setIsPopupOpen] = useState(false);
 
   const [selectedStars, setSelectedStars] = useState(myStars);
+  const [favorites, setFavorites] = useState([isFavorite]);
 
-  const handleStarClick = clickedStars => {
-    setSelectedStars(clickedStars);
+  const favoriteHandler = e => {
+    e.preventDefault();
+    dispatch(toggleFavorite(id));
+    setFavorites([...favorites, isFavorite]);
   };
+
   const comparedProducts = useSelector(state => getAllCompared(state));
   const compareCount = useSelector(state => getCountCompared(state));
   const dispatch = useDispatch();
@@ -64,11 +69,6 @@ const ProductBox = ({
     setIsPopupOpen(false);
   };
 
-  const favoriteHandler = e => {
-    e.preventDefault();
-    dispatch(toggleFavorite(id));
-  };
-
   const onCompareClick = evt => {
     evt.preventDefault();
 
@@ -78,12 +78,6 @@ const ProductBox = ({
     }
 
     if (compareCount < 4) dispatch(addComparedProduct(id));
-  };
-
-  const addToCartHandler = e => {
-    e.preventDefault();
-
-    dispatch(addProduct({ id, name, price, picture }));
   };
 
   return (
@@ -96,14 +90,14 @@ const ProductBox = ({
       <div className={styles.photo}>
         {promo && <div className={styles.sale}>{promo}</div>}
         <Link to={`/product/${id}`}>
-          <img src={role === 'internal' ? `../${picture}` : picture} alt={name} />
+          <img src={picture} alt={name} />
         </Link>
         {isHovering && (
           <div className={styles.buttons}>
             <Button variant='small' onClick={handleQuickViewClick}>
               Quick View
             </Button>
-            <Button variant='small' onClick={addToCartHandler}>
+            <Button variant='small'>
               <FontAwesomeIcon icon={faShoppingBasket}></FontAwesomeIcon> ADD TO CART
             </Button>
           </div>
@@ -113,12 +107,19 @@ const ProductBox = ({
         <Link to={`/product/${id}`}>
           <h5>{name}</h5>
         </Link>
-        <ProductStars stars={stars} myStars={selectedStars} onClick={handleStarClick} />
+        <ProductStars
+          stars={stars}
+          myStars={selectedStars}
+          onClick={setSelectedStars}
+        />
       </div>
       <div className={styles.line}></div>
       <div className={styles.actions}>
         <div className={styles.outlines}>
-          <Button variant={isFavorite ? 'active' : 'outline'} onClick={favoriteHandler}>
+          <Button
+            variant={isFavorite ? 'active' : 'outline'}
+            onClick={favoriteHandler}
+          >
             <FontAwesomeIcon icon={faHeart}>Favorite</FontAwesomeIcon>
           </Button>
 
