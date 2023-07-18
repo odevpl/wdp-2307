@@ -11,7 +11,7 @@ import ComparedProductsBox from '../../common/ComparedProductsBox/ComparedProduc
 class NewFurniture extends React.Component {
   state = {
     activePage: 0,
-    activeCategory: 'bed',
+    activeCategory: this.props.activeCategory,
     fadeOut: false,
   };
 
@@ -136,6 +136,7 @@ NewFurniture.propTypes = {
   role: PropTypes.string,
   children: PropTypes.node,
   compared: PropTypes.number,
+  activeCategory: PropTypes.string,
   categories: PropTypes.arrayOf(
     PropTypes.shape({
       id: PropTypes.string,
@@ -159,6 +160,7 @@ NewFurniture.propTypes = {
 NewFurniture.defaultProps = {
   categories: [],
   products: [],
+  activeCategory: 'bed',
 };
 
 const mapStateToProps = state => ({
