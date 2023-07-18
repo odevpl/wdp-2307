@@ -42,6 +42,7 @@ const initialState = {
       stars: 2,
       myStars: 4,
       promo: 'sale',
+      time: 641798127,
       newFurniture: true,
       picture: 'images/beds/bed-3.jpg',
       isFavorite: false,
@@ -323,9 +324,25 @@ const initialState = {
   },
 
   promoted: {
-    productsId: ['aenean-ru-bristique-1', 'aenean-ru-bristique-2'],
-    bannerTitle: 'Indoor Furniture',
-    bannerSubtitle: 'Save up to 50% of all furniture',
+    productsId: [
+      'aenean-ru-bristique-1',
+      'aenean-ru-bristique-2',
+      'aenean-ru-bristique-3',
+    ],
+    banners: [
+      {
+        id: 1,
+        bannerTitle: 'Indoor Furniture',
+        bannerSubtitle: 'Save up to 50% of all furniture',
+        picture: '/images/sofas/sofa-2.jpg',
+      },
+      {
+        id: 2,
+        bannerTitle: 'Outdoor Furniture',
+        bannerSubtitle: 'Save up to 75% of choosen furniture',
+        picture: '/images/dinings/dining-5.jpg',
+      },
+    ],
   },
   viewport: 'desktop',
 
