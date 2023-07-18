@@ -24,36 +24,38 @@ const Promoted = () => {
   return (
     <div className={styles.root}>
       <div className='container'>
-        <div className='row'>
-          <div className='col-4'>
-            <div className={styles.title}>
-              <p>Hot deals</p>
-              <div className={'col-auto ' + styles.dots}>
-                <ul>{dots}</ul>
+        <div className={styles.positionPromoted}>
+          <div className='row'>
+            <div className='col-lg-4'>
+              <div className={styles.title}>
+                <p>Hot deals</p>
+                <div className={'col-auto ' + styles.dots}>
+                  <ul>{dots}</ul>
+                </div>
+              </div>
+              <div>
+                <ProductBoxPromoted
+                  key={promotedProducts[0].id}
+                  {...promotedProducts[0]}
+                />
               </div>
             </div>
-            <div>
-              <ProductBoxPromoted
-                key={promotedProducts[0].id}
-                {...promotedProducts[0]}
-              />
-            </div>
-          </div>
-          <div className='col-8'>
-            <div className={styles.img}>
-              <img
-                className={styles.imageOne}
-                alt='Furniture Sale'
-                src={'/images/sofas/sofa-2.jpg'}
-              ></img>
-              <div className={styles.banner}>
-                <h2>{promotedData.bannerTitle}</h2>
-                <h3>{promotedData.bannerSubtitle}</h3>
+            <div className='col-lg-8'>
+              <div className={styles.img}>
+                <img
+                  className={styles.imageOne}
+                  alt='Furniture Sale'
+                  src={'/images/sofas/sofa-2.jpg'}
+                ></img>
+                <div className={styles.banner}>
+                  <h2>{promotedData.bannerTitle}</h2>
+                  <h3>{promotedData.bannerSubtitle}</h3>
+                </div>
               </div>
-            </div>
-            <div className={styles.nav}>
-              <a>&#10094;</a>
-              <a>&#10095;</a>
+              <div className={styles.nav}>
+                <a>&#10094;</a>
+                <a>&#10095;</a>
+              </div>
             </div>
           </div>
         </div>
