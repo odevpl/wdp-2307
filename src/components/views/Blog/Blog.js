@@ -2,8 +2,10 @@ import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCalendar, faUser } from '@fortawesome/free-solid-svg-icons';
 import styles from './Blog.module.scss';
+import { useTranslation } from 'react-i18next';
 
 const Blog = () => {
+  const { t } = useTranslation();
   return (
     <div className={styles.root}>
       <div className='container'>
@@ -18,11 +20,11 @@ const Blog = () => {
                     <FontAwesomeIcon icon={faUser} />
                     <p>Marcin</p>
                     <FontAwesomeIcon icon={faCalendar} />
-                    <p>Data dodania: 10-08-2023</p>
-                    <p>Last update: 15-08-2023</p>
+                    <p>{t('pages.blog.addDate')}: 10-08-2023</p>
+                    <p>{t('pages.blog.lastUpdate')}: 15-08-2023</p>
                   </div>
                   <div className={styles.postButton}>
-                    <a href='#'>Read more</a>
+                    <a href='#'>{t('pages.blog.postButtonText')}</a>
                   </div>
                 </div>
               </div>
@@ -39,7 +41,7 @@ const Blog = () => {
 
           <div className={styles.sidebar}>
             <div className={styles.widget}>
-              <h2>Recent Posts</h2>
+              <h2 className={styles.header}>{t('pages.blog.recentPosts')}</h2>
               <ul>
                 <li>
                   <a href='#'>Post 1</a>
@@ -57,7 +59,7 @@ const Blog = () => {
             </div>
 
             <div className={styles.widget}>
-              <h2>Recent Comments</h2>
+              <h2 className={styles.header}>{t('pages.blog.recentComments')}</h2>
               <ul>
                 <li>
                   <a href='#'>Comment 1</a>
@@ -72,7 +74,7 @@ const Blog = () => {
             </div>
 
             <div className={styles.widget}>
-              <h2>Categories</h2>
+              <h2 className={styles.header}>{t('pages.blog.categories')}</h2>
               <ul>
                 <li>
                   <a href='#'>Category 1</a>
@@ -86,7 +88,7 @@ const Blog = () => {
               </ul>
             </div>
             <div className={styles.widget}>
-              <h2>Archives</h2>
+              <h2 className={styles.header}>{t('pages.blog.archives')}</h2>
               <ul>
                 <li>
                   <a href='#'>June 2023</a>
