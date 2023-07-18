@@ -56,8 +56,8 @@ const ProductBox = ({
   };
 
   const handleMouseOut = () => {
-    // setIsHovering(true);
     setIsHovering(false);
+    //setIsHovering(false);
   };
 
   const handleQuickViewClick = event => {

@@ -3,7 +3,7 @@ import { useParams } from 'react-router-dom';
 //import PropTypes from 'prop-types';
 import styles from './ProductList.module.scss';
 import Brands from '../../features/Brands/Brands';
-import Filters from '../Filers/Filters';
+import Filters from '../Filters/Filters';
 
 import NewFurniture from '../../features/NewFurniture/NewFurnitureContainer';
 
