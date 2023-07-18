@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import Swipeable from '../Swipable/Swipable';
 
 import styles from './Brands.module.scss';
@@ -19,34 +19,16 @@ const images = [
   '/images/logos/logo-6.jpg',
   '/images/logos/logo-7.jpg',
 ];
-function getWindowDimensions() {
-  const { innerWidth: width, innerHeight: height } = window;
-  return {
-    width,
-    height,
-  };
-}
-
-function useWindowDimensions() {
-  const [windowDimensions, setWindowDimensions] = useState(getWindowDimensions());
-
-  useEffect(() => {
-    function handleResize() {
-      setWindowDimensions(getWindowDimensions());
-    }
-
-    window.addEventListener('resize', handleResize);
-    return () => window.removeEventListener('resize', handleResize);
-  }, []);
-
-  return windowDimensions;
-}
-
 const Brands = () => {
   const middle = Math.floor(images.length / 2);
   const [currentSlide, setCurrentSlide] = useState(middle);
-  const { width } = useWindowDimensions();
-  const moveBy = Math.floor(width / 180);
+  const ref = useRef(null);
+  const [width, setWidth] = useState(0);
+  const moveBy = Math.floor(width / 100);
+
+  useEffect(() => {
+    setWidth(ref.current ? ref.current.offsetWidth : 0);
+  }, [ref.current]);
 
   const handleSwipeLeft = () => {
     setCurrentSlide(prevState => {
@@ -64,11 +46,11 @@ const Brands = () => {
   const getSlidePosition = () => {
     if (currentSlide > middle) {
       const delta = currentSlide - middle;
-      const position = delta * 90;
+      const position = delta * 100;
       return `${position}`;
     } else if (currentSlide < middle) {
       const delta = middle - currentSlide;
-      const position = delta * 90;
+      const position = delta * 100;
       return `-${position}`;
     } else return `0`;
   };
@@ -80,7 +62,7 @@ const Brands = () => {
           <div className={styles.brands}>
             <div className={styles.row}>
               <button onClick={handleSwipeRight}>{`<`}</button>
-              <div className={styles.logos}>
+              <div className={styles.logos} ref={ref}>
                 <div
                   className={styles.logoBox}
                   style={{
