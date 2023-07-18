@@ -20,9 +20,8 @@ import {
   addComparedProduct,
   deleteComparedProduct,
 } from '../../../redux/comparedReducer';
-import { toggleFavorite } from '../../../redux/productsRedux';
 
-import { addProduct } from '../../../redux/cartRedux';
+import { toggleFavorite } from '../../../redux/productsRedux';
 
 const ProductBox = ({
   id,
@@ -89,7 +88,6 @@ const ProductBox = ({
     >
       {isPopupOpen && <QuickViewPopup id={id} onClose={handlePopupClose} />}
       <div className={styles.photo}>
-        {promo && <div className={styles.sale}>{promo}</div>}
         {promo && <div className={styles.sale}>{promo}</div>}
         <Link to={`/product/${id}`}>
           <img src={role ? `../${picture}` : picture} alt={name} />

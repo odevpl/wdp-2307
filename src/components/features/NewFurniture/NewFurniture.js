@@ -33,7 +33,14 @@ class NewFurniture extends React.Component {
     const { categories, products, compared, viewport } = this.props;
     const { activeCategory, activePage, fadeOut } = this.state;
     const categoryProducts = products.filter(item => item.category === activeCategory);
-    const productsPerPage = viewport === 'desktop' ? 8 : viewport === 'tablet' ? 2 : 1;
+    let productsPerPage;
+
+    if (this.props.role === 'internal') {
+      productsPerPage = 12;
+    } else {
+      productsPerPage = viewport === 'desktop' ? 8 : viewport === 'tablet' ? 2 : 1;
+    }
+
     const pagesCount = Math.ceil(categoryProducts.length / productsPerPage);
 
     const dots = [];
@@ -56,7 +63,9 @@ class NewFurniture extends React.Component {
           <div className={styles.panelBar}>
             <div className='row no-gutters align-items-end'>
               <div className={'col-auto ' + styles.heading}>
-                <h3>New furniture</h3>
+                <h3>
+                  {this.props.role === 'internal' ? 'Furniture' : 'New furniture'}
+                </h3>
               </div>
               <div className={'col ' + styles.menu}>
                 <ul>
@@ -93,7 +102,14 @@ class NewFurniture extends React.Component {
               {categoryProducts
                 .slice(activePage * productsPerPage, (activePage + 1) * productsPerPage)
                 .map(item => (
-                  <div className='col-lg-3 col-sm-6 col-12' key={item.id}>
+                  <div
+                    className={
+                      this.props.role === 'internal'
+                        ? 'col-lg-4'
+                        : 'col-lg-3 col-sm-6 col-12'
+                    }
+                    key={item.id}
+                  >
                     <ProductBox
                       role={this.props.role ? this.props.role : ''}
                       {...item}
