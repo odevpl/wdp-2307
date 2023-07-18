@@ -35,10 +35,17 @@ class NewFurniture extends React.Component {
     const categoryProducts = products.filter(item => item.category === activeCategory);
     let productsPerPage;
 
-    if (this.props.role === 'internal') {
-      productsPerPage = 12;
-    } else {
-      productsPerPage = viewport === 'desktop' ? 8 : viewport === 'tablet' ? 2 : 1;
+    switch (this.props.role) {
+      case 'internal':
+        productsPerPage = 12;
+        break;
+
+      case 'product':
+        productsPerPage = 4;
+        break;
+
+      default:
+        productsPerPage = viewport === 'desktop' ? 8 : viewport === 'tablet' ? 2 : 1;
     }
 
     const pagesCount = Math.ceil(categoryProducts.length / productsPerPage);
