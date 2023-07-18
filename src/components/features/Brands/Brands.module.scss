@@ -8,8 +8,7 @@ $tablet-width: 768px;
     @media only screen and (max-width: $mobile-width) {
       @content;
     }
-  }
-  @else if $media == tablets {
+  } @else if $media == tablets {
     @media only screen and (min-width: $mobile-width + 1) and (max-width: $tablet-width) {
       @content;
     }
@@ -18,22 +17,20 @@ $tablet-width: 768px;
 
 .root {
   margin: 35px 0;
-  .container{
+
+  .container {
     display: flex;
   }
 
   .brands {
     border-top: 1px solid $brands-grey;
     border-bottom: 1px solid $brands-grey;
-    padding: 5px 0;
-    margin-bottom: 10px;
+    padding: 10px;
 
     .row {
-      height: 90px;
       display: flex;
       flex-direction: row;
       justify-content: space-between;
-      margin: 25px;
 
       button {
         color: $brands-button-arrow;
@@ -43,44 +40,22 @@ $tablet-width: 768px;
       .logos {
         display: flex;
         flex-direction: row;
-        justify-content: space-between;
+        justify-content: center;
         border: none;
-
-        .logo {
-          height: 100px;
-          width: 100px;
-          margin: 0 15px;
-          border: 1px solid $brands-grey;
-        }
+        overflow: hidden;
+        width: 100%;
 
         .logoBox {
           display: flex;
           flex-direction: row;
+          gap: 10px;
 
           .logo {
             height: 90px;
             width: 90px;
-            margin: 0 10px;
             border: 1px solid $brands-grey;
             display: flex;
             flex-direction: row;
-
-            // Responsywne dostosowanie rozmiarów logotypów
-            @include respond-to(mobile) {
-              height: 90px;
-              width: 90px;
-              &:nth-child(n+3) {
-                display: none;
-              }
-            }
-
-            @include respond-to(tablets) {
-              height: 90px;
-              width: 90px;
-              &:nth-child(n+5) {
-                display: none;
-              }
-            }
           }
         }
       }

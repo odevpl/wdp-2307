@@ -3,22 +3,43 @@ import Swipeable from '../Swipable/Swipable';
 
 import styles from './Brands.module.scss';
 
+const images = [
+  '/images/logos/logo-1.jpg',
+  '/images/logos/logo-2.jpg',
+  '/images/logos/logo-3.jpg',
+  '/images/logos/logo-4.jpg',
+  '/images/logos/logo-5.jpg',
+  '/images/logos/logo-6.jpg',
+  '/images/logos/logo-7.jpg',
+];
+
 const Brands = () => {
-  const [currentSlide, setCurrentSlide] = useState(0);
-  const slidesToShow = 6; // Ilość widocznych slajdów na ekranie w wersji desktop (zmień wartość jeśli inna)
+  const middle = Math.floor(images.length / 2);
+  const [currentSlide, setCurrentSlide] = useState(middle);
 
   const handleSwipeLeft = () => {
-    const newSlide = currentSlide - 1 < 0 ? 0 : currentSlide - 1;
-    setCurrentSlide(newSlide);
+    setCurrentSlide(prevState => {
+      if (prevState === 0) return 0;
+      return prevState - 1;
+    });
   };
 
   const handleSwipeRight = () => {
-    const totalSlides = Math.ceil(
-      document.querySelectorAll(`.${styles.logo}`).length / slidesToShow
-    );
-    const newSlide =
-      currentSlide + 1 >= totalSlides ? totalSlides - 1 : currentSlide + 1;
-    setCurrentSlide(newSlide);
+    setCurrentSlide(prevState => {
+      if (prevState === images.length - 1) return images.length - 1;
+      return prevState + 1;
+    });
+  };
+  const getSlidePosition = () => {
+    if (currentSlide > 3) {
+      const delta = currentSlide - middle;
+      const position = delta * 90;
+      return `${position}`;
+    } else if (currentSlide < 3) {
+      const delta = middle - currentSlide;
+      const position = delta * 90;
+      return `-${position}`;
+    } else return `0`;
   };
 
   return (
@@ -27,79 +48,20 @@ const Brands = () => {
         <Swipeable onSwipeLeft={handleSwipeLeft} onSwipeRight={handleSwipeRight}>
           <div className={styles.brands}>
             <div className={styles.row}>
-              <button onClick={handleSwipeLeft}>&#60;</button>
+              <button onClick={handleSwipeLeft}>{`<`}</button>
               <div className={styles.logos}>
                 <div
                   className={styles.logoBox}
                   style={{
-                    transform: `translateX(-${currentSlide * (100 / slidesToShow)}%)`,
+                    transform: `translateX(${getSlidePosition()}px)`,
                   }}
                 >
-                  <img
-                    className={styles.logo}
-                    alt='Logo'
-                    src={'/images/logos/logo-1.jpg'}
-                  ></img>
-                  <img
-                    className={styles.logo}
-                    alt='Logo'
-                    src={'/images/logos/logo-2.jpg'}
-                  ></img>
-                  <img
-                    className={styles.logo}
-                    alt='Logo'
-                    src={'/images/logos/logo-3.jpg'}
-                  ></img>
-                  <img
-                    className={styles.logo}
-                    alt='Logo'
-                    src={'/images/logos/logo-4.jpg'}
-                  ></img>
-                  <img
-                    className={styles.logo}
-                    alt='Logo'
-                    src={'/images/logos/logo-5.jpg'}
-                  ></img>
-                  <img
-                    className={styles.logo}
-                    alt='Logo'
-                    src={'/images/logos/logo-6.jpg'}
-                  ></img>
-                  {/* Dodaj pozostałe loga */}
-                  <img
-                    className={styles.logo}
-                    alt='Logo'
-                    src={'/images/logos/logo-1.jpg'}
-                  ></img>
-                  <img
-                    className={styles.logo}
-                    alt='Logo'
-                    src={'/images/logos/logo-2.jpg'}
-                  ></img>
-                  <img
-                    className={styles.logo}
-                    alt='Logo'
-                    src={'/images/logos/logo-3.jpg'}
-                  ></img>
-                  <img
-                    className={styles.logo}
-                    alt='Logo'
-                    src={'/images/logos/logo-4.jpg'}
-                  ></img>
-                  <img
-                    className={styles.logo}
-                    alt='Logo'
-                    src={'/images/logos/logo-5.jpg'}
-                  ></img>
-                  <img
-                    className={styles.logo}
-                    alt='Logo'
-                    src={'/images/logos/logo-6.jpg'}
-                  ></img>
-                  {/* Kontynuuj dodawanie pozostałych logotypów */}
+                  {images.map(i => (
+                    <img className={styles.logo} alt='Logo' src={i} key={i} />
+                  ))}
                 </div>
               </div>
-              <button onClick={handleSwipeRight}>&#62;</button>
+              <button onClick={handleSwipeRight}>{`>`}</button>
             </div>
           </div>
         </Swipeable>
