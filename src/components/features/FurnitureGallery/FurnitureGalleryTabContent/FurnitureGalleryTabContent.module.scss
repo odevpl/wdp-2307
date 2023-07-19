@@ -24,17 +24,7 @@
         flex-direction: row;
         justify-content: space-between;
         border: none;
-        .slidesBox {
-          display: flex;
-          flex-direction: row;
-          align-items: center;
-          &:nth-child(2) {
-            display: none;
-          }
-          &:nth-child(3) {
-            display: none;
-          }
-        }
+
         .slide {
           height: 70px;
           width: 70px;
@@ -45,28 +35,6 @@
         }
         .active {
           opacity: 1;
-        }
-        // Media queries
-        @media screen and (min-width: 992px) {
-          // Tablet
-          .slidesBox {
-            &:nth-child(2) {
-              display: flex; 
-            }
-          }
-        }
-
-        @media screen and (min-width: 1200px) {
-          // Desktop
-          .slidesBox {
-            &:nth-child(2) {
-              display: flex; 
-            }
-
-            &:nth-child(3) {
-              display: flex; 
-            }
-          }
         }
       }
     }
@@ -100,14 +68,14 @@
       &::before {
         top: 0;
         left: 0;
-        border-width: 30px 30px 0 0; /* Trójkąt w prawym dolnym rogu */
+        border-width: 30px 30px 0 0;
         border-top-color: $furniture-gallery-dark;
       }
 
       &::after {
         bottom: 0;
         right: 0;
-        border-width: 0 0 30px 30px; /* Trójkąt w lewym górnym rogu */
+        border-width: 0 0 30px 30px;
         border-bottom-color: $furniture-gallery-dark;
       }
     }
@@ -177,5 +145,14 @@
         }
       }
     }
+  }
+
+  .fade {
+    opacity: 0;
+    transition: opacity 0.5s;
+  }
+  .fadeIn {
+    opacity: 1;
+    transition: opacity 0.5s;
   }
 }

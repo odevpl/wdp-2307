@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import ProductStars from '../../ProductStars/ProductStars';
 import styles from './FurnitureGalleryTabContent.module.scss';
 import Button from '../../../common/Button/Button';
@@ -24,23 +24,41 @@ import {
   setActiveGalleryItem,
   getActiveGalleryItem,
 } from '../../../../redux/galleryRedux';
-import { useEffect } from 'react';
+import { getViewport } from '../../../../redux/viewportRedux';
 
 const TabContent = ({ productsDataId }) => {
+  const [fadeOutImage, setFadeOutImage] = useState(false);
+  const [fadeInImage, setFadeInImage] = useState(false);
+
   const activeGalleryItemId = useSelector(state => getActiveGalleryItem(state));
   const item = useSelector(state => getProductById(state, activeGalleryItemId));
-
+  const viewport = useSelector(state => getViewport(state));
   const dispatch = useDispatch();
-  useEffect(() => {
-    dispatch(setActiveGalleryItem(productsDataId[0]));
-  }, [dispatch, productsDataId]);
   const sliderItems = useSelector(state => getByIdArray(state, productsDataId));
 
   const [selectedStars, setSelectedStars] = useState(item.myStars);
   const [activeSlide, setActiveSlide] = useState(null);
+  const [visibleSlides, setVisibleSlides] = useState(6);
+  const [startIndex, setStartIndex] = useState(0);
 
-  const comparedProducts = useSelector(state => getAllCompared(state));
-  const compareCount = useSelector(state => getCountCompared(state));
+  useEffect(() => {
+    dispatch(setActiveGalleryItem(productsDataId[0]));
+  }, [dispatch, productsDataId]);
+
+  useEffect(() => {
+    if (viewport === 'desktop') {
+      setVisibleSlides(6);
+    } else if (viewport === 'tablet') {
+      setVisibleSlides(4);
+    } else if (viewport === 'mobile') {
+      setVisibleSlides(2);
+    }
+  }, [viewport]);
+
+  useEffect(() => {
+    dispatch(setActiveGalleryItem(productsDataId[0]));
+    setStartIndex(0);
+  }, [dispatch, productsDataId, viewport]);
 
   const handleStarClick = clickedStars => {
     setSelectedStars(clickedStars);
@@ -50,6 +68,7 @@ const TabContent = ({ productsDataId }) => {
     e.preventDefault();
     dispatch(toggleFavorite(item.id));
   };
+
   const addToCartHandler = e => {
     e.preventDefault();
 
@@ -62,10 +81,23 @@ const TabContent = ({ productsDataId }) => {
       })
     );
   };
+
   const handleSlideClick = index => {
-    setActiveSlide(index);
-    dispatch(setActiveGalleryItem(productsDataId[index]));
+    setFadeOutImage(true);
+    setTimeout(() => {
+      setActiveSlide(index);
+      setFadeOutImage(false);
+      setFadeInImage(true);
+      setTimeout(() => {
+        setFadeInImage(false);
+      }, 500);
+      dispatch(setActiveGalleryItem(productsDataId[index]));
+    }, 500);
   };
+
+  const comparedProducts = useSelector(state => getAllCompared(state));
+  const compareCount = useSelector(state => getCountCompared(state));
+
   const onCompareClick = evt => {
     evt.preventDefault();
 
@@ -77,11 +109,50 @@ const TabContent = ({ productsDataId }) => {
     if (compareCount < 4) dispatch(addComparedProduct(item.id));
   };
 
+  const renderSliderImages = () => {
+    const endIndex = startIndex + visibleSlides;
+    const visibleSliderItems = sliderItems.slice(startIndex, endIndex);
+
+    return visibleSliderItems.map((sliderItem, index) => (
+      <img
+        key={sliderItem.id}
+        className={`${styles.slide} ${activeSlide === index ? styles.active : ''}`}
+        alt='slide'
+        src={sliderItem.picture}
+        onClick={() => handleSlideClick(startIndex + index)}
+      />
+    ));
+  };
+
+  const handlePrevClick = () => {
+    const newStartIndex = startIndex - visibleSlides;
+    if (newStartIndex >= 0) {
+      setStartIndex(newStartIndex);
+      setActiveSlide(null);
+    }
+  };
+
+  const handleNextClick = () => {
+    const newStartIndex = startIndex + visibleSlides;
+    const remainingSlides = sliderItems.length - newStartIndex;
+
+    if (remainingSlides >= visibleSlides || remainingSlides > 0) {
+      setStartIndex(newStartIndex);
+      setActiveSlide(null);
+    }
+  };
+
   return (
     <div className={styles.root}>
       <div className={styles.TabContent}>
         <div className={styles.image}>
-          <img src={`/${item.picture}`} alt='activeItem' className={styles.image} />
+          <img
+            src={`/${item.picture}`}
+            alt='activeItem'
+            className={`${styles.image} ${styles.activeImage} ${
+              fadeOutImage ? styles.fade : ''
+            } ${fadeInImage ? styles.fadeIn : ''}`}
+          />
           <div className={styles.stars}>
             <div className={styles.priceContainer}>
               <h3 className={styles.price}>${item.price}</h3>
@@ -132,64 +203,9 @@ const TabContent = ({ productsDataId }) => {
         </div>
         <div className={styles.furnitureGallerySlider}>
           <div className={styles.row}>
-            <button>&#60;</button>
-            <div className={styles.slider}>
-              <div className={styles.slidesBox}>
-                <img
-                  className={`${styles.slide} ${
-                    activeSlide === 0 ? styles.active : ''
-                  }`}
-                  alt='slide'
-                  src={sliderItems[0].picture}
-                  onClick={() => handleSlideClick(0)}
-                />
-                <img
-                  className={`${styles.slide} ${
-                    activeSlide === 1 ? styles.active : ''
-                  }`}
-                  alt='slide'
-                  src={sliderItems[1].picture}
-                  onClick={() => handleSlideClick(1)}
-                />
-              </div>
-              <div className={styles.slidesBox}>
-                <img
-                  className={`${styles.slide} ${
-                    activeSlide === 2 ? styles.active : ''
-                  }`}
-                  alt='slide'
-                  src={sliderItems[2].picture}
-                  onClick={() => handleSlideClick(2)}
-                />
-                <img
-                  className={`${styles.slide} ${
-                    activeSlide === 3 ? styles.active : ''
-                  }`}
-                  alt='slide'
-                  src={sliderItems[3].picture}
-                  onClick={() => handleSlideClick(3)}
-                />
-              </div>
-              <div className={styles.slidesBox}>
-                <img
-                  className={`${styles.slide} ${
-                    activeSlide === 4 ? styles.active : ''
-                  }`}
-                  alt='slide'
-                  src={sliderItems[4].picture}
-                  onClick={() => handleSlideClick(4)}
-                />
-                <img
-                  className={`${styles.slide} ${
-                    activeSlide === 5 ? styles.active : ''
-                  }`}
-                  alt='slide'
-                  src={sliderItems[5].picture}
-                  onClick={() => handleSlideClick(5)}
-                />
-              </div>
-            </div>
-            <button>&#62;</button>
+            <button onClick={handlePrevClick}>&#60;</button>
+            <div className={styles.slider}>{renderSliderImages()}</div>
+            <button onClick={handleNextClick}>&#62;</button>
           </div>
         </div>
       </div>
