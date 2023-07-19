@@ -19,6 +19,7 @@ import {
   deleteComparedProduct,
 } from '../../../../redux/comparedReducer';
 import { addProduct } from '../../../../redux/cartRedux';
+
 import { getByIdArray } from '../../../../redux/productsRedux';
 import {
   setActiveGalleryItem,
@@ -33,11 +34,13 @@ const TabContent = ({ productsDataId }) => {
   const activeGalleryItemId = useSelector(state => getActiveGalleryItem(state));
   const item = useSelector(state => getProductById(state, activeGalleryItemId));
   const viewport = useSelector(state => getViewport(state));
+
   const dispatch = useDispatch();
   const sliderItems = useSelector(state => getByIdArray(state, productsDataId));
 
   const [selectedStars, setSelectedStars] = useState(item.myStars);
   const [activeSlide, setActiveSlide] = useState(null);
+
   const [visibleSlides, setVisibleSlides] = useState(6);
   const [startIndex, setStartIndex] = useState(0);
 
@@ -59,6 +62,10 @@ const TabContent = ({ productsDataId }) => {
     dispatch(setActiveGalleryItem(productsDataId[0]));
     setStartIndex(0);
   }, [dispatch, productsDataId, viewport]);
+
+  const currency = useSelector(state => state.currency.currency);
+  const conversionRates = useSelector(state => state.currency.conversionRates);
+
 
   const handleStarClick = clickedStars => {
     setSelectedStars(clickedStars);
@@ -95,8 +102,15 @@ const TabContent = ({ productsDataId }) => {
     }, 500);
   };
 
+
   const comparedProducts = useSelector(state => getAllCompared(state));
   const compareCount = useSelector(state => getCountCompared(state));
+
+  const convertPrice = () => {
+    const rate = conversionRates[currency];
+    return item.price * rate;
+  };
+
 
   const onCompareClick = evt => {
     evt.preventDefault();
@@ -155,8 +169,16 @@ const TabContent = ({ productsDataId }) => {
           />
           <div className={styles.stars}>
             <div className={styles.priceContainer}>
-              <h3 className={styles.price}>${item.price}</h3>
-              {item.oldPrice && <h4 className={styles.oldPrice}>${item.oldPrice}</h4>}
+              <h3 className={styles.price}>
+                {currency === 'EUR' ? '€' : currency === 'PLN' ? 'PLN' : '$'}{' '}
+                {convertPrice()}
+              </h3>
+              {item.oldPrice && (
+                <h4 className={styles.oldPrice}>
+                  {currency === 'EUR' ? '€' : currency === 'PLN' ? 'PLN' : '$'}{' '}
+                  {item.oldPrice}
+                </h4>
+              )}
             </div>
             <h5 className={styles.itemName}>{item.name}</h5>
             <ProductStars
