@@ -3,7 +3,11 @@ import PropTypes from 'prop-types';
 
 import styles from './ProductBox.module.scss';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faExchangeAlt, faShoppingBasket } from '@fortawesome/free-solid-svg-icons';
+import {
+  faExchangeAlt,
+  faShoppingBasket,
+  faEye,
+} from '@fortawesome/free-solid-svg-icons';
 import { faStar as faHeart } from '@fortawesome/free-regular-svg-icons';
 import Button from '../Button/Button';
 import ProductStars from '../../features/ProductStars/ProductStars';
@@ -35,18 +39,20 @@ const ProductBox = ({
   myStars,
   isFavorite,
   oldPrice,
+  time,
   role,
   currency,
   conversionRates,
   setCurrency,
 }) => {
-  const [isPopupOpen, setIsPopupOpen] = useState(false);
+  const dispatch = useDispatch();
 
+  const [isPopupOpen, setIsPopupOpen] = useState(false);
   const [selectedStars, setSelectedStars] = useState(myStars);
   const [favorites, setFavorites] = useState([isFavorite]);
+  const [isHovering, setIsHovering] = useState(false);
   const comparedProducts = useSelector(state => getAllCompared(state));
   const compareCount = useSelector(state => getCountCompared(state));
-  const dispatch = useDispatch();
 
   const convertPrice = () => {
     const rate = conversionRates[currency];
@@ -62,20 +68,30 @@ const ProductBox = ({
     }
   };
 
+  const getReturnValues = countDown => {
+    // calculate time left
+    const days = Math.floor(countDown / (1000 * 60 * 60 * 24));
+    const hours = Math.floor((countDown % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    const minutes = Math.floor((countDown % (1000 * 60 * 60)) / (1000 * 60));
+    const seconds = Math.floor((countDown % (1000 * 60)) / 1000);
+
+    return [days, hours, minutes, seconds];
+  };
+
+  const [days, hours, minutes, seconds] = getReturnValues(time);
+
   const favoriteHandler = e => {
     e.preventDefault();
     dispatch(toggleFavorite(id));
     setFavorites([...favorites, isFavorite]);
   };
 
-  const [isHovering, setIsHovering] = useState(false);
-
   const handleMouseOver = () => {
     setIsHovering(true);
   };
 
   const handleMouseOut = () => {
-    setIsHovering(true);
+    setIsHovering(false);
     //setIsHovering(false);
   };
 
@@ -124,16 +140,63 @@ const ProductBox = ({
     >
       {isPopupOpen && <QuickViewPopup id={id} onClose={handlePopupClose} />}
       <div className={styles.photo}>
-        {promo && <div className={styles.sale}>{promo}</div>}
+        {promo && role !== 'promoted' ? <div className={styles.sale}>{promo}</div> : ''}
         <Link to={`/product/${id}`}>
-          <img src={role ? `../${picture}` : picture} alt={name} />
+          <img
+            src={role && role !== 'promoted' ? `../${picture}` : picture}
+            alt={name}
+          />
         </Link>
         {isHovering && (
           <div className={styles.buttons}>
-            <Button variant='small' onClick={handleQuickViewClick}>
-              Quick View
-            </Button>
-            <Button variant='small' onClick={addToCartHandler}>
+            {role !== 'promoted' ? (
+              <Button
+                className={styles.quickViewBtn}
+                variant='small'
+                onClick={handleQuickViewClick}
+              >
+                Quick View
+              </Button>
+            ) : (
+              ''
+            )}
+
+            {role === 'promoted' ? (
+              <div className={styles.countdown}>
+                <ul>
+                  <li>
+                    <span>{days}</span>
+                    <br />
+                    days
+                  </li>
+                  <li>
+                    <span>{hours}</span>
+                    <br />
+                    hrs
+                  </li>
+                  <li>
+                    <span>{minutes}</span>
+                    <br />
+                    mins
+                  </li>
+                  <li>
+                    <span>{seconds}</span>
+                    <br />
+                    secs
+                  </li>
+                </ul>
+              </div>
+            ) : (
+              ''
+            )}
+
+            <Button
+              variant='small'
+              onClick={addToCartHandler}
+              className={
+                role === 'promoted' ? styles.addButton : styles.addButtonBottom
+              }
+            >
               <FontAwesomeIcon icon={faShoppingBasket}></FontAwesomeIcon> ADD TO CART
             </Button>
           </div>
@@ -162,6 +225,13 @@ const ProductBox = ({
           >
             <FontAwesomeIcon icon={faExchangeAlt}>Add to compare</FontAwesomeIcon>
           </Button>
+          {role === 'promoted' ? (
+            <Button variant='outline' onClick={handleQuickViewClick}>
+              <FontAwesomeIcon icon={faEye}>Favorite</FontAwesomeIcon>
+            </Button>
+          ) : (
+            ''
+          )}
         </div>
         <div className={styles.pricesContainer}>
           {oldPrice && <p className={styles.oldPrice}> $ {oldPrice} </p>}
@@ -189,6 +259,7 @@ const mapDispatchToProps = {
 
 ProductBox.propTypes = {
   role: PropTypes.string,
+  time: PropTypes.number,
   id: PropTypes.string,
   children: PropTypes.node,
   name: PropTypes.string,
