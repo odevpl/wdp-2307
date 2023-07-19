@@ -12,7 +12,7 @@ import QuickViewPopup from '../../views/QuickViewPopup/QuickViewPopup';
 //import { toggleFavorite } from '../../../redux/productsRedux';
 import { Link } from 'react-router-dom/cjs/react-router-dom.min';
 
-import { useSelector, useDispatch } from 'react-redux';
+import { useSelector, useDispatch, connect } from 'react-redux';
 
 import {
   getAllCompared,
@@ -22,6 +22,7 @@ import {
 } from '../../../redux/comparedReducer';
 
 import { toggleFavorite } from '../../../redux/productsRedux';
+import { setCurrency } from '../../../redux/currencyRedux';
 
 const ProductBox = ({
   id,
@@ -34,11 +35,31 @@ const ProductBox = ({
   isFavorite,
   oldPrice,
   role,
+  currency,
+  conversionRates,
+  setCurrency,
 }) => {
   const [isPopupOpen, setIsPopupOpen] = useState(false);
 
   const [selectedStars, setSelectedStars] = useState(myStars);
   const [favorites, setFavorites] = useState([isFavorite]);
+  const comparedProducts = useSelector(state => getAllCompared(state));
+  const compareCount = useSelector(state => getCountCompared(state));
+  const dispatch = useDispatch();
+
+  const convertPrice = () => {
+    const rate = conversionRates[currency];
+    const convertedPrice = price * rate;
+
+    switch (currency) {
+      case 'EUR':
+        return `€ ${convertedPrice}`;
+      case 'PLN':
+        return `zł ${convertedPrice}`;
+      default:
+        return `$ ${convertedPrice}`;
+    }
+  };
 
   const favoriteHandler = e => {
     e.preventDefault();
@@ -47,9 +68,6 @@ const ProductBox = ({
   };
 
   const [isHovering, setIsHovering] = useState(false);
-  const comparedProducts = useSelector(state => getAllCompared(state));
-  const compareCount = useSelector(state => getCountCompared(state));
-  const dispatch = useDispatch();
 
   const handleMouseOver = () => {
     setIsHovering(true);
@@ -131,13 +149,24 @@ const ProductBox = ({
           {oldPrice && <p className={styles.oldPrice}> $ {oldPrice} </p>}
           <div className={styles.price}>
             <Button noHover variant={isHovering ? 'price' : 'small'}>
-              $ {price}
+              {convertPrice()}
             </Button>
           </div>
         </div>
       </div>
     </div>
   );
+};
+
+const mapStateToProps = state => {
+  return {
+    currency: state.currency.currency,
+    conversionRates: state.currency.conversionRates,
+  };
+};
+
+const mapDispatchToProps = {
+  setCurrency,
 };
 
 ProductBox.propTypes = {
@@ -154,6 +183,9 @@ ProductBox.propTypes = {
   onStarClick: PropTypes.func,
   oldPrice: PropTypes.number,
   isFavorite: PropTypes.bool,
+  currency: PropTypes.string,
+  conversionRates: PropTypes.object,
+  setCurrency: PropTypes.func,
 };
 
-export default ProductBox;
+export default connect(mapStateToProps, mapDispatchToProps)(ProductBox);

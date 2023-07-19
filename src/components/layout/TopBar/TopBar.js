@@ -5,6 +5,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCaretDown, faUser, faLock, faBars } from '@fortawesome/free-solid-svg-icons';
 import { Link } from 'react-router-dom';
 import styles from './TopBar.module.scss';
+import CurrencyChange from '../../features/CurrencyChange/CurrencyChange';
 
 const TopBar = () => (
   <div className={styles.root}>
@@ -13,9 +14,7 @@ const TopBar = () => (
         <div className={`col text-left ${styles.topOptions}`}>
           <ul>
             <li>
-              <a href='#'>
-                USD <FontAwesomeIcon className={styles.icon} icon={faCaretDown} />
-              </a>
+              <CurrencyChange />
             </li>
             <li>
               <a href='#'>
