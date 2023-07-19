@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { useDispatch } from 'react-redux';
 import { updateViewport } from '../../../redux/viewportRedux';
+import { loadProducts } from '../../../redux/productsActions';
 
 import Header from '../Header/Header';
 import Footer from '../Footer/Footer';
@@ -9,6 +10,10 @@ import Footer from '../Footer/Footer';
 const MainLayout = ({ children }) => {
   const dispatch = useDispatch();
   const [mode, setMode] = useState('');
+
+  useEffect(() => {
+    dispatch(loadProducts());
+  }, [dispatch]);
 
   useEffect(() => {
     const handleResize = () => {

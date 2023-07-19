@@ -22,6 +22,8 @@ import { addProduct } from '../../../../redux/cartRedux';
 
 const TabContent = ({ id }) => {
   const item = useSelector(state => getProductById(state, id));
+  console.log('item:', item);
+
   const dispatch = useDispatch();
   const [selectedStars, setSelectedStars] = useState(item.myStars);
   const [activeSlide, setActiveSlide] = useState(null);

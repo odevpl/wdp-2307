@@ -6,11 +6,18 @@ import { useState } from 'react';
 import TabContent from './FurnitureGalleryTabContent/FurnitureGalleryTabContent';
 
 const FurnitureGallery = () => {
-  const rightSideProduct = useSelector(state =>
-    getProductById(state, 'aenean-ru-bristique-2')
-  );
+  const initialStateId = `aenean-ru-bristique-2`;
+  const rightSideProduct = useSelector(state => getProductById(state, initialStateId));
+
   const [activeTab, setActiveTab] = useState('Tab 1');
   const [, setHoveredTab] = useState(null);
+
+  const tabProductIds = {
+    'Tab 1': 'aenean-ru-bristique-2',
+    'Tab 2': 'aenean-ru-bristique-6',
+    'Tab 3': 'aenean-ru-bristique-20',
+    'Tab 4': 'aenean-ru-bristique-21',
+  };
 
   const handleTabClick = tabLabel => {
     setActiveTab(tabLabel);
@@ -88,22 +95,22 @@ const FurnitureGallery = () => {
                   <div className={styles.tabContent}>
                     {activeTab === 'Tab 1' && (
                       <div className={styles.positionContent}>
-                        <TabContent id='aenean-ru-bristique-2' />
+                        <TabContent id={tabProductIds['Tab 1']} />
                       </div>
                     )}
                     {activeTab === 'Tab 2' && (
                       <div className={styles.positionContent}>
-                        <TabContent id='aenean-ru-bristique-6' />
+                        <TabContent id={tabProductIds['Tab 2']} />
                       </div>
                     )}
                     {activeTab === 'Tab 3' && (
                       <div className={styles.positionContent}>
-                        <TabContent id='aenean-ru-bristique-20' />
+                        <TabContent id={tabProductIds['Tab 3']} />
                       </div>
                     )}
                     {activeTab === 'Tab 4' && (
                       <div className={styles.positionContent}>
-                        <TabContent id='aenean-ru-bristique-21' />
+                        <TabContent id={tabProductIds['Tab 4']} />
                       </div>
                     )}
                   </div>
