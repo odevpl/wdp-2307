@@ -4,6 +4,7 @@ import { useSelector } from 'react-redux';
 import { getProductById } from '../../../redux/productsRedux';
 import { useState } from 'react';
 import TabContent from './FurnitureGalleryTabContent/FurnitureGalleryTabContent';
+
 const FurnitureGallery = () => {
   const rightSideProduct = useSelector(state =>
     getProductById(state, 'aenean-ru-bristique-2')
@@ -22,6 +23,15 @@ const FurnitureGallery = () => {
   const handleTabMouseLeave = () => {
     setHoveredTab(null);
   };
+
+  const currency = useSelector(state => state.currency.currency);
+  const conversionRates = useSelector(state => state.currency.conversionRates);
+
+  const convertPrice = () => {
+    const rate = conversionRates[currency];
+    return rightSideProduct.price * rate;
+  };
+
   return (
     <div className={styles.root}>
       <div className='container'>
@@ -108,10 +118,14 @@ const FurnitureGallery = () => {
                 alt={rightSideProduct.name}
                 className={styles.image}
               />
-              <h4 className={styles.fromText}>
-                FROM <span className={styles.price}>$50.80</span>
-              </h4>
 
+              <h4 className={styles.fromText}>
+                FROM{' '}
+                <span className={styles.price}>
+                  {currency === 'EUR' ? '€' : '$'}{' '}
+                  {convertPrice(rightSideProduct.price)}
+                </span>
+              </h4>
               <p className={styles.description}>Bedroom Bed</p>
               <button className={styles.shopButton}>SHOP NOW</button>
             </div>

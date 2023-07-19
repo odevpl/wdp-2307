@@ -13,7 +13,7 @@ import Button from '../Button/Button';
 import ProductStars from '../../features/ProductStars/ProductStars';
 import QuickViewPopup from '../../views/QuickViewPopup/QuickViewPopup';
 
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { toggleFavorite } from '../../../redux/productsRedux';
 import { addProduct } from '../../../redux/cartRedux';
 
@@ -59,6 +59,14 @@ const ProductBoxPromoted = ({ ...item }) => {
   };
 
   const [days, hours, minutes, seconds] = getReturnValues(item.time);
+
+  const currency = useSelector(state => state.currency.currency);
+  const conversionRates = useSelector(state => state.currency.conversionRates);
+
+  const convertPrice = price => {
+    const rate = conversionRates[currency];
+    return price * rate;
+  };
 
   return (
     <div
@@ -129,7 +137,7 @@ const ProductBoxPromoted = ({ ...item }) => {
         </div>
         <div className={styles.price}>
           <Button noHover variant={isHovering ? 'price' : 'small'}>
-            $ {item.price}
+            {currency === 'EUR' ? '€' : '$'} {convertPrice(item.price)}
           </Button>
         </div>
       </div>

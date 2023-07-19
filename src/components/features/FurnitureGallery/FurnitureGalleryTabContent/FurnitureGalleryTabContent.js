@@ -19,6 +19,7 @@ import {
   deleteComparedProduct,
 } from '../../../../redux/comparedReducer';
 import { addProduct } from '../../../../redux/cartRedux';
+
 const TabContent = ({ id }) => {
   const item = useSelector(state => getProductById(state, id));
   const dispatch = useDispatch();
@@ -26,6 +27,9 @@ const TabContent = ({ id }) => {
   const [activeSlide, setActiveSlide] = useState(null);
   const comparedProducts = useSelector(state => getAllCompared(state));
   const compareCount = useSelector(state => getCountCompared(state));
+  const currency = useSelector(state => state.currency.currency);
+  const conversionRates = useSelector(state => state.currency.conversionRates);
+
   const handleStarClick = clickedStars => {
     setSelectedStars(clickedStars);
   };
@@ -34,6 +38,7 @@ const TabContent = ({ id }) => {
     e.preventDefault();
     dispatch(toggleFavorite(item.id));
   };
+
   const addToCartHandler = e => {
     e.preventDefault();
 
@@ -46,9 +51,16 @@ const TabContent = ({ id }) => {
       })
     );
   };
+
   const handleSlideClick = index => {
     setActiveSlide(index);
   };
+
+  const convertPrice = () => {
+    const rate = conversionRates[currency];
+    return item.price * rate;
+  };
+
   const onCompareClick = evt => {
     evt.preventDefault();
 
@@ -67,8 +79,16 @@ const TabContent = ({ id }) => {
           <img src={`/${item.picture}`} alt='chair' className={styles.image} />
           <div className={styles.stars}>
             <div className={styles.priceContainer}>
-              <h3 className={styles.price}>${item.price}</h3>
-              {item.oldPrice && <h4 className={styles.oldPrice}>${item.oldPrice}</h4>}
+              <h3 className={styles.price}>
+                {currency === 'EUR' ? '€' : currency === 'PLN' ? 'PLN' : '$'}{' '}
+                {convertPrice()}
+              </h3>
+              {item.oldPrice && (
+                <h4 className={styles.oldPrice}>
+                  {currency === 'EUR' ? '€' : currency === 'PLN' ? 'PLN' : '$'}{' '}
+                  {item.oldPrice}
+                </h4>
+              )}
             </div>
             <h5 className={styles.itemName}>{item.name}</h5>
             <ProductStars
