@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 
-import ProductBoxPromoted from '../../common/ProductBoxPromoted/ProductBoxPromoted';
+import ProductBox from '../../common/ProductBox/ProductBox';
 import { getPromoted } from '../../../redux/promotedRedux';
 import { getByIdArray } from '../../../redux/productsRedux';
 import styles from './Promoted.module.scss';
@@ -111,7 +111,7 @@ const Promoted = () => {
                 >
                   <div className={itemFadeOut ? styles.fade : ''}>
                     {promotedProducts.slice(activeItem, activeItem + 1).map(item => (
-                      <ProductBoxPromoted key={item.id} {...item} />
+                      <ProductBox role='promoted' key={item.id} {...item} />
                     ))}
                   </div>
                 </Swipeable>
