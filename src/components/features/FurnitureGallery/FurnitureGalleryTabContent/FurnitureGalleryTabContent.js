@@ -143,7 +143,36 @@ const TabContent = ({ id }) => {
                 src={'/images/chairs/chair-1.jpg'}
                 onClick={() => handleSlideClick(0)}
               />
-              {/* Rest of the slide images */}
+              <img
+                className={`${styles.slide} ${activeSlide === 1 ? styles.active : ''}`}
+                alt='slide'
+                src={'/images/chairs/chair-2.jpg'}
+                onClick={() => handleSlideClick(1)}
+              />
+              <img
+                className={`${styles.slide} ${activeSlide === 2 ? styles.active : ''}`}
+                alt='slide'
+                src={'/images/chairs/chair-3.jpg'}
+                onClick={() => handleSlideClick(2)}
+              />
+              <img
+                className={`${styles.slide} ${activeSlide === 3 ? styles.active : ''}`}
+                alt='slide'
+                src={'/images/chairs/chair-4.jpg'}
+                onClick={() => handleSlideClick(3)}
+              />
+              <img
+                className={`${styles.slide} ${activeSlide === 4 ? styles.active : ''}`}
+                alt='slide'
+                src={'/images/chairs/chair-5.jpg'}
+                onClick={() => handleSlideClick(4)}
+              />
+              <img
+                className={`${styles.slide} ${activeSlide === 5 ? styles.active : ''}`}
+                alt='slide'
+                src={'/images/chairs/chair-1.jpg'}
+                onClick={() => handleSlideClick(5)}
+              />
             </div>
             <button>&#62;</button>
           </div>
