@@ -19,13 +19,29 @@ import {
   deleteComparedProduct,
 } from '../../../../redux/comparedReducer';
 import { addProduct } from '../../../../redux/cartRedux';
-const TabContent = ({ id }) => {
-  const item = useSelector(state => getProductById(state, id));
+import { getByIdArray } from '../../../../redux/productsRedux';
+import {
+  setActiveGalleryItem,
+  getActiveGalleryItem,
+} from '../../../../redux/galleryRedux';
+import { useEffect } from 'react';
+
+const TabContent = ({ productsDataId }) => {
+  const activeGalleryItemId = useSelector(state => getActiveGalleryItem(state));
+  const item = useSelector(state => getProductById(state, activeGalleryItemId));
+
   const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(setActiveGalleryItem(productsDataId[0]));
+  }, [dispatch, productsDataId]);
+  const sliderItems = useSelector(state => getByIdArray(state, productsDataId));
+
   const [selectedStars, setSelectedStars] = useState(item.myStars);
   const [activeSlide, setActiveSlide] = useState(null);
+
   const comparedProducts = useSelector(state => getAllCompared(state));
   const compareCount = useSelector(state => getCountCompared(state));
+
   const handleStarClick = clickedStars => {
     setSelectedStars(clickedStars);
   };
@@ -48,23 +64,24 @@ const TabContent = ({ id }) => {
   };
   const handleSlideClick = index => {
     setActiveSlide(index);
+    dispatch(setActiveGalleryItem(productsDataId[index]));
   };
   const onCompareClick = evt => {
     evt.preventDefault();
 
-    if (comparedProducts.includes(id)) {
-      dispatch(deleteComparedProduct(id));
+    if (comparedProducts.includes(item.id)) {
+      dispatch(deleteComparedProduct(item.id));
       return;
     }
 
-    if (compareCount < 4) dispatch(addComparedProduct(id));
+    if (compareCount < 4) dispatch(addComparedProduct(item.id));
   };
 
   return (
     <div className={styles.root}>
       <div className={styles.TabContent}>
         <div className={styles.image}>
-          <img src={`/${item.picture}`} alt='chair' className={styles.image} />
+          <img src={`/${item.picture}`} alt='activeItem' className={styles.image} />
           <div className={styles.stars}>
             <div className={styles.priceContainer}>
               <h3 className={styles.price}>${item.price}</h3>
@@ -90,7 +107,7 @@ const TabContent = ({ id }) => {
             <Button
               className={styles.actionButton}
               onClick={onCompareClick}
-              variant={comparedProducts.includes(id) ? 'active' : 'outline'}
+              variant={comparedProducts.includes(item.id) ? 'active' : 'outline'}
               tooltip-text='Add to compare'
             >
               <FontAwesomeIcon icon={faExchangeAlt} />
@@ -117,42 +134,60 @@ const TabContent = ({ id }) => {
           <div className={styles.row}>
             <button>&#60;</button>
             <div className={styles.slider}>
-              <img
-                className={`${styles.slide} ${activeSlide === 0 ? styles.active : ''}`}
-                alt='slide'
-                src={'/images/chairs/chair-1.jpg'}
-                onClick={() => handleSlideClick(0)}
-              />
-              <img
-                className={`${styles.slide} ${activeSlide === 1 ? styles.active : ''}`}
-                alt='slide'
-                src={'/images/chairs/chair-2.jpg'}
-                onClick={() => handleSlideClick(1)}
-              />
-              <img
-                className={`${styles.slide} ${activeSlide === 2 ? styles.active : ''}`}
-                alt='slide'
-                src={'/images/chairs/chair-3.jpg'}
-                onClick={() => handleSlideClick(2)}
-              />
-              <img
-                className={`${styles.slide} ${activeSlide === 3 ? styles.active : ''}`}
-                alt='slide'
-                src={'/images/chairs/chair-4.jpg'}
-                onClick={() => handleSlideClick(3)}
-              />
-              <img
-                className={`${styles.slide} ${activeSlide === 4 ? styles.active : ''}`}
-                alt='slide'
-                src={'/images/chairs/chair-5.jpg'}
-                onClick={() => handleSlideClick(4)}
-              />
-              <img
-                className={`${styles.slide} ${activeSlide === 5 ? styles.active : ''}`}
-                alt='slide'
-                src={'/images/chairs/chair-1.jpg'}
-                onClick={() => handleSlideClick(5)}
-              />
+              <div className={styles.slidesBox}>
+                <img
+                  className={`${styles.slide} ${
+                    activeSlide === 0 ? styles.active : ''
+                  }`}
+                  alt='slide'
+                  src={sliderItems[0].picture}
+                  onClick={() => handleSlideClick(0)}
+                />
+                <img
+                  className={`${styles.slide} ${
+                    activeSlide === 1 ? styles.active : ''
+                  }`}
+                  alt='slide'
+                  src={sliderItems[1].picture}
+                  onClick={() => handleSlideClick(1)}
+                />
+              </div>
+              <div className={styles.slidesBox}>
+                <img
+                  className={`${styles.slide} ${
+                    activeSlide === 2 ? styles.active : ''
+                  }`}
+                  alt='slide'
+                  src={sliderItems[2].picture}
+                  onClick={() => handleSlideClick(2)}
+                />
+                <img
+                  className={`${styles.slide} ${
+                    activeSlide === 3 ? styles.active : ''
+                  }`}
+                  alt='slide'
+                  src={sliderItems[3].picture}
+                  onClick={() => handleSlideClick(3)}
+                />
+              </div>
+              <div className={styles.slidesBox}>
+                <img
+                  className={`${styles.slide} ${
+                    activeSlide === 4 ? styles.active : ''
+                  }`}
+                  alt='slide'
+                  src={sliderItems[4].picture}
+                  onClick={() => handleSlideClick(4)}
+                />
+                <img
+                  className={`${styles.slide} ${
+                    activeSlide === 5 ? styles.active : ''
+                  }`}
+                  alt='slide'
+                  src={sliderItems[5].picture}
+                  onClick={() => handleSlideClick(5)}
+                />
+              </div>
             </div>
             <button>&#62;</button>
           </div>
@@ -163,7 +198,7 @@ const TabContent = ({ id }) => {
 };
 
 TabContent.propTypes = {
-  id: PropTypes.string.isRequired,
+  productsDataId: PropTypes.array.isRequired,
 };
 
 export default TabContent;
