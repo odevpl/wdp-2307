@@ -5,6 +5,7 @@ import cartReducer from './cartRedux';
 import categoriesReducer from './categoriesRedux';
 import productsReducer from './productsRedux';
 import promotedReducer from './promotedRedux';
+import galleryReducer from './galleryRedux';
 import comparedReducer from './comparedReducer';
 import viewportReducer from './viewportRedux';
 import currencyReducer from './currencyRedux';
@@ -15,6 +16,7 @@ const reducers = {
   categories: categoriesReducer,
   products: productsReducer,
   promoted: promotedReducer,
+  gallery: galleryReducer,
   compared: comparedReducer,
   viewport: viewportReducer,
   currency: currencyReducer,
