@@ -4,15 +4,29 @@ import { useDispatch } from 'react-redux';
 import { updateViewport } from '../../../redux/viewportRedux';
 import { loadProducts } from '../../../redux/productsActions';
 
+import Loader from '../../utils/Loader/Loader';
 import Header from '../Header/Header';
 import Footer from '../Footer/Footer';
 
 const MainLayout = ({ children }) => {
   const dispatch = useDispatch();
   const [mode, setMode] = useState('');
+  const [showLoader, setShowLoader] = useState(true);
 
   useEffect(() => {
-    dispatch(loadProducts());
+    // Fetch data
+    dispatch(loadProducts())
+      .then(() => {
+        // Once data is fetched successfully, hide the loader after 5 seconds
+        setTimeout(() => {
+          setShowLoader(false);
+        }, 2000);
+      })
+      .catch(error => {
+        // Handle error during data fetching and hide the loader
+        console.error(error);
+        setShowLoader(false);
+      });
   }, [dispatch]);
 
   useEffect(() => {
@@ -39,9 +53,10 @@ const MainLayout = ({ children }) => {
 
   return (
     <div>
-      <Header />
-      {children}
-      <Footer />
+      {showLoader && <Loader />}
+      {!showLoader && <Header />}
+      {!showLoader && children}
+      {!showLoader && <Footer />}
     </div>
   );
 };

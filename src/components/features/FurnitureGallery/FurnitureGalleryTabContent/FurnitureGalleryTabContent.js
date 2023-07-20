@@ -22,8 +22,6 @@ import { addProduct } from '../../../../redux/cartRedux';
 
 const TabContent = ({ id }) => {
   const item = useSelector(state => getProductById(state, id));
-  console.log('item:', item);
-
   const dispatch = useDispatch();
   const [selectedStars, setSelectedStars] = useState(item.myStars);
   const [activeSlide, setActiveSlide] = useState(null);
@@ -78,7 +76,7 @@ const TabContent = ({ id }) => {
     <div className={styles.root}>
       <div className={styles.TabContent}>
         <div className={styles.image}>
-          <img src={`/${item.picture}`} alt='chair' className={styles.image} />
+          <img src={`${item.picture}`} alt='chair' className={styles.image} />
           <div className={styles.stars}>
             <div className={styles.priceContainer}>
               <h3 className={styles.price}>
@@ -142,37 +140,37 @@ const TabContent = ({ id }) => {
               <img
                 className={`${styles.slide} ${activeSlide === 0 ? styles.active : ''}`}
                 alt='slide'
-                src={'/images/chairs/chair-1.jpg'}
+                src={'images/chairs/chair-1.jpg'}
                 onClick={() => handleSlideClick(0)}
               />
               <img
                 className={`${styles.slide} ${activeSlide === 1 ? styles.active : ''}`}
                 alt='slide'
-                src={'/images/chairs/chair-2.jpg'}
+                src={'images/chairs/chair-2.jpg'}
                 onClick={() => handleSlideClick(1)}
               />
               <img
                 className={`${styles.slide} ${activeSlide === 2 ? styles.active : ''}`}
                 alt='slide'
-                src={'/images/chairs/chair-3.jpg'}
+                src={'images/chairs/chair-3.jpg'}
                 onClick={() => handleSlideClick(2)}
               />
               <img
                 className={`${styles.slide} ${activeSlide === 3 ? styles.active : ''}`}
                 alt='slide'
-                src={'/images/chairs/chair-4.jpg'}
+                src={'images/chairs/chair-4.jpg'}
                 onClick={() => handleSlideClick(3)}
               />
               <img
                 className={`${styles.slide} ${activeSlide === 4 ? styles.active : ''}`}
                 alt='slide'
-                src={'/images/chairs/chair-5.jpg'}
+                src={'images/chairs/chair-5.jpg'}
                 onClick={() => handleSlideClick(4)}
               />
               <img
                 className={`${styles.slide} ${activeSlide === 5 ? styles.active : ''}`}
                 alt='slide'
-                src={'/images/chairs/chair-1.jpg'}
+                src={'images/chairs/chair-1.jpg'}
                 onClick={() => handleSlideClick(5)}
               />
             </div>
