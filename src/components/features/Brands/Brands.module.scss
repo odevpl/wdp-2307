@@ -1,48 +1,64 @@
 @import "../../../styles/settings.scss";
 
+$mobile-width: 480px;
+$tablet-width: 768px;
+
+@mixin respond-to($media) {
+  @if $media == mobile {
+    @media only screen and (max-width: $mobile-width) {
+      @content;
+    }
+  } @else if $media == tablets {
+    @media only screen and (min-width: $mobile-width + 1) and (max-width: $tablet-width) {
+      @content;
+    }
+  }
+}
+
 .root {
-    margin: 40px 0;
-    .brands {
-        border-top: 1px solid $brands-grey;
-        border-bottom: 1px solid $brands-grey;
-        padding: 5px 0;
-        margin-bottom: 10px;
-        .row {
+  margin: 35px 0;
+
+  .container {
+    display: flex;
+  }
+
+  .brands {
+    border-top: 1px solid $brands-grey;
+    border-bottom: 1px solid $brands-grey;
+    padding: 10px;
+
+    .row {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+
+      button {
+        color: $brands-button-arrow;
+        background-color: $brands-button;
+      }
+
+      .logos {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        border: none;
+        overflow: hidden;
+        width: 100%;
+
+        .logoBox {
+          display: flex;
+          flex-direction: row;
+          gap: 10px;
+
+          .logo {
             height: 90px;
+            width: 90px;
+            border: 1px solid $brands-grey;
             display: flex;
             flex-direction: row;
-            justify-content: space-between;
-            margin: 25px;
-
-            button {
-                color: $brands-button-arrow;
-                background-color: $brands-button;
-            }
-            
-            .logos {
-                display: flex;
-                flex-direction: row;
-                justify-content: space-between;
-                border: none;
-                .logo {
-                    height: 100px;
-                    width: 100px;
-                    margin: 0 15px;
-                    border: 1px solid $brands-grey;
-                }
-                .logoBlox {
-                    display: flex;
-                    flex-direction: row;
-                    .logo {
-                        height: 90px;
-                        width: 90px;
-                        margin: 0 10px;
-                        border: 1px solid $brands-grey;
-                        display: flex;
-                        flex-direction: row;
-                    }
-                }
-            }
+          }
         }
+      }
     }
+  }
 }
