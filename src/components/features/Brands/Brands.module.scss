@@ -27,6 +27,7 @@ $tablet-width: 768px;
     border-bottom: 1px solid $brands-grey;
     padding: 10px;
 
+
     .row {
       display: flex;
       flex-direction: row;
@@ -43,7 +44,7 @@ $tablet-width: 768px;
         justify-content: center;
         border: none;
         overflow: hidden;
-        width: 100%;
+        width: 600px;
 
         .logoBox {
           display: flex;

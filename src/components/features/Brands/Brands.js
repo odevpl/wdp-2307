@@ -18,13 +18,21 @@ const images = [
   '/images/logos/logo-5.jpg',
   '/images/logos/logo-6.jpg',
   '/images/logos/logo-7.jpg',
+  '/images/logos/logo-7.jpg',
+  '/images/logos/logo-1.jpg',
+  '/images/logos/logo-2.jpg',
+  '/images/logos/logo-3.jpg',
+  '/images/logos/logo-4.jpg',
+  '/images/logos/logo-5.jpg',
+  '/images/logos/logo-6.jpg',
+  '/images/logos/logo-7.jpg',
 ];
 const Brands = () => {
   const middle = Math.floor(images.length / 2);
   const [currentSlide, setCurrentSlide] = useState(middle);
   const ref = useRef(null);
   const [width, setWidth] = useState(0);
-  const moveBy = Math.floor(width / 100);
+  const moveBy = Math.floor(width / 90);
 
   useEffect(() => {
     setWidth(ref.current ? ref.current.offsetWidth : 0);
