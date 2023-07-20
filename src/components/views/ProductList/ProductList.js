@@ -6,6 +6,7 @@ import Brands from '../../features/Brands/Brands';
 import Filters from '../Filters/Filters';
 
 import NewFurniture from '../../features/NewFurniture/NewFurnitureContainer';
+import Baner from '../../common/Baner/Baner';
 
 const ProductList = () => {
   const { categoryId } = useParams();
@@ -14,7 +15,9 @@ const ProductList = () => {
     <div className={styles.root}>
       <div className='container'>
         <div className='row'>
-          <div className='col-12'>Banner</div>
+          <div className='col-12'>
+            <Baner />
+          </div>
         </div>
       </div>
 
