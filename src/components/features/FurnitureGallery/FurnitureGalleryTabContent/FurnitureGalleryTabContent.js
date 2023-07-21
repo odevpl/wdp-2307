@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import ProductStars from '../../ProductStars/ProductStars';
 import styles from './FurnitureGalleryTabContent.module.scss';
 import Button from '../../../common/Button/Button';
@@ -34,6 +34,7 @@ const TabContent = ({ productsDataId }) => {
   const activeGalleryItemId = useSelector(state => getActiveGalleryItem(state));
   const item = useSelector(state => getProductById(state, activeGalleryItemId));
   const viewport = useSelector(state => getViewport(state));
+  const sliderContainerRef = useRef(null);
 
   const dispatch = useDispatch();
   const sliderItems = useSelector(state => getByIdArray(state, productsDataId));
@@ -49,14 +50,14 @@ const TabContent = ({ productsDataId }) => {
   }, [dispatch, productsDataId]);
 
   useEffect(() => {
-    if (viewport === 'desktop') {
-      setVisibleSlides(6);
-    } else if (viewport === 'tablet') {
-      setVisibleSlides(4);
-    } else if (viewport === 'mobile') {
-      setVisibleSlides(2);
+    if (sliderContainerRef.current) {
+      const sliderContainerWidth = sliderContainerRef.current.offsetWidth;
+      const sliderItemWidth = 90;
+      const maxVisibleSlides = Math.floor(sliderContainerWidth / sliderItemWidth);
+
+      setVisibleSlides(Math.min(maxVisibleSlides, sliderItems.length));
     }
-  }, [viewport]);
+  }, [sliderContainerRef, sliderItems, viewport]);
 
   useEffect(() => {
     dispatch(setActiveGalleryItem(productsDataId[0]));
@@ -65,7 +66,6 @@ const TabContent = ({ productsDataId }) => {
 
   const currency = useSelector(state => state.currency.currency);
   const conversionRates = useSelector(state => state.currency.conversionRates);
-
 
   const handleStarClick = clickedStars => {
     setSelectedStars(clickedStars);
@@ -102,7 +102,6 @@ const TabContent = ({ productsDataId }) => {
     }, 500);
   };
 
-
   const comparedProducts = useSelector(state => getAllCompared(state));
   const compareCount = useSelector(state => getCountCompared(state));
 
@@ -110,7 +109,6 @@ const TabContent = ({ productsDataId }) => {
     const rate = conversionRates[currency];
     return item.price * rate;
   };
-
 
   const onCompareClick = evt => {
     evt.preventDefault();
@@ -223,7 +221,7 @@ const TabContent = ({ productsDataId }) => {
             </Button>
           </div>
         </div>
-        <div className={styles.furnitureGallerySlider}>
+        <div className={styles.furnitureGallerySlider} ref={sliderContainerRef}>
           <div className={styles.row}>
             <button onClick={handlePrevClick}>&#60;</button>
             <div className={styles.slider}>{renderSliderImages()}</div>
