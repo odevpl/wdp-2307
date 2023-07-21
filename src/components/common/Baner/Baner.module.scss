@@ -1,0 +1,90 @@
+@import "../../../styles/settings.scss";
+
+.root {
+  padding: $base-padding 0;
+}
+
+// BANER WDP-39
+
+// Up Section
+.upSection {
+  background-color: $color-dark;
+  color: $color-light;
+  height: 200px;
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  line-height: 0.7;
+}
+
+.upText {
+  display: flex;
+  justify-content: center;
+  padding-top: 50px;
+  font-size: 70px;
+}
+
+.styleBedroom {
+  font-weight: 350;
+  padding-right: 10px;
+}
+
+.styleFur {
+  font-weight: bold;
+}
+
+.downText {
+  display: flex;
+  justify-content: center;
+  flex-direction: row;
+  padding-left: 22px;
+  padding-bottom: 70px;
+  font-size: 30px;
+}
+
+.alwaysText {
+  letter-spacing: 15px;
+  padding-right: 30px;
+}
+
+.procentText {
+  letter-spacing: 16px;
+  color: $color-primary;
+  padding-right: 30px;
+}
+
+.moreText {
+  letter-spacing: 16px;
+}
+
+.positionHome {
+  display: flex;
+  flex-direction: row;
+}
+
+// Down Section
+
+
+.positionHome {
+  background-color: $color-grey-3;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  height: 40px;
+  padding-top: 10px;
+}
+
+.homeText {
+  padding-left: 30px;
+  font-weight: 400;
+}
+
+.iconPosition {
+ padding: 0px 10px 15px 15px;
+}
+
+.furText {
+  padding-left: 10px;
+  color: #d58e32;
+  font-weight: 400;
+}

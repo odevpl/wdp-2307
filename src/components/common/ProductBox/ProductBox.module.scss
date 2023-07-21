@@ -37,7 +37,8 @@
 
     .buttons {
       position: absolute;
-      bottom: 10px;
+      top: 0;
+      bottom: 0;
       left: 0;
       right: 0;
       display: flex;
@@ -97,4 +98,55 @@
       font-size: 13px;
     }
   }
+}
+
+.countdown {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: $text-light;
+  text-align: center;
+  font-size: 12px;
+  font-weight: bold;
+  text-transform: uppercase;
+  ul {
+    padding-inline-start: 0;
+    display: flex;
+    list-style: none;
+  }
+  li:first-of-type{
+    margin-left: 0;
+  }
+  li {
+    margin-left: 5px;
+    padding-top: 5px;
+    width: 65px;
+    height: 65px;
+    background-color: $promoted-countdown-bg;
+
+    border-radius: 50%;
+    span{
+      font-size: 20px;
+    }
+  }
+}
+
+.addButton {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.addButtonBottom {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+}
+
+.quickViewBtn {
+  position: absolute;
+  bottom: 0;
+  left: 0;
 }

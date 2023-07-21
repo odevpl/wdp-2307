@@ -6,6 +6,7 @@ import Filters from '../Filters/Filters';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronRight } from '@fortawesome/free-solid-svg-icons';
 import NewFurniture from '../../features/NewFurniture/NewFurnitureContainer';
+import Baner from '../../common/Baner/Baner';
 
 const ProductList = () => {
   const { categoryId } = useParams();
@@ -45,33 +46,38 @@ const ProductList = () => {
               </div>
             </div>
           </div>
-        </div>
-      </div>
-
-      <div className='container'>
-        <div className='row'>
-          <div className='col-9'>
-            {categoryId !== 'home' && categoryId !== 'blog' && (
-              <NewFurniture
-                role='internal'
-                activeCategory={
-                  categoryId === 'furniture' || categoryId === 'bedroom'
-                    ? 'bed'
-                    : categoryId
-                }
-                key={categoryId}
-              />
-            )}
-          </div>
-          <div className='col-3'>
-            <Filters />
+          <div className='row'>
+            <div className='col-12'>
+              <Baner />
+            </div>
           </div>
         </div>
-      </div>
 
-      <div className='container'>
-        <div className='row'>
-          <Brands />
+        <div className='container'>
+          <div className='row'>
+            <div className='col-9'>
+              {categoryId !== 'home' && categoryId !== 'blog' && (
+                <NewFurniture
+                  role='internal'
+                  activeCategory={
+                    categoryId === 'furniture' || categoryId === 'bedroom'
+                      ? 'bed'
+                      : categoryId
+                  }
+                  key={categoryId}
+                />
+              )}
+            </div>
+            <div className='col-3'>
+              <Filters />
+            </div>
+          </div>
+        </div>
+
+        <div className='container'>
+          <div className='row'>
+            <Brands />
+          </div>
         </div>
       </div>
     </div>
