@@ -33,6 +33,7 @@
         margin-right: 0.8rem;
       }
     }
+
     @media (max-width: 768px) {
       p {
         font-size: 14px;
@@ -70,7 +71,7 @@
     button {
       padding: 8px 16px;
 
-      
+
       background-color: blue;
 
       color: #fff;
@@ -86,6 +87,8 @@
   }
 
   .cart {
+    width: 100px;
+
     .cartBox {
       display: inline-block;
       position: relative;
@@ -129,10 +132,12 @@
         }
       }
     }
+
     @media (max-width: 576px) {
       padding-bottom: 27px;
     }
   }
+
   @media (max-width: 300px) {
     img {
       width: 150%;

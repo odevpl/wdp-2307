@@ -51,11 +51,12 @@
   display: flex;
   align-items: center;
   margin-top: auto;
+  gap: 4px;
 }
 
 .postInfo p {
-  margin: 0;
-  margin-right: 10px;
+  margin: 0 10px 0 0;
+
 }
 
 .postButton a {

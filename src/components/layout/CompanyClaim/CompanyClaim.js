@@ -1,9 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-// import PropTypes from 'prop-types';
-
 import styles from './CompanyClaim.module.scss';
-
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMobileAlt, faShoppingBasket } from '@fortawesome/free-solid-svg-icons';
 
@@ -18,9 +15,9 @@ const CompanyClaim = () => (
           </p>
         </div>
         <div className='col-6 col-sm-4 col text-center'>
-          <a href='#'>
+          <Link to='/'>
             <img src='/images/logo.png' alt='Bazar' />
-          </a>
+          </Link>
         </div>
         <div className={`col-6 col-sm-4 col text-right ${styles.cart}`}>
           <Link to='/cart' className={styles.cartBox}>
@@ -34,7 +31,5 @@ const CompanyClaim = () => (
     </div>
   </div>
 );
-
-// CompanyClaim.propTypes = {};
 
 export default CompanyClaim;
