@@ -13,7 +13,6 @@
   border: 1px solid $product-box-border-light;
   margin-bottom: 2rem;
 
-
   .photo {
     position: relative;
     padding: 10px;
@@ -50,12 +49,17 @@
       bottom: 0;
       left: 0;
       right: 0;
-      display: flex;
       justify-content: space-between;
       padding: 0 10px;
+      display: none;
     }
   }
-
+   &:hover .buttons {
+    display: flex;
+  }
+    &:hover .priceBtn  {
+    background-color: $product-box-primary;
+  }
   .content {
     text-align: center;
     padding: 20px;
