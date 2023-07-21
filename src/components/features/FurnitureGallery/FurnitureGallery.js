@@ -5,7 +5,6 @@ import { getProductById } from '../../../redux/productsRedux';
 import { useState } from 'react';
 import TabContent from './FurnitureGalleryTabContent/FurnitureGalleryTabContent';
 
-
 import {
   getFeaturedProductsId,
   getSaleOffProductsId,
@@ -54,7 +53,7 @@ const FurnitureGallery = () => {
     <div className={styles.root}>
       <div className='container'>
         <div className='row'>
-          <div className='col-6'>
+          <div className='col-md-6 '>
             <div>
               <div className={styles.header}>
                 <h4>FURNITURE GALLERY</h4>
@@ -129,7 +128,7 @@ const FurnitureGallery = () => {
               </div>
             </div>
           </div>
-          <div className='col-6'>
+          <div className='col-md-6 '>
             <div className={styles.image}>
               <img
                 src={`/${rightSideProduct.picture}`}
