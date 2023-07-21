@@ -1,8 +1,10 @@
+
 @import "../../../styles/settings.scss";
 
 .root {
   background-color: $header-bg;
   display: flex;
+  padding-left: 100px;
 
   :global(.container) > :global(.row) {
     height: 145px;
@@ -45,49 +47,10 @@
     }
   }
 
-  .searchBar {
-    display: flex;
-    align-items: center;
-
-    @media (max-width: 768px) {
-      margin-bottom: 1rem;
-    }
-
-    input[type="text"] {
-      padding: 8px;
-      border: none;
-      border-radius: 4px;
-      margin-right: 1rem;
-      font-size: 14px;
-      width: 200px;
-
-      @media (max-width: 768px) {
-        width: 100%;
-        margin-right: 0;
-        margin-bottom: 1rem;
-      }
-    }
-
-    button {
-      padding: 8px 16px;
-
-
-      background-color: blue;
-
-      color: #fff;
-      border: none;
-      border-radius: 4px;
-      font-size: 14px;
-      cursor: pointer;
-
-      @media (max-width: 768px) {
-        width: 100%;
-      }
-    }
-  }
-
   .cart {
-    width: 100px;
+    display: flex;
+   padding-left: 300px;
+    margin-left: auto;
 
     .cartBox {
       display: inline-block;
