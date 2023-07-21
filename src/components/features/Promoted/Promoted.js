@@ -89,7 +89,7 @@ const Promoted = () => {
       <div className='container'>
         <div className={styles.positionPromoted}>
           <div className='row'>
-            <div className='col-lg-4'>
+            <div className='col-lg-4 ${styles.hotDealsContainer} '>
               <div className={styles.title}>
                 <p>Hot deals</p>
                 <div className={'col-auto ' + styles.dots}>

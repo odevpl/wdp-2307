@@ -1,9 +1,18 @@
 @import "../../../styles/settings.scss";
+@import "../../../styles/media-queries.scss";
+@media screen and (max-width: 767px) {
 
+.root{
+  display: none;
+  width: 100%;
+
+}
+}
 .root {
   background-color: $product-box-bg;
   border: 1px solid $product-box-border-light;
   margin-bottom: 2rem;
+
 
   .photo {
     position: relative;
