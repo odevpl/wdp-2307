@@ -1,6 +1,16 @@
 @import "../../../styles/settings.scss";
 @import "../../../styles/media-queries.scss";
 
+@media screen and (max-width: 767px) {
+  .root {
+    .banner{
+      max-width: 100%;
+
+    }
+  }
+}
+
+
 	.img {
 		position: relative;
 		background-color: $color-grey-1;
