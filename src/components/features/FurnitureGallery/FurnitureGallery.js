@@ -13,9 +13,9 @@ import {
 } from '../../../redux/galleryRedux';
 
 const FurnitureGallery = () => {
-  const rightSideProduct = useSelector(state =>
-    getProductById(state, 'aenean-ru-bristique-2')
-  );
+  const initialStateId = `aenean-ru-bristique-2`;
+  const rightSideProduct = useSelector(state => getProductById(state, initialStateId));
+
   const featuredProducts = useSelector(state => getFeaturedProductsId(state));
   const saleOffProducts = useSelector(state => getSaleOffProductsId(state));
   const topRatedProducts = useSelector(state => getTopRatedProductsId(state));
@@ -24,6 +24,13 @@ const FurnitureGallery = () => {
   const [activeTab, setActiveTab] = useState('Tab 1');
   const [, setHoveredTab] = useState(null);
   const [fadeOut, setFadeOut] = useState(false);
+
+  const tabProductIds = {
+    'Tab 1': 'aenean-ru-bristique-2',
+    'Tab 2': 'aenean-ru-bristique-6',
+    'Tab 3': 'aenean-ru-bristique-20',
+    'Tab 4': 'aenean-ru-bristique-21',
+  };
 
   const handleTabClick = tabLabel => {
     setFadeOut(true);
@@ -105,22 +112,22 @@ const FurnitureGallery = () => {
                   <div className={`${styles.tabContent} ${fadeOut ? styles.fade : ''}`}>
                     {activeTab === 'Tab 1' && (
                       <div className={styles.positionContent}>
-                        <TabContent productsDataId={featuredProducts} />
+                        <TabContent id={tabProductIds['Tab 1']} />
                       </div>
                     )}
                     {activeTab === 'Tab 2' && (
                       <div className={styles.positionContent}>
-                        <TabContent productsDataId={promotedProducts} />
+                        <TabContent id={tabProductIds['Tab 2']} />
                       </div>
                     )}
                     {activeTab === 'Tab 3' && (
                       <div className={styles.positionContent}>
-                        <TabContent productsDataId={saleOffProducts} />
+                        <TabContent id={tabProductIds['Tab 3']} />
                       </div>
                     )}
                     {activeTab === 'Tab 4' && (
                       <div className={styles.positionContent}>
-                        <TabContent productsDataId={topRatedProducts} />
+                        <TabContent id={tabProductIds['Tab 4']} />
                       </div>
                     )}
                   </div>

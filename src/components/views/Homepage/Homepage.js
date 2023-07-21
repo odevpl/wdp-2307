@@ -16,19 +16,21 @@ import ChatBot from '../../features/ChatBot/ChatBot';
 import LatestBlog from '../../features/LatestBlog/LatestBlog';
 import Comments from '../../features/Comments/Comments';
 
-const Homepage = () => (
-  <div className={styles.root}>
-    <Promoted />
-    <FeatureBoxes />
-    <Promotions />
-    <NewFurniture />
-    <FurnitureGallery />
-    <LatestBlog />
-    <Brands />
-    <Comments />
-    <ChatBot />
-  </div>
-);
+const Homepage = () => {
+  return (
+    <div className={styles.root}>
+      <Promoted />
+      <FeatureBoxes />
+      <Promotions />
+      <NewFurniture />
+      <FurnitureGallery />
+      <LatestBlog />
+      <Brands />
+      <Comments />
+      <ChatBot />
+    </div>
+  );
+};
 
 // Homepage.propTypes = {};
 

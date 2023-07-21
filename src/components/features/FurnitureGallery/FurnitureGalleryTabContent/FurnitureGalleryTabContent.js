@@ -27,7 +27,7 @@ import {
 } from '../../../../redux/galleryRedux';
 import { getViewport } from '../../../../redux/viewportRedux';
 
-const TabContent = ({ productsDataId }) => {
+const TabContent = ({ id }) => {
   const [fadeOutImage, setFadeOutImage] = useState(false);
   const [fadeInImage, setFadeInImage] = useState(false);
 
@@ -37,7 +37,7 @@ const TabContent = ({ productsDataId }) => {
   const sliderContainerRef = useRef(null);
 
   const dispatch = useDispatch();
-  const sliderItems = useSelector(state => getByIdArray(state, productsDataId));
+  const sliderItems = useSelector(state => getByIdArray(state, id));
 
   const [selectedStars, setSelectedStars] = useState(item.myStars);
   const [activeSlide, setActiveSlide] = useState(null);
@@ -46,8 +46,8 @@ const TabContent = ({ productsDataId }) => {
   const [startIndex, setStartIndex] = useState(0);
 
   useEffect(() => {
-    dispatch(setActiveGalleryItem(productsDataId[0]));
-  }, [dispatch, productsDataId]);
+    dispatch(setActiveGalleryItem(id[0]));
+  }, [dispatch, id]);
 
   useEffect(() => {
     if (sliderContainerRef.current) {
@@ -60,9 +60,9 @@ const TabContent = ({ productsDataId }) => {
   }, [sliderContainerRef, sliderItems, viewport]);
 
   useEffect(() => {
-    dispatch(setActiveGalleryItem(productsDataId[0]));
+    dispatch(setActiveGalleryItem(id[0]));
     setStartIndex(0);
-  }, [dispatch, productsDataId, viewport]);
+  }, [dispatch, id, viewport]);
 
   const currency = useSelector(state => state.currency.currency);
   const conversionRates = useSelector(state => state.currency.conversionRates);
@@ -98,7 +98,7 @@ const TabContent = ({ productsDataId }) => {
       setTimeout(() => {
         setFadeInImage(false);
       }, 500);
-      dispatch(setActiveGalleryItem(productsDataId[index]));
+      dispatch(setActiveGalleryItem(id[index]));
     }, 500);
   };
 
@@ -159,7 +159,7 @@ const TabContent = ({ productsDataId }) => {
       <div className={styles.TabContent}>
         <div className={styles.image}>
           <img
-            src={`/${item.picture}`}
+            src={`${item.picture}`}
             alt='activeItem'
             className={`${styles.image} ${styles.activeImage} ${
               fadeOutImage ? styles.fade : ''
@@ -223,6 +223,46 @@ const TabContent = ({ productsDataId }) => {
         </div>
         <div className={styles.furnitureGallerySlider} ref={sliderContainerRef}>
           <div className={styles.row}>
+            <button>&#60;</button>
+            <div className={styles.slider}>
+              <img
+                className={`${styles.slide} ${activeSlide === 0 ? styles.active : ''}`}
+                alt='slide'
+                src={'images/chairs/chair-1.jpg'}
+                onClick={() => handleSlideClick(0)}
+              />
+              <img
+                className={`${styles.slide} ${activeSlide === 1 ? styles.active : ''}`}
+                alt='slide'
+                src={'images/chairs/chair-2.jpg'}
+                onClick={() => handleSlideClick(1)}
+              />
+              <img
+                className={`${styles.slide} ${activeSlide === 2 ? styles.active : ''}`}
+                alt='slide'
+                src={'images/chairs/chair-3.jpg'}
+                onClick={() => handleSlideClick(2)}
+              />
+              <img
+                className={`${styles.slide} ${activeSlide === 3 ? styles.active : ''}`}
+                alt='slide'
+                src={'images/chairs/chair-4.jpg'}
+                onClick={() => handleSlideClick(3)}
+              />
+              <img
+                className={`${styles.slide} ${activeSlide === 4 ? styles.active : ''}`}
+                alt='slide'
+                src={'images/chairs/chair-5.jpg'}
+                onClick={() => handleSlideClick(4)}
+              />
+              <img
+                className={`${styles.slide} ${activeSlide === 5 ? styles.active : ''}`}
+                alt='slide'
+                src={'images/chairs/chair-1.jpg'}
+                onClick={() => handleSlideClick(5)}
+              />
+            </div>
+            <button>&#62;</button>
             <button onClick={handlePrevClick}>&#60;</button>
             <div className={styles.slider}>{renderSliderImages()}</div>
             <button onClick={handleNextClick}>&#62;</button>
@@ -234,7 +274,7 @@ const TabContent = ({ productsDataId }) => {
 };
 
 TabContent.propTypes = {
-  productsDataId: PropTypes.array.isRequired,
+  id: PropTypes.array.isRequired,
 };
 
 export default TabContent;
