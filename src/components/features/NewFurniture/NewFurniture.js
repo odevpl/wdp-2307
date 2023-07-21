@@ -33,7 +33,21 @@ class NewFurniture extends React.Component {
     const { categories, products, compared, viewport } = this.props;
     const { activeCategory, activePage, fadeOut } = this.state;
     const categoryProducts = products.filter(item => item.category === activeCategory);
-    const productsPerPage = viewport === 'desktop' ? 8 : viewport === 'tablet' ? 2 : 1;
+    let productsPerPage;
+
+    switch (this.props.role) {
+      case 'internal':
+        productsPerPage = 12;
+        break;
+
+      case 'product':
+        productsPerPage = 4;
+        break;
+
+      default:
+        productsPerPage = viewport === 'desktop' ? 8 : viewport === 'tablet' ? 2 : 1;
+    }
+
     const pagesCount = Math.ceil(categoryProducts.length / productsPerPage);
 
     const dots = [];
@@ -56,7 +70,9 @@ class NewFurniture extends React.Component {
           <div className={styles.panelBar}>
             <div className='row no-gutters align-items-end'>
               <div className={'col-auto ' + styles.heading}>
-                <h3>New furniture</h3>
+                <h3>
+                  {this.props.role === 'internal' ? 'Furniture' : 'New furniture'}
+                </h3>
               </div>
               <div className={'col ' + styles.menu}>
                 <ul>
@@ -93,20 +109,22 @@ class NewFurniture extends React.Component {
               {categoryProducts
                 .slice(activePage * productsPerPage, (activePage + 1) * productsPerPage)
                 .map(item => (
-                  <div className='col-lg-3 col-sm-6 col-12' key={item.id}>
-                    <ProductBox {...item} />
+                  <div
+                    className={
+                      this.props.role === 'internal'
+                        ? 'col-lg-4'
+                        : 'col-lg-3 col-sm-6 col-12'
+                    }
+                    key={item.id}
+                  >
+                    <ProductBox
+                      role={this.props.role ? this.props.role : ''}
+                      {...item}
+                    />
                   </div>
                 ))}
             </div>
           </Swipeable>
-
-          <div className='row'>
-            {categoryProducts.slice(activePage * 8, (activePage + 1) * 8).map(item => (
-              <div key={item.id} className='col-3'>
-                <ProductBox {...item} />
-              </div>
-            ))}
-          </div>
           {compared > 0 ? <ComparedProductsBox /> : ''}
         </div>
       </div>
@@ -115,6 +133,7 @@ class NewFurniture extends React.Component {
 }
 
 NewFurniture.propTypes = {
+  role: PropTypes.string,
   children: PropTypes.node,
   compared: PropTypes.number,
   categories: PropTypes.arrayOf(

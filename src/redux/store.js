@@ -5,8 +5,10 @@ import cartReducer from './cartRedux';
 import categoriesReducer from './categoriesRedux';
 import productsReducer from './productsRedux';
 import promotedReducer from './promotedRedux';
+import galleryReducer from './galleryRedux';
 import comparedReducer from './comparedReducer';
 import viewportReducer from './viewportRedux';
+import currencyReducer from './currencyRedux';
 
 // define reducers
 const reducers = {
@@ -14,8 +16,10 @@ const reducers = {
   categories: categoriesReducer,
   products: productsReducer,
   promoted: promotedReducer,
+  gallery: galleryReducer,
   compared: comparedReducer,
   viewport: viewportReducer,
+  currency: currencyReducer,
 };
 
 // add blank reducers for initial state properties without reducers
