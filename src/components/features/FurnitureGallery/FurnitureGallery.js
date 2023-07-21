@@ -5,12 +5,25 @@ import { getProductById } from '../../../redux/productsRedux';
 import { useState } from 'react';
 import TabContent from './FurnitureGalleryTabContent/FurnitureGalleryTabContent';
 
+import {
+  getFeaturedProductsId,
+  getSaleOffProductsId,
+  getTopRatedProductsId,
+  getTopSellerProductsId,
+} from '../../../redux/galleryRedux';
+
 const FurnitureGallery = () => {
   const initialStateId = `aenean-ru-bristique-2`;
   const rightSideProduct = useSelector(state => getProductById(state, initialStateId));
 
+  const featuredProducts = useSelector(state => getFeaturedProductsId(state));
+  const saleOffProducts = useSelector(state => getSaleOffProductsId(state));
+  const topRatedProducts = useSelector(state => getTopRatedProductsId(state));
+  const promotedProducts = useSelector(state => getTopSellerProductsId(state));
+
   const [activeTab, setActiveTab] = useState('Tab 1');
   const [, setHoveredTab] = useState(null);
+  const [fadeOut, setFadeOut] = useState(false);
 
   const tabProductIds = {
     'Tab 1': 'aenean-ru-bristique-2',
@@ -20,7 +33,11 @@ const FurnitureGallery = () => {
   };
 
   const handleTabClick = tabLabel => {
-    setActiveTab(tabLabel);
+    setFadeOut(true);
+    setTimeout(() => {
+      setActiveTab(tabLabel);
+      setFadeOut(false);
+    }, 500);
   };
 
   const handleTabMouseEnter = tabLabel => {
@@ -43,7 +60,7 @@ const FurnitureGallery = () => {
     <div className={styles.root}>
       <div className='container'>
         <div className='row'>
-          <div className='col-6'>
+          <div className='col-md-6 '>
             <div>
               <div className={styles.header}>
                 <h4>FURNITURE GALLERY</h4>
@@ -92,7 +109,7 @@ const FurnitureGallery = () => {
                       <p>TOP RATED</p>
                     </div>
                   </div>
-                  <div className={styles.tabContent}>
+                  <div className={`${styles.tabContent} ${fadeOut ? styles.fade : ''}`}>
                     {activeTab === 'Tab 1' && (
                       <div className={styles.positionContent}>
                         <TabContent id={tabProductIds['Tab 1']} />
@@ -118,7 +135,7 @@ const FurnitureGallery = () => {
               </div>
             </div>
           </div>
-          <div className='col-6'>
+          <div className='col-md-6 '>
             <div className={styles.image}>
               <img
                 src={`/${rightSideProduct.picture}`}

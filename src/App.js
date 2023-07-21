@@ -16,6 +16,10 @@ import Cart from './components/views/Cart/Cart';
 import RegisterPage from './components/views/RegisterPage/RegisterPage';
 import LoginPage from './components/views/LoginPage/LoginPage';
 import SearchPage from './components/views/SearchPage/SearchPage';
+import AboutPage from './components/views/AboutPage/AboutPage';
+import PolicyPage from './components/views/PolicyPage/PolicyPage';
+import ConditionsPage from './components/views/ConditionsPage/ConditionsPage';
+import OnlineSupPage from './components/views/OnlineSupPage/OnlineSupPage';
 
 const App = () => (
   <Provider store={store}>
@@ -31,6 +35,10 @@ const App = () => (
           {/* <Route exact path={'/benefits'} component={BenefitsPage} /> */}
           <Route exact path={'/cart'} component={Cart} />
           <Route exact path={'/search'} component={SearchPage} />
+          <Route exact path={'/about'} component={AboutPage} />
+          <Route exact path={'/policy'} component={PolicyPage} />
+          <Route exact path={'/condition'} component={ConditionsPage} />
+          <Route exact path={'/onlineSuport'} component={OnlineSupPage} />
         </Switch>
       </MainLayout>
     </BrowserRouter>

@@ -1,5 +1,5 @@
 @import "../../../styles/settings.scss";
-
+@import '../../../styles/media-queries.scss';
 .root {
   margin: 30px 0;
   .header {
@@ -17,9 +17,9 @@
     top: 40px;
     background-color: $furniture-gallery-main;
     width: 10%;
-    z-index: 3;
   }
   .header::after {
+    z-index: -1;
     content: "";
     position: absolute;
     height: 4px;
@@ -72,13 +72,14 @@
       top: 45%;
       left: 10%;
     }
+
   }
   .tabs {
     border: 1px solid $furniture-gallery-gray-medium-dark;
-    border-top:none ;
+    border-top: none;
     .tabList {
       display: flex;
-      justify-content: space-between; 
+      justify-content: space-between;
     }
 
     .positionContent {
@@ -93,8 +94,8 @@
       border-bottom: 1px solid $furniture-gallery-gray-medium-dark;
       border-top: 1px solid $furniture-gallery-gray-medium-dark;
       height: 50px;
-      flex-grow: 1; 
-      flex-basis: 0; 
+      flex-grow: 1;
+      flex-basis: 0;
       font-weight: 500;
       text-align: center;
     }
@@ -102,7 +103,7 @@
     .active {
       color: $furniture-gallery-main;
       border-bottom: none;
-      
+
       border-top: solid 5px $furniture-gallery-main;
       padding-top: 6px;
       background-color: $furniture-gallery-gray-light;
@@ -111,9 +112,86 @@
     .tabContent {
       background-color: $furniture-gallery-gray-light;
     }
+    .positionContent {
+      animation: fadeIn 0.5s;
+      -webkit-animation: fadeIn 0.5s;
+      -moz-animation: fadeIn 0.5s;
+      -o-animation: fadeIn 0.5s;
+      -ms-animation: fadeIn 0.5s;
+    }
+
+    @keyframes fadeIn {
+      0% {
+        opacity: 0;
+      }
+      100% {
+        opacity: 1;
+      }
+    }
+
+    @-moz-keyframes fadeIn {
+      0% {
+        opacity: 0;
+      }
+      100% {
+        opacity: 1;
+      }
+    }
+
+    @-webkit-keyframes fadeIn {
+      0% {
+        opacity: 0;
+      }
+      100% {
+        opacity: 1;
+      }
+    }
+
+    @-o-keyframes fadeIn {
+      0% {
+        opacity: 0;
+      }
+      100% {
+        opacity: 1;
+      }
+    }
+
+    @-ms-keyframes fadeIn {
+      0% {
+        opacity: 0;
+      }
+      100% {
+        opacity: 1;
+      }
+    }
 
     .lastTab {
       border-right: none;
+    }
+  }
+}
+.fade {
+  opacity: 0;
+  transition: opacity 0.5s;
+}
+
+.fade-in {
+  opacity: 1;
+}
+
+@media screen and (max-width: 767px) {
+  .root {
+    .image{
+      display: none;
+    }
+  }
+}
+@media screen and (max-width: 471px) {
+  .root {
+    .tabs {
+      p {
+        font-size: 12px
+      }
     }
   }
 }
