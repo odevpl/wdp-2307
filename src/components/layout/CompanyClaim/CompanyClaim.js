@@ -22,9 +22,9 @@ const CompanyClaim = () => {
             </p>
           </div>
           <div className='col-6 col-sm-4 col text-center'>
-            <a href='#'>
+            <Link to='/'>
               <img src='/images/logo.png' alt='Bazar' />
-            </a>
+            </Link>
           </div>
           <div className={`col-6 col-sm-4 col text-right ${styles.cart}`}>
             <Link to='/cart' className={styles.cartBox}>
