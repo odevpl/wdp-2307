@@ -11,6 +11,7 @@ import {
   faLinkedinIn,
   faPinterestP,
 } from '@fortawesome/free-brands-svg-icons';
+import { Link } from 'react-router-dom';
 
 const Footer = ({ children }) => (
   <footer className={styles.root}>
@@ -22,16 +23,24 @@ const Footer = ({ children }) => (
               <h6>Information</h6>
               <ul>
                 <li>
-                  <a href='#'>About us</a>
+                  <Link to='/about'>
+                    <span>About us</span>
+                  </Link>
                 </li>
                 <li>
-                  <a href='#'>Policy</a>
+                  <Link to='/policy'>
+                    <span>Policy</span>
+                  </Link>
                 </li>
                 <li>
-                  <a href='#'>Conditions</a>
+                  <Link to='/condition'>
+                    <span>Conditions</span>
+                  </Link>
                 </li>
                 <li>
-                  <a href='#'>Online support</a>
+                  <Link to='onlineSuport'>
+                    <span>Online support</span>
+                  </Link>
                 </li>
               </ul>
             </div>

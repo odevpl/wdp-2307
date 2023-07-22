@@ -1,12 +1,16 @@
-import { combineReducers, createStore } from 'redux';
+import { combineReducers, createStore, applyMiddleware, compose } from 'redux';
+import thunk from 'redux-thunk';
+
 import initialState from './initialState';
 
 import cartReducer from './cartRedux';
 import categoriesReducer from './categoriesRedux';
 import productsReducer from './productsRedux';
 import promotedReducer from './promotedRedux';
+import galleryReducer from './galleryRedux';
 import comparedReducer from './comparedReducer';
 import viewportReducer from './viewportRedux';
+import currencyReducer from './currencyRedux';
 
 // define reducers
 const reducers = {
@@ -14,8 +18,10 @@ const reducers = {
   categories: categoriesReducer,
   products: productsReducer,
   promoted: promotedReducer,
+  gallery: galleryReducer,
   compared: comparedReducer,
   viewport: viewportReducer,
+  currency: currencyReducer,
 };
 
 // add blank reducers for initial state properties without reducers
@@ -27,11 +33,13 @@ Object.keys(initialState).forEach(item => {
 
 const combinedReducers = combineReducers(reducers);
 
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+
 // create store
 const store = createStore(
   combinedReducers,
   initialState,
-  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+  composeEnhancers(applyMiddleware(thunk))
 );
 
 export default store;

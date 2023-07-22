@@ -1,12 +1,11 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
-
-import ProductBoxPromoted from '../../common/ProductBoxPromoted/ProductBoxPromoted';
+import Swipeable from '../Swipable/Swipable';
+import PromotedBanner from '../../common/PromotedBanner/PromotedBanner';
 import { getPromoted } from '../../../redux/promotedRedux';
 import { getByIdArray } from '../../../redux/productsRedux';
 import styles from './Promoted.module.scss';
-import Swipeable from '../Swipable/Swipable';
-import PromotedBanner from '../../common/PromotedBanner/PromotedBanner';
+import ProductBox from '../../common/ProductBox/ProductBox';
 
 const Promoted = () => {
   const promotedData = useSelector(state => getPromoted(state));
@@ -60,6 +59,7 @@ const Promoted = () => {
       setBannerFadeOut(false);
     }, 500);
   };
+
   const bannerRight = () => {
     setBannerFadeOut(true);
     setTimeout(() => {
@@ -89,7 +89,7 @@ const Promoted = () => {
       <div className='container'>
         <div className={styles.positionPromoted}>
           <div className='row'>
-            <div className='col-lg-4'>
+            <div className='col-lg-4 ${styles.hotDealsContainer} '>
               <div className={styles.title}>
                 <p>Hot deals</p>
                 <div className={'col-auto ' + styles.dots}>
@@ -111,21 +111,14 @@ const Promoted = () => {
                 >
                   <div className={itemFadeOut ? styles.fade : ''}>
                     {promotedProducts.slice(activeItem, activeItem + 1).map(item => (
-                      <ProductBoxPromoted key={item.id} {...item} />
+                      <ProductBox role='promoted' key={item.id} {...item} />
                     ))}
                   </div>
                 </Swipeable>
               </div>
             </div>
             <div className={`col-8 ${styles.banner}`}>
-              <Swipeable
-                onSwipeLeft={() => {
-                  bannerLeft();
-                }}
-                onSwipeRight={() => {
-                  bannerRight();
-                }}
-              >
+              <Swipeable onSwipeLeft={bannerLeft} onSwipeRight={bannerRight}>
                 <div className={bannerFadeOut ? styles.fade : ''}>
                   {promotedData.banners
                     .slice(activeBanner, activeBanner + 1)
@@ -135,8 +128,8 @@ const Promoted = () => {
                 </div>
               </Swipeable>
               <div className={styles.nav}>
-                <a onClick={() => bannerLeft()}>&#10094;</a>
-                <a onClick={() => bannerRight()}>&#10095;</a>
+                <a onClick={bannerLeft}>&#10094;</a>
+                <a onClick={bannerRight}>&#10095;</a>
               </div>
             </div>
           </div>
@@ -145,4 +138,5 @@ const Promoted = () => {
     </div>
   );
 };
+
 export default Promoted;

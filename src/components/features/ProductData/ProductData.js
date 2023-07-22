@@ -1,7 +1,7 @@
 import React from 'react';
 import styles from './ProductData.module.scss';
 import { getProductById } from '../../../redux/productsRedux';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import Button from '../../common/Button/Button';
 import ProductStars from '../../features/ProductStars/ProductStars';
@@ -23,14 +23,15 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 import { faExchangeAlt } from '@fortawesome/free-solid-svg-icons';
 import { faHeart } from '@fortawesome/free-regular-svg-icons';
-import { useDispatch } from 'react-redux';
 import { toggleFavorite } from '../../../redux/productsRedux';
+
 const ProductData = () => {
-  const { productId } = useParams();
   const dispatch = useDispatch();
+
+  const { productId } = useParams();
   const initialStateId = `aenean-ru-bristique-${productId}`;
 
-  const product = useSelector(state => getProductById(state, initialStateId));
+  const product = useSelector(state => getProductById(state.products, initialStateId));
   const [isHovering, setIsHovering] = useState(false);
 
   const favoriteHandler = e => {
