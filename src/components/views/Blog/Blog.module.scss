@@ -1,122 +1,128 @@
-.root{
+.root {
   margin: 35px;
-.container {
-  display: flex;
-}
 
-.posts {
-  flex: 9;
-  padding: 20px;
-  background-color: #ffffff;
-}
+  .container {
+    display: flex;
+  }
 
-.sidebar {
-  flex: 3;
-  padding: 20px;
-  background-color: #ffffff;
-}
+  .posts {
+    flex: 9;
+    padding: 20px;
+    background-color: #ffffff;
+  }
 
-.post {
-  position: relative;
-  margin-bottom: 30px;
-}
+  .sidebar {
+    flex: 3;
+    padding: 20px;
+    background-color: #ffffff;
+  }
 
-.postImage {
-  position: relative;
-  width: 100%;
-  max-height: 400px;
-  overflow: hidden;
-}
+  .post {
+    position: relative;
+    margin-bottom: 30px;
+  }
 
-.postImage img {
-  width: 100%;
-  height: auto;
-  object-fit: cover;
-}
+  .header {
+    padding-bottom: 5rem;
+  }
 
-.postOverlay {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  background-color: rgba(0, 0, 0, 0.5);
-  padding: 10px;
-  color: #fff;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
+  .postImage {
+    position: relative;
+    width: 100%;
+    max-height: 400px;
+    overflow: hidden;
+  }
 
-.postInfo {
-  display: flex;
-  align-items: center;
-  margin-top: auto;
-}
+  .postImage img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+  }
 
-.postInfo p {
-  margin: 0;
-  margin-right: 10px;
-}
+  .postOverlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    padding: 10px;
+    color: #fff;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
 
-.postButton a {
-  color: #fff;
-  text-decoration: none;
-}
+  .postInfo {
+    display: flex;
+    align-items: center;
+    margin-top: auto;
+  }
 
-.postContent {
-  margin-top: 20px;
-}
+  .postInfo p {
+    margin: 0;
+    margin-right: 10px;
+  }
 
-.postContent h1 {
-  margin-top: 0;
-}
+  .postButton a {
+    color: #fff;
+    text-decoration: none;
+  }
 
-.postContent p {
-  margin-bottom: 10px;
-}
+  .postContent {
+    margin-top: 20px;
+  }
 
-.widget {
-  margin-bottom: 20px;
-  border-bottom: 1px solid #ccc;
-  padding-bottom: 20px;
-}
+  .postContent h1 {
+    margin-top: 0;
+  }
 
-.widget:last-child {
-  border-bottom: none;
-  padding-bottom: 0;
-}
+  .postContent p {
+    margin-bottom: 10px;
+  }
 
-.widget ul {
-  list-style: none;
-  padding: 0;
-}
+  .widget {
+    margin-bottom: 20px;
+    border-bottom: 1px solid #ccc;
+    padding-bottom: 20px;
+  }
 
-.widget ul li {
-  display: flex;
-  align-items: center;
-}
+  .widget:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
+  }
 
-.widget ul li:not(:last-child) {
-  margin-bottom: 5px;
-  padding-bottom: 5px;
-  border-bottom: 1px solid #ccc;
-}
+  .widget ul {
+    list-style: none;
+    padding: 0;
+  }
 
-.widget ul li a {
-  text-decoration: none;
-  color: #333;
-}
+  .widget ul li {
+    display: flex;
+    align-items: center;
+  }
 
-.widget ul li a:hover {
-  color: #333;
-  text-decoration: underline;
-}
+  .widget ul li:not(:last-child) {
+    margin-bottom: 5px;
+    padding-bottom: 5px;
+    border-bottom: 1px solid #ccc;
+  }
 
-.posts .post:not(:first-child) {
-  margin-top: 30px;
-}
-.posts .post:not(:first-child) {
-  margin-top: 30px;
-}
+  .widget ul li a {
+    text-decoration: none;
+    color: #333;
+  }
+
+  .widget ul li a:hover {
+    color: #333;
+    text-decoration: underline;
+  }
+
+  .posts .post:not(:first-child) {
+    margin-top: 30px;
+  }
+
+  .posts .post:not(:first-child) {
+    margin-top: 30px;
+  }
 
 }

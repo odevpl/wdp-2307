@@ -1,3 +1,5 @@
+import initialState from './initialState';
+
 /* selectors */
 export const getAllCompared = ({ compared }) => compared.products;
 export const getCountCompared = ({ compared }) => compared.products.length;
@@ -15,7 +17,10 @@ export const addComparedProduct = payload => ({ payload, type: ADD_PRODUCT });
 export const deleteComparedProduct = payload => ({ payload, type: DELETE_PRODUCT });
 
 /* reducer */
-export default function reducer(statePart = [], action = {}) {
+export default function reducer(
+  statePart = initialState.compared.products,
+  action = {}
+) {
   switch (action.type) {
     case ADD_PRODUCT: {
       return {
@@ -30,6 +35,7 @@ export default function reducer(statePart = [], action = {}) {
         products: [...statePart.products.filter(product => product !== action.payload)],
       };
     }
+
     default:
       return statePart;
   }
