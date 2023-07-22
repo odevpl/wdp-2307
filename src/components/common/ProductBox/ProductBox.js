@@ -50,7 +50,7 @@ const ProductBox = ({
   const [isPopupOpen, setIsPopupOpen] = useState(false);
   const [selectedStars, setSelectedStars] = useState(myStars);
   const [favorites, setFavorites] = useState([isFavorite]);
-  const [isHovering, setIsHovering] = useState(false);
+  // const [isHovering, setIsHovering] = useState(false);
   const comparedProducts = useSelector(state => getAllCompared(state));
   const compareCount = useSelector(state => getCountCompared(state));
 
@@ -86,14 +86,13 @@ const ProductBox = ({
     setFavorites([...favorites, isFavorite]);
   };
 
-  const handleMouseOver = () => {
-    setIsHovering(true);
-  };
+  // const handleMouseOver = () => {
+  //   setIsHovering(true);
+  // };
 
-  const handleMouseOut = () => {
-    setIsHovering(false);
-    //setIsHovering(false);
-  };
+  // const handleMouseOut = () => {
+  //   setIsHovering(false);
+  // };
 
   const handleQuickViewClick = event => {
     event.preventDefault();
@@ -135,8 +134,8 @@ const ProductBox = ({
   return (
     <div
       className={styles.root}
-      onMouseOver={handleMouseOver}
-      onMouseOut={handleMouseOut}
+      // onMouseOver={handleMouseOver}
+      // onMouseOut={handleMouseOut}
     >
       {isPopupOpen && <QuickViewPopup id={id} onClose={handlePopupClose} />}
       <div className={styles.photo}>
@@ -147,60 +146,57 @@ const ProductBox = ({
             alt={name}
           />
         </Link>
-        {isHovering && (
-          <div className={styles.buttons}>
-            {role !== 'promoted' ? (
-              <Button
-                className={styles.quickViewBtn}
-                variant='small'
-                onClick={handleQuickViewClick}
-              >
-                Quick View
-              </Button>
-            ) : (
-              ''
-            )}
 
-            {role === 'promoted' ? (
-              <div className={styles.countdown}>
-                <ul>
-                  <li>
-                    <span>{days}</span>
-                    <br />
-                    days
-                  </li>
-                  <li>
-                    <span>{hours}</span>
-                    <br />
-                    hrs
-                  </li>
-                  <li>
-                    <span>{minutes}</span>
-                    <br />
-                    mins
-                  </li>
-                  <li>
-                    <span>{seconds}</span>
-                    <br />
-                    secs
-                  </li>
-                </ul>
-              </div>
-            ) : (
-              ''
-            )}
-
+        <div className={styles.buttons}>
+          {role !== 'promoted' ? (
             <Button
+              className={styles.quickViewBtn}
               variant='small'
-              onClick={addToCartHandler}
-              className={
-                role === 'promoted' ? styles.addButton : styles.addButtonBottom
-              }
+              onClick={handleQuickViewClick}
             >
-              <FontAwesomeIcon icon={faShoppingBasket}></FontAwesomeIcon> ADD TO CART
+              Quick View
             </Button>
-          </div>
-        )}
+          ) : (
+            ''
+          )}
+
+          {role === 'promoted' ? (
+            <div className={styles.countdown}>
+              <ul>
+                <li>
+                  <span>{days}</span>
+                  <br />
+                  days
+                </li>
+                <li>
+                  <span>{hours}</span>
+                  <br />
+                  hrs
+                </li>
+                <li>
+                  <span>{minutes}</span>
+                  <br />
+                  mins
+                </li>
+                <li>
+                  <span>{seconds}</span>
+                  <br />
+                  secs
+                </li>
+              </ul>
+            </div>
+          ) : (
+            ''
+          )}
+
+          <Button
+            variant='small'
+            onClick={addToCartHandler}
+            className={role === 'promoted' ? styles.addButton : styles.addButtonBottom}
+          >
+            <FontAwesomeIcon icon={faShoppingBasket}></FontAwesomeIcon> ADD TO CART
+          </Button>
+        </div>
       </div>
       <div className={styles.content}>
         <Link to={`/product/${id}`}>
@@ -236,7 +232,7 @@ const ProductBox = ({
         <div className={styles.pricesContainer}>
           {oldPrice && <p className={styles.oldPrice}> $ {oldPrice} </p>}
           <div className={styles.price}>
-            <Button noHover variant={isHovering ? 'price' : 'small'}>
+            <Button className={styles.priceBtn} variant={'small'}>
               {convertPrice()}
             </Button>
           </div>

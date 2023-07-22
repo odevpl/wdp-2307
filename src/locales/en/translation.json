@@ -1,0 +1,14 @@
+{
+  "pages": {
+    "blog": {
+      "postButtonText": "Read more",
+      "addDate": "Add date",
+      "lastUpdate": "Last updated",
+      "recentPosts": "Recent Posts",
+      "recentComments": "Recent comments",
+      "categories": "Categories",
+      "archives": "Archives"
+    }
+  }
+}
+

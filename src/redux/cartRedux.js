@@ -12,8 +12,13 @@ const DELETE_PRODUCT = createActionName('DELETE_PRODUCT');
 /* action creators */
 export const addProduct = payload => ({ payload, type: ADD_PRODUCT });
 export const deleteProduct = payload => ({ payload, type: DELETE_PRODUCT });
+
 /* reducer */
-export default function reducer(statePart = [], action = {}) {
+const initialCart = {
+  products: [],
+};
+
+export default function reducer(statePart = initialCart, action = {}) {
   switch (action.type) {
     case ADD_PRODUCT: {
       return {

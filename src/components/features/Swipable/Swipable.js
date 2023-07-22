@@ -12,10 +12,13 @@ const Swipeable = ({ children, onSwipeLeft, onSwipeRight }) => {
     const endX = event.changedTouches[0].clientX;
     const deltaX = endX - startX;
 
-    if (deltaX > 0 && onSwipeRight) {
-      onSwipeRight();
-    } else if (deltaX < 0 && onSwipeLeft) {
-      onSwipeLeft();
+    if (Math.abs(deltaX) > 50) {
+      // Check if the swipe distance is greater than 50px to consider it a valid swipe
+      if (deltaX > 0 && onSwipeRight) {
+        onSwipeRight();
+      } else if (deltaX < 0 && onSwipeLeft) {
+        onSwipeLeft();
+      }
     }
   };
 

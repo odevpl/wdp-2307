@@ -1,0 +1,13 @@
+{
+  "pages": {
+    "blog": {
+      "postButtonText": "Czytaj więcej",
+      "addDate": "data dodania",
+      "lastUpdate": "Ost. modyfikacja",
+      "recentPosts": "Ostatnie posty",
+      "recentComments": "Ostatnie komentarze",
+      "categories": "Kategorie",
+      "archives": "Archiwa"
+    }
+  }
+}

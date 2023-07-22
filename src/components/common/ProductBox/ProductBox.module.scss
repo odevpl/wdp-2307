@@ -1,5 +1,13 @@
 @import "../../../styles/settings.scss";
+@import "../../../styles/media-queries.scss";
+@media screen and (max-width: 767px) {
 
+.root{
+  display: none;
+  width: 100%;
+
+}
+}
 .root {
   background-color: $product-box-bg;
   border: 1px solid $product-box-border-light;
@@ -41,12 +49,17 @@
       bottom: 0;
       left: 0;
       right: 0;
-      display: flex;
       justify-content: space-between;
       padding: 0 10px;
+      display: none;
     }
   }
-
+   &:hover .buttons {
+    display: flex;
+  }
+    &:hover .priceBtn  {
+    background-color: $product-box-primary;
+  }
   .content {
     text-align: center;
     padding: 20px;

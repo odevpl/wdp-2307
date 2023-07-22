@@ -1,5 +1,5 @@
 @import "../../../styles/settings.scss";
-
+@import '../../../styles/media-queries.scss';
 .root {
   margin: 30px 0;
   .header {
@@ -72,6 +72,7 @@
       top: 45%;
       left: 10%;
     }
+
   }
   .tabs {
     border: 1px solid $furniture-gallery-gray-medium-dark;
@@ -176,4 +177,21 @@
 
 .fade-in {
   opacity: 1;
+}
+
+@media screen and (max-width: 767px) {
+  .root {
+    .image{
+      display: none;
+    }
+  }
+}
+@media screen and (max-width: 471px) {
+  .root {
+    .tabs {
+      p {
+        font-size: 12px
+      }
+    }
+  }
 }
