@@ -1,4 +1,3 @@
-
 @import "../../../styles/settings.scss";
 
 .root {
@@ -48,6 +47,8 @@
   }
 
   .cart {
+    width: 100px;
+
     display: flex;
    padding-left: 300px;
     margin-left: auto;

@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom';
 // import PropTypes from 'prop-types';
 import { useSelector } from 'react-redux';
 import styles from './CompanyClaim.module.scss';
-
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMobileAlt, faShoppingBasket } from '@fortawesome/free-solid-svg-icons';
 
