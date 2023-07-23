@@ -9,9 +9,15 @@ const createActionName = name => `app/${reducerName}/${name}`;
 /* action types */
 const ADD_PRODUCT = createActionName('ADD_PRODUCT');
 const DELETE_PRODUCT = createActionName('DELETE_PRODUCT');
+const UPDATE_PRODUCT_QUANTITY = createActionName('UPDATE_PRODUCT_QUANTITY');
+
 /* action creators */
 export const addProduct = payload => ({ payload, type: ADD_PRODUCT });
 export const deleteProduct = payload => ({ payload, type: DELETE_PRODUCT });
+export const updateProductQuantity = payload => ({
+  payload,
+  type: UPDATE_PRODUCT_QUANTITY,
+});
 
 /* reducer */
 const initialCart = {
@@ -30,6 +36,15 @@ export default function reducer(statePart = initialCart, action = {}) {
       return {
         ...statePart,
         products: statePart.products.filter(product => product.id !== action.payload),
+      };
+    }
+    case UPDATE_PRODUCT_QUANTITY: {
+      const { id, quantity } = action.payload;
+      return {
+        ...statePart,
+        products: statePart.products.map(product =>
+          product.id === id ? { ...product, quantity } : product
+        ),
       };
     }
     default:

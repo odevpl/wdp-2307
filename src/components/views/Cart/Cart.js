@@ -26,6 +26,17 @@ const Cart = () => {
     }
   };
 
+  const calculateSubtotal = () => {
+    return cartProducts.reduce(
+      (acc, product) => acc + product.price * product.quantity,
+      0
+    );
+  };
+
+  const calculateTotal = () => {
+    return calculateSubtotal() + 20;
+  };
+
   return (
     <div className={styles.root}>
       <div className={styles.header}>
@@ -108,11 +119,11 @@ const Cart = () => {
               <tbody>
                 <tr>
                   <th>Subtotal</th>
-                  <td>$30.00</td>
+                  <td>${calculateSubtotal().toFixed(2)}</td>
                 </tr>
                 <tr>
                   <th>Total</th>
-                  <th className={styles.total}>$30.00</th>
+                  <th className={styles.total}>${calculateTotal().toFixed(2)}</th>
                 </tr>
                 <tr>
                   <td className={`text-center align-middle"`} colSpan={2}>
