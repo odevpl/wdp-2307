@@ -44,6 +44,7 @@ const ProductBox = ({
   currency,
   conversionRates,
   setCurrency,
+  quantity,
 }) => {
   const dispatch = useDispatch();
 
@@ -127,6 +128,7 @@ const ProductBox = ({
         myStars,
         isFavorite,
         oldPrice,
+        quantity,
       })
     );
   };
@@ -271,6 +273,7 @@ ProductBox.propTypes = {
   currency: PropTypes.string,
   conversionRates: PropTypes.object,
   setCurrency: PropTypes.func,
+  quantity: PropTypes.number,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(ProductBox);
