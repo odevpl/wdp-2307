@@ -1,24 +1,18 @@
-import React, { useState } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import styles from './Quantity.module.scss';
 import Button from '../Button/Button';
 
-const Quantity = ({ value, onChange, onDelete }) => {
-  const [quantity, setQuantity] = useState(value);
-
+const Quantity = ({ value, onChange }) => {
   const handleDecrease = () => {
-    if (quantity > 1) {
-      const newQuantity = quantity - 1;
-      setQuantity(newQuantity);
+    if (value > 1) {
+      const newQuantity = value - 1;
       onChange(newQuantity);
-    } else {
-      onDelete();
     }
   };
 
   const handleIncrease = () => {
-    const newQuantity = quantity + 1;
-    setQuantity(newQuantity);
+    const newQuantity = value + 1;
     onChange(newQuantity);
   };
 
@@ -27,7 +21,7 @@ const Quantity = ({ value, onChange, onDelete }) => {
       <Button variant={'outline'} onClick={handleDecrease}>
         -
       </Button>
-      <input type='text' id='quantity' value={quantity} readOnly />
+      <input type='text' id='quantity' value={value} readOnly />
       <Button variant={'outline'} onClick={handleIncrease}>
         +
       </Button>
@@ -38,7 +32,6 @@ const Quantity = ({ value, onChange, onDelete }) => {
 Quantity.propTypes = {
   value: PropTypes.number,
   onChange: PropTypes.func,
-  onDelete: PropTypes.func,
 };
 
 export default Quantity;

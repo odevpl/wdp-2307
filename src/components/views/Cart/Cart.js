@@ -35,6 +35,8 @@ const Cart = () => {
 
   const calculateTotal = () => {
     return calculateSubtotal() + 20;
+
+    console.log('cartProducts:', cartProducts);
   };
 
   return (
@@ -75,7 +77,7 @@ const Cart = () => {
           <tbody>
             {cartProducts.map(product => (
               <CartProduct
-                key={Math.random()}
+                key={product.id}
                 actionDelete={deleteCartProductHandler}
                 {...product}
               />

@@ -3,15 +3,15 @@ import styles from './CartProduct.module.scss';
 import Button from '../Button/Button';
 import Quantity from '../Quantity/Quantity';
 import { useDispatch } from 'react-redux';
-import { updateProductQuantity } from '../../../redux/cartRedux';
+import { updateProductQuantity, deleteProduct } from '../../../redux/cartRedux';
 
 const CartProduct = ({ ...item }) => {
+  const dispatch = useDispatch();
+
   const deleteCartProductHandler = e => {
     e.preventDefault();
-    item.actionDelete(item.id);
+    dispatch(deleteProduct(item.id));
   };
-
-  const dispatch = useDispatch();
 
   const updateQuantityHandler = newQuantity => {
     dispatch(updateProductQuantity({ id: item.id, quantity: newQuantity }));
@@ -38,11 +38,7 @@ const CartProduct = ({ ...item }) => {
         <p className='my-1'>$ {item.price}</p>
       </td>
       <td className='align-middle'>
-        <Quantity
-          value={item.quantity}
-          onChange={updateQuantityHandler}
-          onDelete={deleteCartProductHandler}
-        />
+        <Quantity value={item.quantity} onChange={updateQuantityHandler} />
       </td>
       <td className={`${styles.price} align-middle`}>
         <p className='my-1'>$ {item.price * item.quantity}</p>

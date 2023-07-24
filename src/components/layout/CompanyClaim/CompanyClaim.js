@@ -8,7 +8,11 @@ import { faMobileAlt, faShoppingBasket } from '@fortawesome/free-solid-svg-icons
 
 const CompanyClaim = () => {
   const cartProducts = useSelector(state => state.cart.products);
-  const cartCount = cartProducts.length;
+
+  const cartCount = cartProducts.reduce(
+    (total, product) => total + product.quantity,
+    0
+  );
 
   return (
     <div className={styles.root}>

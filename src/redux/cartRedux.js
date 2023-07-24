@@ -27,10 +27,22 @@ const initialCart = {
 export default function reducer(statePart = initialCart, action = {}) {
   switch (action.type) {
     case ADD_PRODUCT: {
-      return {
-        ...statePart,
-        products: [...statePart.products, action.payload],
-      };
+      const { id, name, price, picture } = action.payload;
+      const existingProduct = statePart.products.find(product => product.id === id);
+
+      if (existingProduct) {
+        return {
+          ...statePart,
+          products: statePart.products.map(product =>
+            product.id === id ? { ...product, quantity: product.quantity + 1 } : product
+          ),
+        };
+      } else {
+        return {
+          ...statePart,
+          products: [...statePart.products, { id, name, price, picture, quantity: 1 }],
+        };
+      }
     }
     case DELETE_PRODUCT: {
       return {
